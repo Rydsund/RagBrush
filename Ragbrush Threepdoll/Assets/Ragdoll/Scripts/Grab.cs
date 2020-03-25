@@ -9,7 +9,7 @@ public class Grab : MonoBehaviour
 	public GameObject myGrabdObj;
 	public bool isGrab = false;
 
-    void Start()
+    void Start()//NY
     {
 		rb = GetComponent<Rigidbody>();
     }
