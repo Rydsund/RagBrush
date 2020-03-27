@@ -23,12 +23,13 @@ public class Motion : MonoBehaviour
 			{
 				js.targetPosition = js.targetPosition - 360;
 			}
-			js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
+			
 			if (Mirror)
 			{
 				js.targetPosition = js.targetPosition *= -1;
 			}
 			Hj.spring = js;
-		}
+            js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
+        }
     }
 }
