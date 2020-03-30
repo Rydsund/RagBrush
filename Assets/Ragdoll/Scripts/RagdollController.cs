@@ -31,13 +31,13 @@ public class RagdollController : MonoBehaviour
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 currentRotation = Vector3.zero;
 	
-	private float cameraRotationX = 0f;
-	private float currentCameraRotationX = 0f;
+	//private float cameraRotationX = 0f;
+	//private float currentCameraRotationX = 0f;
 	private Vector3 thrusterForce = Vector3.zero;
 	[SerializeField]
-	private float cameraRotationLimit = 85f;
+	//private float cameraRotationLimit = 85f;
 
-	public float rotationSpeed = 0.1f;
+	public float rotationSpeed = 0.5f;
 	public float speed = 10;
 
 	public float jumpForce = 3;
