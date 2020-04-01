@@ -52,7 +52,7 @@ public class RagdollController : MonoBehaviour
 		
 
 		mainCameraTransform = Camera.main.transform;
-
+		Cursor.visible = false;
 	}
 
 	void Update()
