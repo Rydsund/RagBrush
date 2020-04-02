@@ -11,10 +11,10 @@ public class Destructible : MonoBehaviour
 {
     public GameObject replacement;
 
-    [Tooltip("Leave null if object should be breakable by everything")]
+    [Tooltip("Leave empty if object should be breakable by everything")]
     public GameObject onlyBreakableBy;
 
-    [Range(0, 100)]
+    [Range(1, 100)]
     public float resistance;
 
     private void Start()
