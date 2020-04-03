@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3926646110283734287}
   m_Layer: 0
   m_Name: Tree2.001
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5082128950281450305}
   m_Layer: 0
-  m_Name: cuttreetest
+  m_Name: cuttree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
