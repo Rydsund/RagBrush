@@ -20,6 +20,8 @@ public class RagdollController : MonoBehaviour
 	bool isGround = true;
 	public float outValue = 10;
 
+	bool alive = true;
+
 	void Start()
     {
 		rb = GetComponent<Rigidbody>();
@@ -53,7 +55,7 @@ public class RagdollController : MonoBehaviour
 
 		moveDirection.Normalize();
 
-		if (inputRaw != Vector3.zero)
+		if (inputRaw != Vector3.zero && alive)
 		{
 			targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
 
@@ -62,7 +64,7 @@ public class RagdollController : MonoBehaviour
 
 			animator.enabled = true;
 		}
-		else if (inputRaw.sqrMagnitude == 0)
+		else if (inputRaw.sqrMagnitude == 0 || !alive)
 		{
 			animator.enabled = false;
 		}
@@ -71,7 +73,7 @@ public class RagdollController : MonoBehaviour
 
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.relativeVelocity.magnitude > outValue)
+		if (other.relativeVelocity.magnitude > outValue)
 		{
 			StartCoroutine(Out());
 		}
@@ -85,10 +87,12 @@ public class RagdollController : MonoBehaviour
 	{
 		rb.constraints = RigidbodyConstraints.None;
 		cap.enabled = false;
+		alive = false;
 		yield return new WaitForSeconds(4);
 		rb.constraints = RigidbodyConstraints.FreezeRotation;
 		cap.enabled = true;
+		alive = true;
 	}
 
-	
+
 }

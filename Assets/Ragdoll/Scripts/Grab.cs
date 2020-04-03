@@ -38,7 +38,7 @@ public class Grab : MonoBehaviour
 				isGrab = false;
 			}
 		}
-    }
+	}
 
 	public void OnTriggerEnter(Collider other)
 	{
