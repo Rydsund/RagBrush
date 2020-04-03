@@ -15,17 +15,8 @@ public class RagdollController : MonoBehaviour
 
 	Vector3 targetRotation;
 
-	[SerializeField]
-	private float lookSensitivity = 3f;
-
-	[SerializeField]
-	Camera cam;
-
-	public float rotationSpeed = 0.5f;
-	public float speed = 10;
-
+	public float rotationSpeed = 10f;
 	public float jumpForce = 3;
-
 	bool isGround = true;
 	public float outValue = 10;
 
@@ -33,10 +24,7 @@ public class RagdollController : MonoBehaviour
     {
 		rb = GetComponent<Rigidbody>();
 		cap = GetComponent<CapsuleCollider>();
-		
-
 		mainCameraTransform = Camera.main.transform;
-		Cursor.visible = false;
 	}
 
 	void Update()
@@ -58,28 +46,21 @@ public class RagdollController : MonoBehaviour
 		forward.y = 0;
 		forward = forward.normalized;
 		Vector3 right = new Vector3(forward.z, 0, -forward.x);
+
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 		Vector3 moveDirection = (h * right + v * forward);
 
-		if (inputRaw.sqrMagnitude > 1f)
-		{
-			moveDirection.Normalize();
-		}
+		moveDirection.Normalize();
 
 		if (inputRaw != Vector3.zero)
 		{
 			targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
-		}
 
-		rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(targetRotation.x, Mathf.Round(targetRotation.y / 45) * 45 - 90, targetRotation.z - 90),
-		Time.fixedDeltaTime * rotationSpeed);
+			rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y - 90/*Mathf.Round(targetRotation.y / 45) * 45 - 90*/, targetRotation.z - 90),
+			Time.fixedDeltaTime * rotationSpeed);
 
-
-		if (inputRaw.sqrMagnitude != 0)
-		{
 			animator.enabled = true;
-
 		}
 		else if (inputRaw.sqrMagnitude == 0)
 		{

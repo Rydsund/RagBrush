@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float rotationSpeed = 1;
+    public float lookSensitivity = 1;
     public Transform target, player;
     float mouseX, mouseY;
 
@@ -21,15 +21,13 @@ public class CameraController : MonoBehaviour
 
     void CamControl()
     {
-        mouseY += Input.GetAxisRaw("Mouse Y") * rotationSpeed;
-        mouseX -= Input.GetAxisRaw("Mouse X") * rotationSpeed;
-        mouseY = Mathf.Clamp(mouseY, -35, 25);
+        mouseY += Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+        mouseX -= Input.GetAxisRaw("Mouse X") * lookSensitivity;
+        mouseY = Mathf.Clamp(mouseY, -35, 20);
 
         transform.LookAt(target);
 
         target.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
         target.position = player.position;
-        //player.rotation = Quaternion.Euler(0, mouseX, 0);
-
     }
 }

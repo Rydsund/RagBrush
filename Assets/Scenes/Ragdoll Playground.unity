@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed7504c53935d5449b4c7bf5403cd5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
+  lookSensitivity: 1
   target: {fileID: 1386163235}
   player: {fileID: 1779597972}
 --- !u!1 &581490381
@@ -3539,10 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 890428583}
-  lookSensitivity: 9
-  cam: {fileID: 309578274}
-  rotationSpeed: 3
-  speed: 10
+  rotationSpeed: 10
   jumpForce: 4.68
   outValue: 10
 --- !u!1 &1779769064
