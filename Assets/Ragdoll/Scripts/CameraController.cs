@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     {
         mouseY += Input.GetAxisRaw("Mouse Y") * lookSensitivity;
         mouseX -= Input.GetAxisRaw("Mouse X") * lookSensitivity;
-        mouseY = Mathf.Clamp(mouseY, -35, 20);
+        mouseY = Mathf.Clamp(mouseY, -35, 18);
 
         transform.LookAt(target);
 
