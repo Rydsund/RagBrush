@@ -10,12 +10,13 @@ public class RagdollController : MonoBehaviour
 	Rigidbody rb;
 	CapsuleCollider cap;
 
-	float verticalRaw, v;
-	float horizontalRaw, h;
+	float vertical;
+	float horizontal;
 
 	Vector3 targetRotation;
 
 	public float rotationSpeed = 10f;
+	public float speed = 3f;
 	public float jumpForce = 3;
 	bool isGround = true;
 	public float outValue = 10;
@@ -40,22 +41,19 @@ public class RagdollController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		horizontalRaw = Input.GetAxisRaw("Horizontal");
-		verticalRaw = Input.GetAxisRaw("Vertical");
-		Vector3 inputRaw = new Vector3(horizontalRaw, 0, verticalRaw);
-
 		Vector3 forward = mainCameraTransform.forward;
 		forward.y = 0;
 		forward = forward.normalized;
 		Vector3 right = new Vector3(forward.z, 0, -forward.x);
 
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
-		Vector3 moveDirection = (h * right + v * forward);
+		horizontal = Input.GetAxis("Horizontal");
+		vertical = Input.GetAxis("Vertical");
+		Vector3 input = new Vector3(horizontal, 0, vertical);
+		Vector3 moveDirection = (horizontal * right + vertical * forward);
 
 		moveDirection.Normalize();
 
-		if (inputRaw != Vector3.zero && alive)
+		if (input != Vector3.zero && alive)
 		{
 			targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
 
@@ -63,8 +61,11 @@ public class RagdollController : MonoBehaviour
 			Time.fixedDeltaTime * rotationSpeed);
 
 			animator.enabled = true;
+
+			Vector3 velocity = moveDirection * speed;
+			rb.MovePosition(transform.position + velocity * Time.fixedDeltaTime);
 		}
-		else if (inputRaw.sqrMagnitude == 0 || !alive)
+		else if (input.sqrMagnitude == 0 || !alive)
 		{
 			animator.enabled = false;
 		}
@@ -93,6 +94,4 @@ public class RagdollController : MonoBehaviour
 		cap.enabled = true;
 		alive = true;
 	}
-
-
 }
