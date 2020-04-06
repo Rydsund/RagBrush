@@ -3523,6 +3523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 890428583}
   rotationSpeed: 10
+  speed: 3
   jumpForce: 3
   outValue: 10
 --- !u!1 &1779769064
@@ -3736,6 +3737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabInput: 324
+  grabInput2: 335
   myGrabdObj: {fileID: 0}
   isGrab: 0
 --- !u!114 &1779769078
@@ -3751,6 +3753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabInput: 323
+  grabInput2: 334
   myGrabdObj: {fileID: 0}
   isGrab: 0
 --- !u!33 &1780925098

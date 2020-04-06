@@ -6,10 +6,11 @@ public class Grab : MonoBehaviour
 {
 	Rigidbody rb;
 	public KeyCode grabInput;
+	public KeyCode grabInput2;
 	public GameObject myGrabdObj;
 	public bool isGrab = false;
 
-    void Start()//NY
+    void Start()
     {
 		rb = GetComponent<Rigidbody>();
     }
@@ -18,7 +19,7 @@ public class Grab : MonoBehaviour
     {
 		if (myGrabdObj != null)
 		{
-			if (Input.GetKey(grabInput))
+			if (Input.GetKey(grabInput) || Input.GetKey(grabInput2))
 			{
 				if (!isGrab)
 				{
@@ -28,7 +29,7 @@ public class Grab : MonoBehaviour
 					isGrab = true;
 				}
 			}
-			else if (Input.GetKeyUp(grabInput))
+			else/* if (Input.GetKeyUp(grabInput) && Input.GetKeyUp(grabInput2))*/
 			{
 				if (myGrabdObj.CompareTag("Item"))
 				{

@@ -32,7 +32,8 @@ public class RagdollController : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && isGround)
+		
+		if (Input.GetButtonDown("Jump") && isGround)
 		{
 			rb.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
 			isGround = false;
