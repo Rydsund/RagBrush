@@ -19,17 +19,17 @@ public class Motion : MonoBehaviour
 		{
 			JointSpring js = Hj.spring;
 			js.targetPosition = legAnimation.localEulerAngles.x;
-			if (js.targetPosition > 180)
+			if (js.targetPosition > 180)//Johan
 			{
 				js.targetPosition = js.targetPosition - 360;
 			}
-			js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
-			if (Mirror)
+			//js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
+			if (Mirror)//Johan
 			{
 				js.targetPosition = js.targetPosition *= -1;
 			}
-            //js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
-            Hj.spring = js;
+			js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
+			Hj.spring = js;
             
         }
     }

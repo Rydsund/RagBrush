@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour //Johan
 {
     public float lookSensitivity = 1;
     public Transform target, player;

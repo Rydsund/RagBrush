@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grab : MonoBehaviour
+public class Grab : MonoBehaviour //Johan
 {
 	Rigidbody rb;
 	public KeyCode grabInput;
@@ -12,12 +12,12 @@ public class Grab : MonoBehaviour
 
     void Start()
     {
-		rb = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();//Johan
     }
 
     void Update()
     {
-		if (myGrabdObj != null)
+		if (myGrabdObj != null)//Johan
 		{
 			if (Input.GetKey(grabInput) || Input.GetKey(grabInput2))
 			{
@@ -41,7 +41,7 @@ public class Grab : MonoBehaviour
 		}
 	}
 
-	public void OnTriggerEnter(Collider other)
+	public void OnTriggerEnter(Collider other)//Johan
 	{
 		if (other.gameObject.CompareTag("Item"))
 		{
@@ -49,7 +49,7 @@ public class Grab : MonoBehaviour
 		}
 	}
 
-	public void OnTriggerExit(Collider other)
+	public void OnTriggerExit(Collider other)//Johan
 	{
 		if (other.gameObject.CompareTag("Item"))
 		{

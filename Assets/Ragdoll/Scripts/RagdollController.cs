@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagdollController : MonoBehaviour
+public class RagdollController : MonoBehaviour //Johan
 {
 	public Animator animator = null;
 	private Transform mainCameraTransform = null;
@@ -25,15 +25,15 @@ public class RagdollController : MonoBehaviour
 
 	void Start()
     {
-		rb = GetComponent<Rigidbody>();
-		cap = GetComponent<CapsuleCollider>();
-		mainCameraTransform = Camera.main.transform;
+		rb = GetComponent<Rigidbody>(); //Johan
+		cap = GetComponent<CapsuleCollider>(); //Johan
+		mainCameraTransform = Camera.main.transform; //Johan
 	}
 
 	void Update()
 	{
 		
-		if (Input.GetButtonDown("Jump") && isGround)
+		if (Input.GetButtonDown("Jump") && isGround)//Johan
 		{
 			rb.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
 			isGround = false;
@@ -54,7 +54,7 @@ public class RagdollController : MonoBehaviour
 
 		moveDirection.Normalize();
 
-		if (input != Vector3.zero && alive)
+		if (input != Vector3.zero && alive) //Johan
 		{
 			targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
 
@@ -73,7 +73,7 @@ public class RagdollController : MonoBehaviour
 	}
 
 
-	void OnCollisionEnter(Collision other)
+	void OnCollisionEnter(Collision other) //Johan
 	{
 		if (other.relativeVelocity.magnitude > outValue)
 		{
@@ -85,7 +85,7 @@ public class RagdollController : MonoBehaviour
 		}
 	}
 
-	IEnumerator Out()
+	IEnumerator Out() //Johan
 	{
 		rb.constraints = RigidbodyConstraints.None;
 		cap.enabled = false;
