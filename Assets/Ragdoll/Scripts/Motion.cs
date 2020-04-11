@@ -30,7 +30,6 @@ public class Motion : MonoBehaviour
 			}
 			js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
 			Hj.spring = js;
-            
         }
     }
 }

@@ -28,6 +28,5 @@ public class CameraController : MonoBehaviour //Johan
         transform.LookAt(target);
 
         target.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
-        target.position = player.position;
     }
 }

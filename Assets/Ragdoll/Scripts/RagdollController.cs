@@ -42,31 +42,36 @@ public class RagdollController : MonoBehaviour //Johan
 
 	void FixedUpdate()
 	{
-		Vector3 forward = mainCameraTransform.forward;
-		forward.y = 0;
-		forward = forward.normalized;
-		Vector3 right = new Vector3(forward.z, 0, -forward.x);
-
-		horizontal = Input.GetAxis("Horizontal");
-		vertical = Input.GetAxis("Vertical");
-		Vector3 input = new Vector3(horizontal, 0, vertical);
-		Vector3 moveDirection = (horizontal * right + vertical * forward);
-
-		moveDirection.Normalize();
-
-		if (input != Vector3.zero && alive) //Johan
+		if (alive)//Johan
 		{
-			targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
+			horizontal = Input.GetAxis("Horizontal");
+			vertical = Input.GetAxis("Vertical");
+			Vector3 input = new Vector3(horizontal, 0, vertical);
 
-			rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y - 90/*Mathf.Round(targetRotation.y / 45) * 45 - 90*/, targetRotation.z - 90),
-			Time.fixedDeltaTime * rotationSpeed);
+			if (input != Vector3.zero)
+			{
+				Vector3 forward = mainCameraTransform.forward;
+				forward.y = 0;
+				forward = forward.normalized;
+				Vector3 right = new Vector3(forward.z, 0, -forward.x);
 
-			animator.enabled = true;
+				Vector3 moveDirection = (horizontal * right + vertical * forward);
+				moveDirection.Normalize();
 
-			Vector3 velocity = moveDirection * speed;
-			rb.MovePosition(transform.position + velocity * Time.fixedDeltaTime);
+				targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
+				rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
+
+				animator.enabled = true;
+
+				Vector3 velocity = moveDirection * speed;
+				rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+			}
+			else if (input.sqrMagnitude == 0)
+			{
+				animator.enabled = false;
+			}
 		}
-		else if (input.sqrMagnitude == 0 || !alive)
+		else
 		{
 			animator.enabled = false;
 		}
