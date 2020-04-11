@@ -29,7 +29,7 @@ public class Grab : MonoBehaviour //Johan
 					isGrab = true;
 				}
 			}
-			else/* if (Input.GetKeyUp(grabInput) && Input.GetKeyUp(grabInput2))*/
+			else if (Input.GetKeyUp(grabInput) || Input.GetKeyUp(grabInput2))
 			{
 				if (myGrabdObj.CompareTag("Item"))
 				{

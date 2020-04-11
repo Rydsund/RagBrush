@@ -9,6 +9,7 @@ public class RagdollController : MonoBehaviour //Johan
 
 	Rigidbody rb;
 	CapsuleCollider cap;
+	
 
 	float vertical;
 	float horizontal;

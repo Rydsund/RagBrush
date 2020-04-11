@@ -21,8 +21,8 @@ public class CameraController : MonoBehaviour //Johan
 
     void CamControl()
     {
-        mouseY += Input.GetAxisRaw("Mouse Y") * lookSensitivity/* * Time.deltaTime*/;
-        mouseX -= Input.GetAxisRaw("Mouse X") * lookSensitivity/* * Time.deltaTime*/;
+        mouseY += Input.GetAxisRaw("Mouse Y") * lookSensitivity;
+        mouseX -= Input.GetAxisRaw("Mouse X") * lookSensitivity;
         mouseY = Mathf.Clamp(mouseY, -35, 18);
 
         transform.LookAt(target);
