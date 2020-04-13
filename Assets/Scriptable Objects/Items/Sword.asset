@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00891f9a5b078d54dbe17d706ebbf868, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3682008607048098643, guid: e92dd59931e95a34894de6799445bf99, type: 3}
   type: 1
   description: For slashing and dashing.
   atkBonus: 10

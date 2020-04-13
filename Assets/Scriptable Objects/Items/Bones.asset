@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618925a051571f04783bd4a9c09149ae, type: 3}
   m_Name: Bones
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 8145983770695798959, guid: e0a188bc002088e4aa15f2a61045b860, type: 3}
   type: 2
   description: The leftovers of those you have slain in combat!

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c85016bd233a46b1cc8de6ed85c99, type: 3}
   m_Name: Monkfish
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3682008607048098643, guid: b1e1d4931d81e67419e790b59efc4128, type: 3}
   type: 0
   description: Be wise, eat wise!
   restoreHealthValue: 0

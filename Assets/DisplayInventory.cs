@@ -10,6 +10,10 @@ public class DisplayInventory : MonoBehaviour
 {
 
     public InventoryObject inventory;
+
+    public int x_Start;
+    public int y_Start;
+
     public int x_SpaceBetweenItems;
     public int number_Of_Columns;
     public int y_SpaceBetweenItems;
@@ -25,7 +29,7 @@ public class DisplayInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateDisplay();
+       // UpdateDisplay();
     }
 
     public void CreateDisplay()
@@ -34,11 +38,12 @@ public class DisplayInventory : MonoBehaviour
         {
             var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+            obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
         }
     }
 
     public Vector3 GetPosition(int i)
     {
-        return new Vector3(x_SpaceBetweenItems * (i % number_Of_Columns), (-y_SpaceBetweenItems * (i/number_Of_Columns)), 0f);
+        return new Vector3(x_Start + (x_SpaceBetweenItems * (i % number_Of_Columns)), y_Start + ((-y_SpaceBetweenItems * (i/number_Of_Columns))), 0f);
     }
 }

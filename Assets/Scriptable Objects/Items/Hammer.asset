@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00891f9a5b078d54dbe17d706ebbf868, type: 3}
   m_Name: Hammer
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3682008607048098643, guid: b65a0e2a5f9ecc34b859d9fd39f6a202, type: 3}
   type: 1
-  description: 
-  atkBonus: 0
+  description: Hammer to smash skulls yo!
+  atkBonus: 20
   defBonus: 0
