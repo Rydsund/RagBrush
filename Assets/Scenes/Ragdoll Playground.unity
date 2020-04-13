@@ -2024,9 +2024,9 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: ac6ce75741be5aa4e82c3b4fa1642336, type: 2}
   x_Start: -75
   y_Start: 100
-  x_SpaceBetweenItems: 35
-  number_Of_Columns: 6
-  y_SpaceBetweenItems: 35
+  x_SpaceBetweenItems: 53
+  number_Of_Columns: 4
+  y_SpaceBetweenItems: 53
 --- !u!1 &1912960700
 GameObject:
   m_ObjectHideFlags: 0
