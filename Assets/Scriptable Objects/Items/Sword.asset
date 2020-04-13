@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   type: 1
-  description: 
-  atkBonus: 0
+  description: For slashing and dashing.
+  atkBonus: 10
   defBonus: 0

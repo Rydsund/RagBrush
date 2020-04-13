@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   type: 0
-  description: 
+  description: Be wise, eat wise!
   restoreHealthValue: 0
