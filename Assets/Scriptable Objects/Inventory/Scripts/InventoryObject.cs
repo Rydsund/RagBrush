@@ -28,6 +28,15 @@ public class InventoryObject : ScriptableObject
         }
     }
 
+    // drop item
+    //public void DropItem(InventorySlot _item)
+    //{
+    //    for (int i = 0; i < Container.Count; i++)
+    //    {
+    //        Container.RemoveAt(i);
+    //    } 
+    //}
+
 }
 
 [System.Serializable]

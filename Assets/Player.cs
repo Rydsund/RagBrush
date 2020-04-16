@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
 
     public InventoryObject inventory;
+    [SerializeField] Button button;
     // Start is called before the first frame update
 
     public void OnTriggerEnter(Collider other)
@@ -17,6 +19,20 @@ public class Player : MonoBehaviour
             inventory.AddItem(item.item, 1);
             Destroy(other.gameObject);
         }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            inventory.Container.Clear();
+        }
+
+        //if ()
+        //{
+
+        //}
+
     }
 
     private void OnApplicationQuit()
