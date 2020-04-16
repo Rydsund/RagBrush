@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour //Johan
 {
-	Rigidbody rb;
+	new Rigidbody rigidbody;
 	public KeyCode grabInput;
 	public KeyCode grabInput2;
 	public GameObject myGrabdObj;
@@ -12,7 +12,7 @@ public class Grab : MonoBehaviour //Johan
 
     void Start()
     {
-		rb = GetComponent<Rigidbody>();//Johan
+		rigidbody = GetComponent<Rigidbody>();//Johan
     }
 
     void Update()
@@ -24,7 +24,7 @@ public class Grab : MonoBehaviour //Johan
 				if (!isGrab)
 				{
 					FixedJoint FJ = myGrabdObj.AddComponent<FixedJoint>();
-					FJ.connectedBody = rb;
+					FJ.connectedBody = rigidbody;
 					FJ.breakForce = 8000;
 					isGrab = true;
 				}

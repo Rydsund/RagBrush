@@ -7,8 +7,8 @@ public class RagdollController : MonoBehaviour //Johan
 	public Animator animator = null;
 	private Transform mainCameraTransform = null;
 
-	Rigidbody rb;
-	CapsuleCollider cap;
+	new Rigidbody rigidbody;
+	CapsuleCollider capsuleCollider;
 	
 
 	float vertical;
@@ -26,8 +26,8 @@ public class RagdollController : MonoBehaviour //Johan
 
 	void Start()
     {
-		rb = GetComponent<Rigidbody>(); //Johan
-		cap = GetComponent<CapsuleCollider>(); //Johan
+		rigidbody = GetComponent<Rigidbody>(); //Johan
+		capsuleCollider = GetComponent<CapsuleCollider>(); //Johan
 		mainCameraTransform = Camera.main.transform; //Johan
 	}
 
@@ -36,7 +36,7 @@ public class RagdollController : MonoBehaviour //Johan
 		
 		if (Input.GetButtonDown("Jump") && isGround)//Johan
 		{
-			rb.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
+			rigidbody.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
 			isGround = false;
 		}
 	}
@@ -60,12 +60,12 @@ public class RagdollController : MonoBehaviour //Johan
 				moveDirection.Normalize();
 
 				targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
-				rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
+				rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
 
 				animator.enabled = true;
 
 				Vector3 velocity = moveDirection * speed;
-				rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+				rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
 			}
 			else if (input.sqrMagnitude == 0)
 			{
@@ -93,12 +93,12 @@ public class RagdollController : MonoBehaviour //Johan
 
 	IEnumerator Out() //Johan
 	{
-		rb.constraints = RigidbodyConstraints.None;
-		cap.enabled = false;
+		rigidbody.constraints = RigidbodyConstraints.None;
+		capsuleCollider.enabled = false;
 		alive = false;
 		yield return new WaitForSeconds(4);
-		rb.constraints = RigidbodyConstraints.FreezeRotation;
-		cap.enabled = true;
+		rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+		capsuleCollider.enabled = true;
 		alive = true;
 	}
 }

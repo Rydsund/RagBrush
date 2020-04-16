@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Motion : MonoBehaviour
 {
-	private HingeJoint Hj;
+	private new HingeJoint hingeJoint;
 	public Transform legAnimation;
 	public bool Mirror;
+
     void Start()
     {
-		Hj = GetComponent<HingeJoint>();
+		hingeJoint = GetComponent<HingeJoint>();
     }
 
 
@@ -17,7 +18,7 @@ public class Motion : MonoBehaviour
     {
 		if (legAnimation != null)
 		{
-			JointSpring js = Hj.spring;
+			JointSpring js = hingeJoint.spring;
 			js.targetPosition = legAnimation.localEulerAngles.x;
 			if (js.targetPosition > 180)//Johan
 			{
@@ -28,8 +29,8 @@ public class Motion : MonoBehaviour
 			{
 				js.targetPosition = js.targetPosition *= -1;
 			}
-			js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
-			Hj.spring = js;
+			js.targetPosition = Mathf.Clamp(js.targetPosition, hingeJoint.limits.min + 5, hingeJoint.limits.max - 5);
+			hingeJoint.spring = js;
         }
     }
 }
