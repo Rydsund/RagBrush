@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagdollController : MonoBehaviour //Johan
+public class RC : MonoBehaviour
 {
 	public Animator animator = null;
 	private Transform mainCameraTransform = null;
@@ -10,7 +10,11 @@ public class RagdollController : MonoBehaviour //Johan
 	new Rigidbody rigidbody;
 	CapsuleCollider capsuleCollider;
 
-	
+	public Transform LookTarget;
+	public Transform[] FootTarget;
+	public Transform[] HandTarget;
+	//public Transform[] HandPole;
+
 
 	float vertical;
 	float horizontal;
@@ -26,7 +30,7 @@ public class RagdollController : MonoBehaviour //Johan
 	bool alive = true;
 
 	void Start()
-    {
+	{
 		rigidbody = GetComponent<Rigidbody>(); //Johan
 		capsuleCollider = GetComponent<CapsuleCollider>(); //Johan
 		mainCameraTransform = Camera.main.transform; //Johan
@@ -34,10 +38,10 @@ public class RagdollController : MonoBehaviour //Johan
 
 	void Update()
 	{
-		
+
 		if (Input.GetButtonDown("Jump") && isGround)//Johan
 		{
-			rigidbody.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
+			rigidbody.AddForce(new Vector3(0, jumpForce * 100, 0), ForceMode.Impulse);
 			isGround = false;
 		}
 	}
@@ -52,6 +56,21 @@ public class RagdollController : MonoBehaviour //Johan
 
 			if (input != Vector3.zero)
 			{
+				//footsteps
+				//for (int i = 0; i < FootTarget.Length; i++)
+				//{
+				//	var foot = FootTarget[i];
+				//	var ray = new Ray(foot.transform.position + Vector3.up * 0.5f, Vector3.down);
+				//	var hitInfo = new RaycastHit();
+				//	if (Physics.SphereCast(ray, 0.05f, out hitInfo, 0.50f) && hitInfo.transform.tag != "Ragdoll")
+				//		foot.position = hitInfo.point + Vector3.up * 0.05f;
+				//}
+				//for (int i = 0; i < HandTarget.Length; i++)
+				//{
+				//	//HandTarget[i].rotation = Quaternion.Lerp(Quaternion.Euler(90, 0, 0), HandTarget[i].rotation, , normDist);
+				//}
+
+
 				Vector3 forward = mainCameraTransform.forward;
 				forward.y = 0;
 				forward = forward.normalized;

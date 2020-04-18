@@ -22,7 +22,7 @@ namespace DitzelGames.FastIK
                 Attraction.position = Attraction.position + Vector3.forward * -2f;
 
             //footsteps
-            for(int i = 0; i < FootTarget.Length; i++)
+            for (int i = 0; i < FootTarget.Length; i++)
             {
                 var foot = FootTarget[i];
                 var ray = new Ray(foot.transform.position + Vector3.up * 0.5f, Vector3.down);

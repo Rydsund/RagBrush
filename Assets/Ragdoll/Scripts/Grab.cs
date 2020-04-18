@@ -5,21 +5,34 @@ using UnityEngine;
 public class Grab : MonoBehaviour //Johan
 {
 	new Rigidbody rigidbody;
-	public KeyCode grabInput;
-	public KeyCode grabInput2;
+	public KeyCode leftInput;
+	public KeyCode rightInput;
 	public GameObject myGrabdObj;
 	public bool isGrab = false;
+	public float punchSpeed = 1;
+	public Transform leftTarget, rightTarget;
 
-    void Start()
+	void Start()
     {
 		rigidbody = GetComponent<Rigidbody>();//Johan
     }
 
     void Update()
     {
+
+		if(Input.GetKey(leftInput))
+		{
+			float step = punchSpeed * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, leftTarget.transform.position, step);
+		}
+		if (Input.GetKey(rightInput))
+		{
+			float step = punchSpeed * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, rightTarget.transform.position, step);
+		}
 		if (myGrabdObj != null)//Johan
 		{
-			if (Input.GetKey(grabInput) || Input.GetKey(grabInput2))
+			if (Input.GetKey(leftInput) || Input.GetKey(rightInput))
 			{
 				if (!isGrab)
 				{
@@ -29,7 +42,7 @@ public class Grab : MonoBehaviour //Johan
 					isGrab = true;
 				}
 			}
-			else if (Input.GetKeyUp(grabInput) || Input.GetKeyUp(grabInput2))
+			else if (Input.GetKeyUp(leftInput) || Input.GetKeyUp(rightInput))
 			{
 				if (myGrabdObj.CompareTag("Item"))
 				{
