@@ -1443,7 +1443,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 746072346}
+        m_MethodName: SetFullscreen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &414010441
 GameObject:
@@ -2712,8 +2723,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 44275330}
-  - {fileID: 1716612253}
   - {fileID: 878923177}
+  - {fileID: 1716612253}
   - {fileID: 53135284}
   - {fileID: 54153064}
   m_Father: {fileID: 1954155078}
@@ -3072,7 +3083,7 @@ RectTransform:
   - {fileID: 1762769581}
   - {fileID: 549496975}
   m_Father: {fileID: 746072345}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3618,7 +3629,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1027903893}
   m_Template: {fileID: 1999478155}
-  m_CaptionText: {fileID: 1603574714}
+  m_CaptionText: {fileID: 0}
   m_CaptionImage: {fileID: 0}
   m_ItemText: {fileID: 714421272}
   m_ItemImage: {fileID: 0}
@@ -5067,7 +5078,7 @@ RectTransform:
   - {fileID: 1027903891}
   - {fileID: 403604640}
   m_Father: {fileID: 746072345}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
