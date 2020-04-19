@@ -5,12 +5,14 @@ using UnityEngine;
 public class Grab : MonoBehaviour //Johan
 {
 	new Rigidbody rigidbody;
-	public KeyCode leftInput;
-	public KeyCode rightInput;
+	public KeyCode punchInput1;
+	public KeyCode punchInput2;
 	public GameObject myGrabdObj;
+	//public GameObject parentObject, grandparentObject;
 	public bool isGrab = false;
 	public float punchSpeed = 1;
-	public Transform leftTarget, rightTarget;
+	public Transform target, parentTarget, grandparentTarget;
+	
 
 	void Start()
     {
@@ -20,19 +22,21 @@ public class Grab : MonoBehaviour //Johan
     void Update()
     {
 
-		if(Input.GetKey(leftInput))
+		if(Input.GetKey(punchInput1) || Input.GetKey(punchInput2))
 		{
-			float step = punchSpeed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, leftTarget.transform.position, step);
-		}
-		if (Input.GetKey(rightInput))
-		{
-			float step = punchSpeed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, rightTarget.transform.position, step);
+
+			//float step = punchSpeed * Time.deltaTime;
+			//transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+			//parentObject.transform.position = Vector3.MoveTowards(transform.position, parentTarget.transform.position, step);
+			//grandparentObject.transform.position = Vector3.MoveTowards(transform.position, grandparentTarget.transform.position, step);
+
+			//grandparentObject.transform.rotation = Vector3.RotateTowards(grandparentObject.transform.rotation, new Vector3(0, -90, -90), step, step + 1f);
+			//grandparentObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 75), Time.deltaTime);
+
 		}
 		if (myGrabdObj != null)//Johan
 		{
-			if (Input.GetKey(leftInput) || Input.GetKey(rightInput))
+			if (Input.GetKey(punchInput1) || Input.GetKey(punchInput2))
 			{
 				if (!isGrab)
 				{
@@ -42,7 +46,7 @@ public class Grab : MonoBehaviour //Johan
 					isGrab = true;
 				}
 			}
-			else if (Input.GetKeyUp(leftInput) || Input.GetKeyUp(rightInput))
+			else if (Input.GetKeyUp(punchInput1) || Input.GetKeyUp(punchInput2))
 			{
 				if (myGrabdObj.CompareTag("Item"))
 				{
@@ -53,6 +57,9 @@ public class Grab : MonoBehaviour //Johan
 			}
 		}
 	}
+
+
+
 
 	public void OnTriggerEnter(Collider other)//Johan
 	{
