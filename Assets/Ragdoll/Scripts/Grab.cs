@@ -11,7 +11,7 @@ public class Grab : MonoBehaviour //Johan
 	//public GameObject parentObject, grandparentObject;
 	public bool isGrab = false;
 	public float punchSpeed = 1;
-	public Transform target, parentTarget, grandparentTarget;
+	public Transform target/*, parentTarget, grandparentTarget*/;
 	
 
 	void Start()
