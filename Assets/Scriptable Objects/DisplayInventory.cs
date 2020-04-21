@@ -17,7 +17,7 @@ public class DisplayInventory : MonoBehaviour
     public int x_SpaceBetweenItems;
     public int number_Of_Columns;
     public int y_SpaceBetweenItems;
-    Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
+   public Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
     
     // Todo: Do a list to hold displayed items so we clear inv.
 
@@ -56,12 +56,18 @@ public class DisplayInventory : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            inventory.Container.Clear();
-            itemsDisplayed.Clear();
+        // For dropping items. Consider moving to player.
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    //inventory.Container.Clear();
+        //    //itemsDisplayed.Clear();       
+        //    for (int i = 0; i < itemsDisplayed.Count; i++)
+        //    {
+        //        Destroy(itemsDisplayed[inventory.Container[i]].gameObject);
+        //        inventory.Container.RemoveAt(i);
+        //    }
+        //}
 
-        }
     }
 
     public void CreateDisplay()

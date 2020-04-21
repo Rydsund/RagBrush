@@ -22,7 +22,7 @@ public class InventoryObject : ScriptableObject
             }
         }
         // for adding new items
-        if (!hasItem && Container.Count <= 3)
+        if (!hasItem && Container.Count <= 1)
         {
             Container.Add(new InventorySlot(_item, _amount));
         }
