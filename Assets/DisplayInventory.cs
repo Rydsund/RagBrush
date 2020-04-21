@@ -18,6 +18,8 @@ public class DisplayInventory : MonoBehaviour
     public int number_Of_Columns;
     public int y_SpaceBetweenItems;
     Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
+    
+    // Todo: Do a list to hold displayed items so we clear inv.
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +43,24 @@ public class DisplayInventory : MonoBehaviour
             }
             else
             {
-                var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(inventory.Container[i].item.imagePrefab, Vector3.zero, Quaternion.identity, transform);
+               
+                // Sätter pos
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+               
+                
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+               
+                
                 itemsDisplayed.Add(inventory.Container[i], obj);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            inventory.Container.Clear();
+            itemsDisplayed.Clear();
+
         }
     }
 
@@ -53,7 +68,7 @@ public class DisplayInventory : MonoBehaviour
     {
         for (int i = 0; i < inventory.Container.Count; i++)
         {
-            var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+            var obj = Instantiate(inventory.Container[i].item.imagePrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
             itemsDisplayed.Add(inventory.Container[i], obj);
@@ -61,7 +76,7 @@ public class DisplayInventory : MonoBehaviour
     }
 
     public Vector3 GetPosition(int i)
-    {
+    { // grid layout
         return new Vector3(x_Start + (x_SpaceBetweenItems * (i % number_Of_Columns)), y_Start + ((-y_SpaceBetweenItems * (i/number_Of_Columns))), 0f);
     }
 }

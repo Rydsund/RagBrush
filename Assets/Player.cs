@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
             inventory.Container.Clear();
         }
 
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            var tempObj = inventory.Container[0].item.objectPrefab;
+            tempObj.transform.position = this.transform.position;
+            Instantiate(tempObj);
+        }
+
         //if ()
         //{
 
