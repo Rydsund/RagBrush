@@ -1175,6 +1175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 873947479}
   - component: {fileID: 873947478}
+  - component: {fileID: 873947480}
   - component: {fileID: 873947477}
   - component: {fileID: 873947476}
   m_Layer: 0
@@ -1227,6 +1228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: ac6ce75741be5aa4e82c3b4fa1642336, type: 2}
   button: {fileID: 0}
+  displayInventory: {fileID: 1691084012}
+  crafting: {fileID: 873947480}
 --- !u!4 &873947479
 Transform:
   m_ObjectHideFlags: 0
@@ -1242,6 +1245,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &873947480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873947475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8962bc67af25ce842bb72457f6800678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &881124038
 GameObject:
   m_ObjectHideFlags: 0

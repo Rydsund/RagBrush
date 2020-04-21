@@ -6,21 +6,19 @@ using UnityEngine;
 public class Crafting : MonoBehaviour
 {
     
-
-
-    void Start()
+    void Start() // För att läsa in recept.
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Craft();
-    }
 
-    public void Craft()
+    public void Craft(InventorySlot slot1, InventorySlot slot2) // För crafting.. duh.
     {
-
+        /*
+         * loopar igenom player inventory
+         * kollar om contents är lika med input objekt för recept
+         * om ja spotta ut item.
+                    
+         */
     }
 }

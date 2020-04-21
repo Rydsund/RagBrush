@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public InventoryObject inventory;
     [SerializeField] Button button;
     [SerializeField] DisplayInventory displayInventory;
+    [SerializeField] Crafting crafting;
     // Start is called before the first frame update
 
     public void OnTriggerEnter(Collider other)
@@ -24,9 +25,9 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            inventory.Container.Clear();
+            crafting.Craft(inventory.Container[0], inventory.Container[1]);
         }
 
         //if (Input.GetKeyDown(KeyCode.F1))
