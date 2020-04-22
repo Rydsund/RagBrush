@@ -14,7 +14,7 @@
         CGPROGRAM
         #pragma surface surf Lambert
 
-        #include "noise-simplex/noiseSimplex.cginc"
+        #include "Noise Simplex/noiseSimplex.cginc"
 
         sampler2D _MainTex;
         float4 _PaintColor;

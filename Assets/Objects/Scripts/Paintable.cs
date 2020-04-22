@@ -1,48 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
-public class Colouring : MonoBehaviour
+public class Paintable : MonoBehaviour
 {
-    // Write black pixels onto the GameObject that is located
-    // by the script. The script is attached to the camera.
-    // Determine where the collider hits and modify the texture at that point.
-    //
-    // Note that the MeshCollider on the GameObject must have Convex turned off. This allows
-    // concave GameObjects to be included in collision in this example.
-    //
-    // Also to allow the texture to be updated by mouse button clicks it must have the Read/Write
-    // Enabled option set to true in its Advanced import settings.
-    public Camera cam;
+    MeshCollider meshCollider;
+    Mesh mesh;
+    Color32[] vertColors;
+    Vector3[] verts;
 
     void Start()
     {
-        cam = GetComponent<Camera>();
+        meshCollider = GetComponent<MeshCollider>();
+        mesh = meshCollider.sharedMesh;
+        verts = mesh.vertices;
+        vertColors = mesh.colors32;
     }
 
-    void Update()
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ApplyPaint(new Vector3(99, 0.5f, 101), 0.1f, 1, Color.blue);
+        }
+    }
 
+    public void ApplyPaint(Vector3 position, float innerRadius, float outerRadius, Color color)
+    {
+        Vector3 center = transform.InverseTransformPoint(position);
+        float outerR = transform.InverseTransformVector(outerRadius * Vector3.right).magnitude;
+        float innerR = innerRadius * outerR / outerRadius;
+        float innerRsqr = innerR * innerR;
+        float outerRsqr = outerR * outerR;
+        float tFactor = 1f / (outerR - innerR);
 
-        if (!Input.GetMouseButton(0))
-            return;
+        for (int i = 0; i < verts.Length; i++)
+        {
+            Vector3 delta = verts[i] - center;
+            float dsqr = delta.sqrMagnitude;
+            if (dsqr > outerRsqr)
+            {
+                continue;
+            }
 
-        RaycastHit hit;
-        if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
-            return;
+            int a = vertColors[i].a;
+            vertColors[i] = color;
+            if (dsqr < innerRsqr) vertColors[i].a = 255;
+            else
+            {
+                float d = Mathf.Sqrt(dsqr);
+                byte blobA = (byte)(255 - 255 * (d - innerR) * tFactor);
+                if (blobA >= a) vertColors[i].a = blobA;
+            }
+        }
 
-        Renderer rend = hit.transform.GetComponent<Renderer>();
-        MeshCollider meshCollider = hit.collider as MeshCollider;
-
-        if (rend == null || rend.material == null || rend.material.mainTexture == null || meshCollider == null)
-            return;
-
-        Texture2D tex = rend.material.mainTexture as Texture2D;
-        Vector2 pixelUV = hit.textureCoord;
-        pixelUV.x *= tex.width;
-        pixelUV.y *= tex.height;
-
-        tex.SetPixel(10, 10, Color.black);
-        tex.Apply();
+        mesh.colors32 = vertColors;
     }
 }
