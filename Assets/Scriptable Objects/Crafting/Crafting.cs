@@ -22,23 +22,20 @@ public class Crafting : MonoBehaviour
         craftingSlots.Add(slot1);
         craftingSlots.Add(slot2);
 
-        //for (int i = 0; i < 1; i++)
-        //{
-        //    if (craftingSlots[i] == )
-        //    {
-
-        //    }
-        //}
-
-        // Ett första utkast av craftinglogiken. Kollar om a + b = a + b, eller b + a = b + a.
-        if (craftingRecipies[0].inputObj1 == craftingSlots[0].item.objectPrefab
-            && craftingRecipies[0].inputObj2 == craftingSlots[1].item.objectPrefab
-            || craftingRecipies[0].inputObj1 == craftingSlots[1].item.objectPrefab
-            && craftingRecipies[0].inputObj2 == craftingSlots[0].item.objectPrefab)
+        for (int i = 0; i < craftingRecipies.Length; i++)
         {
-            Instantiate(craftingRecipies[0].outputObj, this.transform);
-            // Remove from inventory.
-        }                        
+            // Ett första utkast av craftinglogiken. Kollar om a + b = a + b, eller b + a = b + a.
+            if (craftingRecipies[i].inputObj1 == craftingSlots[0].item.objectPrefab
+                && craftingRecipies[i].inputObj2 == craftingSlots[1].item.objectPrefab
+                || craftingRecipies[i].inputObj1 == craftingSlots[1].item.objectPrefab
+                && craftingRecipies[i].inputObj2 == craftingSlots[0].item.objectPrefab)
+            {
+                Instantiate(craftingRecipies[i].outputObj, this.transform);
+                // Remove from inventory.
+            }
+        }
+
+                    
     }
 
     private void LoadRecipies()

@@ -19,13 +19,10 @@ public class DisplayInventory : MonoBehaviour
     public int y_SpaceBetweenItems;
    public Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
     
-    // Todo: Do a list to hold displayed items so we clear inv.
 
-    // Start is called before the first frame update
     void Start()
     {
-
-        CreateDisplay();
+        CreateDisplay(); // Initierar display.
     }
 
     // Update is called once per frame
@@ -48,7 +45,6 @@ public class DisplayInventory : MonoBehaviour
                 // Sätter pos
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                
-                
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
                
                 

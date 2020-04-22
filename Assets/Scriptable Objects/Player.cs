@@ -54,9 +54,7 @@ public class Player : MonoBehaviour
                 Instantiate(tempObj);
 
                 Destroy(displayInventory.itemsDisplayed[inventory.Container[i]].gameObject);
-                inventory.Container.RemoveAt(i);
-                
-       
+                inventory.Container.RemoveAt(i);                    
             }
         }
 
