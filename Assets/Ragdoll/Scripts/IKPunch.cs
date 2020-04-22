@@ -134,32 +134,32 @@ public class IKPunch : MonoBehaviour
     {
         if (Input.GetKey(punchInput1) || Input.GetKey(punchInput2))
         {
-            if (!isHolding)
-                MoveHandTarget();
-            
-            ResolveIK();
-
-            if(myGrabdObj != null && !isGrab)
+            if (myGrabdObj != null && !isGrab)
             {
                 FixedJoint FJ = myGrabdObj.AddComponent<FixedJoint>();
                 FJ.connectedBody = rigidbody;
                 FJ.breakForce = 8000;
                 isGrab = true;
             }
+
+            if (!isHolding)
+                MoveHandTarget();
+            
+            ResolveIK();  
         }
         else if(!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
         {
-            Target.position = Aim.position;
-            Target.rotation = Aim.rotation;
-            isPunching = false;
-            isHolding = false;
-
             if (myGrabdObj != null/* && myGrabdObj.CompareTag("Item")*/)
             {
                 Destroy(myGrabdObj.GetComponent<Joint>());
             }
             myGrabdObj = null;
             isGrab = false;
+
+            Target.position = Aim.position;
+            Target.rotation = Aim.rotation;
+            isPunching = false;
+            isHolding = false;
         }
     }
 
