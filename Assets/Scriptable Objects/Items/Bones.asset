@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 3682008607048098643, guid: b65a0e2a5f9ecc34b859d9fd39f6a202,
     type: 3}
-  objectPrefab: {fileID: 1507746856875085612, guid: 6e3510083bd878c45b5a4eea692bb9ea,
+  objectPrefab: {fileID: 3069273883399357184, guid: 1e7a638f33f956e41ab931b8da1cbed1,
     type: 3}
   type: 2
   description: The leftovers of those you have slain in combat!

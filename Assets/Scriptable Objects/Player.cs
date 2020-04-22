@@ -27,7 +27,11 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            crafting.Craft(inventory.Container[0], inventory.Container[1]);
+            if (inventory.Container.Count > 1 && inventory.Container.Count < 3) // Endast crafting om två items i inventory.
+            {
+                crafting.Craft(inventory.Container[0], inventory.Container[1]);
+            }
+
         }
 
         //if (Input.GetKeyDown(KeyCode.F1))

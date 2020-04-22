@@ -30,22 +30,15 @@ public class Crafting : MonoBehaviour
         //    }
         //}
 
-        // Ett första utkast av craftinglogiken.
+        // Ett första utkast av craftinglogiken. Kollar om a + b = a + b, eller b + a = b + a.
         if (craftingRecipies[0].inputObj1 == craftingSlots[0].item.objectPrefab
             && craftingRecipies[0].inputObj2 == craftingSlots[1].item.objectPrefab
             || craftingRecipies[0].inputObj1 == craftingSlots[1].item.objectPrefab
             && craftingRecipies[0].inputObj2 == craftingSlots[0].item.objectPrefab)
         {
             Instantiate(craftingRecipies[0].outputObj, this.transform);
-        }
-
-        /*
-         * loopar igenom player inventory
-         * kollar om contents är lika med input objekt för recept
-         * om ja spotta ut item. 
-         */
-                    
-         
+            // Remove from inventory.
+        }                        
     }
 
     private void LoadRecipies()
