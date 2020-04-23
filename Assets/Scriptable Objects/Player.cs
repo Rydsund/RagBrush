@@ -29,7 +29,13 @@ public class Player : MonoBehaviour
         {
             if (inventory.Container.Count > 1 && inventory.Container.Count < 3) // Endast crafting om två items i inventory.
             {
-                crafting.Craft(inventory.Container[0], inventory.Container[1]);
+                if (crafting.Craft(inventory.Container[0], inventory.Container[1]))
+                {
+                    Debug.Log("Im inside if statement");
+                    Destroy(displayInventory.itemsDisplayed[inventory.Container[0]].gameObject);
+                    Destroy(displayInventory.itemsDisplayed[inventory.Container[1]].gameObject);
+                    inventory.Container.Clear();
+                }
             }
 
         }
