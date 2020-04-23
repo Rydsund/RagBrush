@@ -10,12 +10,17 @@ public class Crafting : MonoBehaviour
 {
     public Recipe[] craftingRecipies;
 
-    void Start() // För att läsa in recept.
+    void Start()
     {
         LoadRecipies();
     }
 
-
+    /// <summary>
+    /// Metoden sköter den huvudsakliga crafting-logiken.
+    /// Tar emot spelarens två inventory slots och kollar
+    /// om detta korresponderar med ett recept.
+    /// -- Viktor
+    /// </summary>
     public bool Craft(InventorySlot slot1, InventorySlot slot2) // För crafting.. duh.
     {
         List<InventorySlot> craftingSlots = new List<InventorySlot>();
@@ -30,10 +35,9 @@ public class Crafting : MonoBehaviour
                 || craftingRecipies[i].inputObj1 == craftingSlots[1].item.objectPrefab
                 && craftingRecipies[i].inputObj2 == craftingSlots[0].item.objectPrefab)
             {
-                Instantiate(craftingRecipies[i].outputObj, this.transform);
-                // Remove from inventory.
-                //Destroy(slot1.item.imagePrefab);
-                //Destroy(slot2.item.g);
+                var craftedObject = craftingRecipies[i].outputObj;
+                craftedObject.transform.position = this.transform.position;
+                Instantiate(craftedObject);
                 return true;
             }
         }
@@ -41,10 +45,15 @@ public class Crafting : MonoBehaviour
                     
     }
 
+    /// <summary>
+    /// Metoden använde Resources.LoadAll för att hämta alla crafting recept
+    /// från Resources mappen som finns i Assets.
+    /// -- Viktor/Matthias.
+    /// </summary>
     private void LoadRecipies()
     {
         craftingRecipies = Resources.LoadAll<Recipe>("");
-        Debug.Log(craftingRecipies.Length);
-        Debug.Log(craftingRecipies[0].name);
+        //Debug.Log(craftingRecipies.Length);  // För att kontrollera om repcepten laddats.
+        //Debug.Log(craftingRecipies[INDEX].name);
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c85016bd233a46b1cc8de6ed85c99, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 3682008607048098643, guid: e92dd59931e95a34894de6799445bf99,
+  imagePrefab: {fileID: 6488388049949384753, guid: d4f84bb9e76924c42a61a055d264dc9a,
     type: 3}
   objectPrefab: {fileID: 3069273883399357184, guid: 1e7a638f33f956e41ab931b8da1cbed1,
     type: 3}

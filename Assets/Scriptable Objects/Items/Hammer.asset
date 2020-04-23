@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00891f9a5b078d54dbe17d706ebbf868, type: 3}
   m_Name: Hammer
   m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 8145983770695798959, guid: e0a188bc002088e4aa15f2a61045b860,
+  imagePrefab: {fileID: 6488388049949384753, guid: 582a8d1bccca3364b958fea0b6415af2,
     type: 3}
   objectPrefab: {fileID: 1507746856875085612, guid: 6e3510083bd878c45b5a4eea692bb9ea,
     type: 3}

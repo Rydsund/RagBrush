@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00891f9a5b078d54dbe17d706ebbf868, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 3682008607048098643, guid: f887b56966dd00c4ebbac8e52f949946,
+  imagePrefab: {fileID: 6488388049949384753, guid: 5b1b7240a850ebb4da7e401b1466fc7d,
     type: 3}
   objectPrefab: {fileID: 3069273883399357184, guid: 1e7a638f33f956e41ab931b8da1cbed1,
     type: 3}
