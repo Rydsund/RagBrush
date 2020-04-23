@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4761789445016122364
+--- !u!1001 &3100512398737731742
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -65,22 +65,22 @@ PrefabInstance:
     - target: {fileID: 3882465101459075092, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3882465101459075092, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3882465101459075092, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3882465101459075092, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3882465101459075092, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
@@ -117,24 +117,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image Variant 4
       objectReference: {fileID: 0}
-    - target: {fileID: 8703533956655182840, guid: e0a188bc002088e4aa15f2a61045b860,
+    - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8703533956655182840, guid: e0a188bc002088e4aa15f2a61045b860,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8703533956655182840, guid: e0a188bc002088e4aa15f2a61045b860,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8703533956655182840, guid: e0a188bc002088e4aa15f2a61045b860,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
+      propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
@@ -145,12 +130,7 @@ PrefabInstance:
     - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.55309707
+      value: 0.89338493
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0a188bc002088e4aa15f2a61045b860, type: 3}

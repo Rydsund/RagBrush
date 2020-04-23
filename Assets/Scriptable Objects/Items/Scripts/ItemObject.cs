@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Viktor
+/// <summary>
+/// ItemObjekt är basklassen för alla Scriptable Objects som är items.
+/// -- Viktor
+/// </summary>
 public enum ItemType
 {
     Food,
