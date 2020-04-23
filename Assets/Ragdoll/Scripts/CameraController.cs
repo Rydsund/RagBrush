@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour //Johan
 
     private void LateUpdate()
     {
+        if (PausMenu.gamePaused)
+            return;
         CamControl();
     }
 
