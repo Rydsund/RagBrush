@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 524128507}
   - component: {fileID: 524128506}
   - component: {fileID: 524128505}
+  - component: {fileID: 524128510}
   m_Layer: 0
   m_Name: Cube (10)
   m_TagString: Untagged
@@ -505,7 +506,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 472436b18befddf4b8034f948a0eb6de, type: 2}
+  - {fileID: 2100000, guid: baa44b01c12011143aa4a5ed5ae1a983, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -542,37 +543,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524128504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.40512, y: 0.606, z: 101.994}
+  m_LocalPosition: {x: 105.18, y: 0.606, z: 101.994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &530711067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2745923243945498504, guid: b80b1be19be444f4c986b962c87e4236,
-    type: 3}
-  m_PrefabInstance: {fileID: 3095646900336932930}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &530711069
+--- !u!114 &524128510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530711067}
+  m_GameObject: {fileID: 524128504}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c3611e156a036a4ba85f96edf060b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 530711072}
---- !u!20 &530711072 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2745923243945498508, guid: b80b1be19be444f4c986b962c87e4236,
-    type: 3}
-  m_PrefabInstance: {fileID: 3095646900336932930}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581490381
 GameObject:
   m_ObjectHideFlags: 0

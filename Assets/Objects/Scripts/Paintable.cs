@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
@@ -10,23 +11,31 @@ public class Paintable : MonoBehaviour
     Mesh mesh;
     Color32[] vertColors;
     Vector3[] verts;
-
+    Shader shader;
     void Start()
     {
+        shader = GetComponent<Shader>();
         meshCollider = GetComponent<MeshCollider>();
         mesh = meshCollider.sharedMesh;
         verts = mesh.vertices;
-        vertColors = mesh.colors32;
+        vertColors = mesh.colors32;       
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            ApplyPaint(new Vector3(99, 0.5f, 101), 0.1f, 1, Color.blue);
+            ApplyPaint(transform.position, 0.1f, 1, Color.blue);
         }
     }
 
+    /// <summary>
+    /// Applies paint to the mesh. 
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="innerRadius"></param>
+    /// <param name="outerRadius"></param>
+    /// <param name="color"></param>
     public void ApplyPaint(Vector3 position, float innerRadius, float outerRadius, Color color)
     {
         Vector3 center = transform.InverseTransformPoint(position);
@@ -47,7 +56,10 @@ public class Paintable : MonoBehaviour
 
             int a = vertColors[i].a;
             vertColors[i] = color;
-            if (dsqr < innerRsqr) vertColors[i].a = 255;
+            if (dsqr < innerRsqr)
+            {
+                vertColors[i].a = 255;
+            }
             else
             {
                 float d = Mathf.Sqrt(dsqr);
