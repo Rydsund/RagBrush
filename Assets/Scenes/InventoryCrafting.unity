@@ -2138,7 +2138,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3095646900336932930}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1368017306
+--- !u!114 &1368017311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2150,7 +2150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef3b9864167b97429800f1993d6b93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabInput: 323
+  grabInput: 324
   grabInput2: 334
   myGrabdObj: {fileID: 0}
   isGrab: 0
@@ -2581,7 +2581,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3095646900336932930}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1828206591
+--- !u!114 &1828206596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3296,6 +3296,16 @@ PrefabInstance:
     - target: {fileID: 2745923243299491057, guid: b80b1be19be444f4c986b962c87e4236,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745923243476717586, guid: b80b1be19be444f4c986b962c87e4236,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745923244388487796, guid: b80b1be19be444f4c986b962c87e4236,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6355394864356451769, guid: b80b1be19be444f4c986b962c87e4236,
