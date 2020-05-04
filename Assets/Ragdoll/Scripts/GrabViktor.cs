@@ -9,16 +9,19 @@ public class GrabViktor : MonoBehaviour //Johan
 	public KeyCode grabInput2;
 	public GameObject myGrabdObj;
 	public bool isGrab = false;
+	Player playerInventory;
 
     void Start()
     {
 		rigidbody = GetComponent<Rigidbody>();//Johan
+		playerInventory = GetComponentInParent<Player>();
     }
 
     void Update()
     {
 		if (myGrabdObj != null)//Johan
 		{
+			// Hold item
 			if (Input.GetKey(grabInput) || Input.GetKey(grabInput2))
 			{
 				if (!isGrab)
@@ -27,8 +30,19 @@ public class GrabViktor : MonoBehaviour //Johan
 					FJ.connectedBody = rigidbody;
 					FJ.breakForce = 8000;
 					isGrab = true;
+
+			
+				}
+				// Put items to inventory.
+				if (isGrab)
+				{
+					if (Input.GetKeyDown(KeyCode.G))
+					{
+						playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+					}
 				}
 			}
+			// Drop item
 			else if (Input.GetKeyUp(grabInput) || Input.GetKeyUp(grabInput2))
 			{
 				if (myGrabdObj.CompareTag("Item"))
@@ -47,6 +61,12 @@ public class GrabViktor : MonoBehaviour //Johan
 		{
 			myGrabdObj = other.gameObject;
 		}
+
+		//if (isGrab)
+		//{
+		//	//myGrabdObj.GetComponent<Collider>().isTrigger = true;
+		//	playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+		//}
 	}
 
 	public void OnTriggerExit(Collider other)//Johan

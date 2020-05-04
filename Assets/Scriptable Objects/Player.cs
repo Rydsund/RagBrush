@@ -14,16 +14,10 @@ public class Player : MonoBehaviour
     /// Om så är fallet så läggs detta item i inventory och spelobjektet förstörs.
     /// Viktor
     /// </summary>
-    public void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Found collider");
-        var item = other.GetComponent<Item>();
-        if (item)
-        {
-            inventory.AddItem(item.item, 1);
-            Destroy(other.gameObject);
-        }
-    }
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    AddItemToInventory(other);
+    //}
 
     public void Update()
     {
@@ -73,6 +67,18 @@ public class Player : MonoBehaviour
 
             Destroy(displayInventory.itemsDisplayed[inventory.Container[i]].gameObject);
             inventory.Container.RemoveAt(i);
+        }
+    }
+
+    public void AddItemToInventory(Collider collider)
+    {
+        //collider.isTrigger = true;
+        Debug.Log("Found collider");
+        var item = collider.GetComponent<Item>();
+        if (item)
+        {
+            inventory.AddItem(item.item, 1);
+            Destroy(collider.gameObject);
         }
     }
 
