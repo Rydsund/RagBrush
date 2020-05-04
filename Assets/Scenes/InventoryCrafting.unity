@@ -2132,6 +2132,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344919956}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1368017305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2745923243476717583, guid: b80b1be19be444f4c986b962c87e4236,
+    type: 3}
+  m_PrefabInstance: {fileID: 3095646900336932930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1368017306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368017305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef3b9864167b97429800f1993d6b93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabInput: 323
+  grabInput2: 334
+  myGrabdObj: {fileID: 0}
+  isGrab: 0
 --- !u!1 &1466610204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,6 +2575,28 @@ MonoBehaviour:
   x_SpaceBetweenItems: 250
   number_Of_Columns: 4
   y_SpaceBetweenItems: 150
+--- !u!1 &1828206590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2745923244388487793, guid: b80b1be19be444f4c986b962c87e4236,
+    type: 3}
+  m_PrefabInstance: {fileID: 3095646900336932930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1828206591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828206590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef3b9864167b97429800f1993d6b93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabInput: 323
+  grabInput2: 334
+  myGrabdObj: {fileID: 0}
+  isGrab: 0
 --- !u!1 &1912960700
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,6 +3237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ragdoll2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745923243299491054, guid: b80b1be19be444f4c986b962c87e4236,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2745923243299491057, guid: b80b1be19be444f4c986b962c87e4236,
         type: 3}
