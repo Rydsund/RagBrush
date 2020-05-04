@@ -16,6 +16,5 @@ MonoBehaviour:
     type: 3}
   inputObj2: {fileID: 1507746856875085612, guid: 6e3510083bd878c45b5a4eea692bb9ea,
     type: 3}
-  outputObj: {fileID: 9161627559266820751, guid: 3e93d8f44d6d1164f8a6dd3311ffa246,
-    type: 3}
+  outputObj: {fileID: 1753620429935474, guid: b4af6dab5c0dc6d49817225af29ebdc6, type: 3}
   description: 

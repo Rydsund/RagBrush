@@ -15,4 +15,4 @@ MonoBehaviour:
   inputObj1: {fileID: 0}
   inputObj2: {fileID: 0}
   outputObj: {fileID: 0}
-  description: 
+  description: 'TODO: Input/output.'
