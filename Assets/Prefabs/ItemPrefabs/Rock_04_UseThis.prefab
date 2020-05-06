@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6722832983062384770}
   - component: {fileID: 1641136653129568727}
   - component: {fileID: 3858518427967436358}
+  - component: {fileID: 6765904359275068047}
   m_Layer: 0
   m_Name: Rock_04_UseThis
   m_TagString: Item
@@ -125,3 +126,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 79e2fa434f6247245b1d1b2ba8000c12, type: 2}
+--- !u!114 &6765904359275068047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008226561342000027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d51c7bc3b079784e8ac5a8cac7cec1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replacement: {fileID: 681917289788807021, guid: f8bfa5e55b64cae4cae85b6db2f1befa,
+    type: 3}
+  onlyBreakableBy: {fileID: 0}
+  resistance: 1
