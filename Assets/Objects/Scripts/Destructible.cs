@@ -26,12 +26,12 @@ public class Destructible : MonoBehaviour
     /// Destroys the object when a certain amount of force is applied to it. 
     /// If the object is only breakable by one specific object, it will not break in this way from any other object.
     /// </summary>
-    /// <param name="c">Object that current object has collided with</param>
-    private void OnCollisionEnter(Collision c)
+    /// <param name="collider">Object that current object has collided with</param>
+    private void OnCollisionEnter(Collision collider)
     {
-        if (onlyBreakableBy == null || c.gameObject == onlyBreakableBy)
+        if (onlyBreakableBy == null || collider.gameObject == onlyBreakableBy)
         {
-            if((c.relativeVelocity.x > resistance || c.relativeVelocity.y > resistance || c.relativeVelocity.z > resistance))
+            if((collider.relativeVelocity.x > resistance || collider.relativeVelocity.y > resistance || collider.relativeVelocity.z > resistance))
             {
                 Instantiate(replacement, transform.position, transform.rotation);
                 Destroy(gameObject);

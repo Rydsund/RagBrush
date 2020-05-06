@@ -43,7 +43,7 @@ public class GrabViktor : MonoBehaviour //Johan
 				}
 			}
 			// Drop item
-			else if (Input.GetKeyUp(grabInput) || Input.GetKeyUp(grabInput2))
+			else if (!Input.GetKey(grabInput) || !Input.GetKey(grabInput2))
 			{
 				if (myGrabdObj.CompareTag("Item"))
 				{
@@ -61,19 +61,13 @@ public class GrabViktor : MonoBehaviour //Johan
 		{
 			myGrabdObj = other.gameObject;
 		}
-
-		//if (isGrab)
-		//{
-		//	//myGrabdObj.GetComponent<Collider>().isTrigger = true;
-		//	playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
-		//}
 	}
 
-	public void OnTriggerExit(Collider other)//Johan
-	{
-		if (other.gameObject.CompareTag("Item"))
-		{
-			myGrabdObj = null;
-		}
-	}
+	//public void OnTriggerExit(Collider other)//Johan
+	//{
+	//	if (other.gameObject.CompareTag("Item"))
+	//	{
+	//		myGrabdObj = null;
+	//	}
+	//}
 }

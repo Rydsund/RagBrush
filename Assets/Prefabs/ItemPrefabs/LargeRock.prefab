@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5614898748665732274}
   - component: {fileID: 9188051273351879019}
   - component: {fileID: 3749442532714027070}
-  - component: {fileID: 1676175894349905839}
   - component: {fileID: 9163590643272594278}
   m_Layer: 0
   m_Name: LargeRock
@@ -113,19 +112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1676175894349905839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5614898748667921010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 386939658bc02ab46aaf4712e8e5e7ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 79e2fa434f6247245b1d1b2ba8000c12, type: 2}
 --- !u!114 &9163590643272594278
 MonoBehaviour:
   m_ObjectHideFlags: 0
