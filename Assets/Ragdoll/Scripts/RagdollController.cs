@@ -10,7 +10,6 @@ public class RagdollController : MonoBehaviour //Johan
 	new Rigidbody rigidbody;
 	CapsuleCollider capsuleCollider;
 	
-
 	float vertical;
 	float horizontal;
 
@@ -89,6 +88,8 @@ public class RagdollController : MonoBehaviour //Johan
 		{
 			isGround = true;
 		}
+
+		PhysicMaterial test = other.gameObject.GetComponent<PhysicMaterial>();
 	}
 
 	IEnumerator Out() //Johan
