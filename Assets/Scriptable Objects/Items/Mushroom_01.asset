@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c85016bd233a46b1cc8de6ed85c99, type: 3}
   m_Name: Mushroom_01
   m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 6488388049949384753, guid: d4fce01c140d6a246bfddb6560d98340,
+  imagePrefab: {fileID: 6488388049949384753, guid: 582a8d1bccca3364b958fea0b6415af2,
     type: 3}
-  objectPrefab: {fileID: 4385080170328260021, guid: ff62b58c5a9ea164fa8ddf8038e10cd1,
+  objectPrefab: {fileID: 509756193286118908, guid: 2333cf9582977bc48be15a886281ffd5,
     type: 3}
   type: 0
-  description: 
+  description: Used for restoring health and crafting.
   restoreHealthValue: 0

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618925a051571f04783bd4a9c09149ae, type: 3}
   m_Name: Branch
   m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 8145983770695798959, guid: e0a188bc002088e4aa15f2a61045b860,
+  imagePrefab: {fileID: 6488388049949384753, guid: d4fce01c140d6a246bfddb6560d98340,
     type: 3}
-  objectPrefab: {fileID: 1493958779012120596, guid: b9de24523a11d714db3851b5f0f9d527,
+  objectPrefab: {fileID: 6029863055321582977, guid: eb94e968572eb8f43a9dcd6c394ccd2d,
     type: 3}
   type: 2
   description: A small branch.

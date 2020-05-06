@@ -115,22 +115,22 @@ PrefabInstance:
     - target: {fileID: 8145983770695798959, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_Name
-      value: Image Variant 1
+      value: MushroomImage
       objectReference: {fileID: 0}
     - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.36862746
       objectReference: {fileID: 0}
     - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.7960785
       objectReference: {fileID: 0}
     - target: {fileID: 9162540918177410187, guid: e0a188bc002088e4aa15f2a61045b860,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.19360447
+      value: 0.3019608
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0a188bc002088e4aa15f2a61045b860, type: 3}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618925a051571f04783bd4a9c09149ae, type: 3}
   m_Name: Rock_02
   m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 0}
-  objectPrefab: {fileID: 5202732821079448320, guid: cebfacc247a640945a2c30b442202fca,
+  imagePrefab: {fileID: 6488388049949384753, guid: 5b1b7240a850ebb4da7e401b1466fc7d,
+    type: 3}
+  objectPrefab: {fileID: 1284296314258214795, guid: e07df5a4657b2874fb3bdc871ed7f6ce,
     type: 3}
   type: 2
   description: Rock, var 02.
