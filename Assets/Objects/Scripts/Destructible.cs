@@ -10,7 +10,7 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     [SerializeField]
-    public GameObject replacement;
+    GameObject replacement;
 
     [SerializeField]
     [Tooltip("Leave empty if object should be breakable by everything")]
@@ -18,7 +18,7 @@ public class Destructible : MonoBehaviour
 
     [SerializeField]
     [Range(0, 100)]
-    public float resistance;
+    float resistance;
 
     private void Start()
     {
