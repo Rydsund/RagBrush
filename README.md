@@ -9,7 +9,6 @@ Scripts som används eller kommer användas:
 
 MainMenu
 OptionsMenu
-PausedMenu
 PausMenu
 
 CameraController
