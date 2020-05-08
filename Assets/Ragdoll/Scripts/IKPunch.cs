@@ -7,58 +7,72 @@ public class IKPunch : MonoBehaviour
 {
     
     new Rigidbody rigidbody;
-    public KeyCode punchInput1;
-    public KeyCode punchInput2;
-    public GameObject myGrabdObj;
+
+    [SerializeField]
+    private KeyCode punchInput1;
+    [SerializeField]
+    private KeyCode punchInput2;
+
+    [SerializeField]
+    private GameObject myGrabdObj;
     //public GameObject parentObject, grandparentObject;
-    public bool isGrab = false;
-    public float punchForce = 1;
+    [SerializeField]
+    private float punchForce = 1;
     //public Transform target, parentTarget, grandparentTarget;
+    [SerializeField]
+    private bool isGrab = false;
     //public GameObject punch;
 
     /// <summary>
     /// Chain length of bones
     /// </summary>
-    public int ChainLength = 2;
+    public int chainLength = 2;
 
     /// <summary>
     /// Target the chain should bent to
     /// </summary>
-    public Transform Target;
-    public Transform Aim;
-    public Transform Pole;
+    [SerializeField]
+    private Transform target;
+    [SerializeField]
+    private Transform aim;
+    [SerializeField]
+    private Transform pole;
 
     /// <summary>
     /// Solver iterations per update
     /// </summary>
+    
     [Header("Solver Parameters")]
-    public int Iterations = 10;
+    [SerializeField]
+    private int iterations = 10;
 
     /// <summary>
     /// Distance when the solver stops
     /// </summary>
-    public float Delta = 0.001f;
+    [SerializeField]
+    private float delta = 0.001f;
 
     /// <summary>
     /// Strength of going back to the start position.
     /// </summary>
     [Range(0, 1)]
-    public float SnapBackStrength = 1f;
+    [SerializeField]
+    private float snapBackStrength = 1f;
 
 
-    protected float[] BonesLength; //Target to Origin
-    protected float CompleteLength;
-    protected Transform[] Bones;
-    protected Vector3[] Positions;
-    protected Vector3[] StartDirectionSucc;
-    protected Quaternion[] StartRotationBone;
-    protected Quaternion StartRotationTarget;
+    protected float[] bonesLength; //Target to Origin
+    protected float completeLength;
+    protected Transform[] bones;
+    protected Vector3[] positions;
+    protected Vector3[] startDirectionSucc;
+    protected Quaternion[] startRotationBone;
+    protected Quaternion startRotationTarget;
     //protected Rigidbody RBTarget;
     //protected Transform StartPositionTarget;
-    protected Transform Root;
+    protected Transform root;
     //protected bool startPunch;
     protected bool isPunching;
-    bool isHolding;
+    private bool isHolding;
     protected float startDistance;
 
 
@@ -80,49 +94,49 @@ public class IKPunch : MonoBehaviour
     void Init()//FastIK
     {
         //initial array
-        Bones = new Transform[ChainLength + 1];
-        Positions = new Vector3[ChainLength + 1];
-        BonesLength = new float[ChainLength];
-        StartDirectionSucc = new Vector3[ChainLength + 1];
-        StartRotationBone = new Quaternion[ChainLength + 1];
+        bones = new Transform[chainLength + 1];
+        positions = new Vector3[chainLength + 1];
+        bonesLength = new float[chainLength];
+        startDirectionSucc = new Vector3[chainLength + 1];
+        startRotationBone = new Quaternion[chainLength + 1];
 
         //find root
-        Root = transform;
-        for (var i = 0; i <= ChainLength; i++)
+        root = transform;
+        for (var i = 0; i <= chainLength; i++)
         {
-            if (Root == null)
+            if (root == null)
                 throw new UnityException("The chain value is longer than the ancestor chain!");
-            Root = Root.parent;
+            root = root.parent;
         }
 
         //init target
-        if (Target == null)
+        if (target == null)
         {
-            Target = new GameObject(gameObject.name + " Target").transform;
-            SetPositionRootSpace(Target, GetPositionRootSpace(transform));
+            target = new GameObject(gameObject.name + " Target").transform;
+            SetPositionRootSpace(target, GetPositionRootSpace(transform));
         }
-        StartRotationTarget = GetRotationRootSpace(Target);
+        startRotationTarget = GetRotationRootSpace(target);
 
 
         //init data
         var current = transform;
-        CompleteLength = 0;
-        for (var i = Bones.Length - 1; i >= 0; i--)
+        completeLength = 0;
+        for (var i = bones.Length - 1; i >= 0; i--)
         {
-            Bones[i] = current;
-            StartRotationBone[i] = GetRotationRootSpace(current);
+            bones[i] = current;
+            startRotationBone[i] = GetRotationRootSpace(current);
 
-            if (i == Bones.Length - 1)
+            if (i == bones.Length - 1)
             {
                 //leaf
-                StartDirectionSucc[i] = GetPositionRootSpace(Target) - GetPositionRootSpace(current);
+                startDirectionSucc[i] = GetPositionRootSpace(target) - GetPositionRootSpace(current);
             }
             else
             {
                 //mid bone
-                StartDirectionSucc[i] = GetPositionRootSpace(Bones[i + 1]) - GetPositionRootSpace(current);
-                BonesLength[i] = StartDirectionSucc[i].magnitude;
-                CompleteLength += BonesLength[i];
+                startDirectionSucc[i] = GetPositionRootSpace(bones[i + 1]) - GetPositionRootSpace(current);
+                bonesLength[i] = startDirectionSucc[i].magnitude;
+                completeLength += bonesLength[i];
             }
 
             current = current.parent;
@@ -156,8 +170,8 @@ public class IKPunch : MonoBehaviour
             myGrabdObj = null;
             isGrab = false;
 
-            Target.position = Aim.position;
-            Target.rotation = Aim.rotation;
+            target.position = aim.position;
+            target.rotation = aim.rotation;
             isPunching = false;
             isHolding = false;
         }
@@ -167,32 +181,32 @@ public class IKPunch : MonoBehaviour
     {
         if (!isPunching)
         {
-            Target.position = transform.position;
-            Target.rotation = transform.rotation;
-            startDistance = Vector3.Distance(Target.position, Aim.position);             
+            target.position = rigidbody.position;
+            target.rotation = rigidbody.rotation;
+            startDistance = Vector3.Distance(target.position, aim.position);             
             isPunching = true;
         }
 
-        var delta = 1 - Mathf.Pow(Vector3.Distance(Target.position, Aim.position) / startDistance, 5.0f / 9.0f);
+        var delta = 1 - Mathf.Pow(Vector3.Distance(target.position, aim.position) / startDistance, 5.0f / 9.0f);
 
-        Target.rotation = Quaternion.Slerp(Target.rotation, Aim.rotation, (delta / startDistance) * punchForce);
+        target.rotation = Quaternion.Slerp(target.rotation, aim.rotation, (delta / startDistance) * punchForce);
 
         if (Mathf.Approximately(delta, 1))
         {
-            Target.position = Aim.position;
-            Target.rotation = Aim.rotation;
+            target.position = aim.position;
+            target.rotation = aim.rotation;
             isHolding = true;
             isPunching = false;
         }
-        Target.position = Vector3.MoveTowards(Target.position, Aim.position, punchForce * Time.deltaTime);
+        target.position = Vector3.MoveTowards(target.position, aim.position, punchForce * Time.deltaTime);
     }
 
     private void ResolveIK() //FastIK
     {
-        if (Target == null)
+        if (target == null)
             return;
 
-        if (BonesLength.Length != ChainLength)
+        if (bonesLength.Length != chainLength)
             Init();
 
         //Fabric
@@ -202,69 +216,69 @@ public class IKPunch : MonoBehaviour
         //   x--------------------x--------------------x---...
 
         //get position
-        for (int i = 0; i < Bones.Length; i++)
-            Positions[i] = GetPositionRootSpace(Bones[i]);
+        for (int i = 0; i < bones.Length; i++)
+            positions[i] = GetPositionRootSpace(bones[i]);
 
-        var targetPosition = GetPositionRootSpace(Target);
-        var targetRotation = GetRotationRootSpace(Target);
+        var targetPosition = GetPositionRootSpace(target);
+        var targetRotation = GetRotationRootSpace(target);
 
         //1st is possible to reach?
-        if ((targetPosition - GetPositionRootSpace(Bones[0])).sqrMagnitude >= CompleteLength * CompleteLength)
+        if ((targetPosition - GetPositionRootSpace(bones[0])).sqrMagnitude >= completeLength * completeLength)
         {
             //just strech it
-            var direction = (targetPosition - Positions[0]).normalized;
+            var direction = (targetPosition - positions[0]).normalized;
             //set everything after root
-            for (int i = 1; i < Positions.Length; i++)
-                Positions[i] = Positions[i - 1] + direction * BonesLength[i - 1];
+            for (int i = 1; i < positions.Length; i++)
+                positions[i] = positions[i - 1] + direction * bonesLength[i - 1];
         }
         else
         {
-            for (int i = 0; i < Positions.Length - 1; i++)
-                Positions[i + 1] = Vector3.Lerp(Positions[i + 1], Positions[i] + StartDirectionSucc[i], SnapBackStrength);
+            for (int i = 0; i < positions.Length - 1; i++)
+                positions[i + 1] = Vector3.Lerp(positions[i + 1], positions[i] + startDirectionSucc[i], snapBackStrength);
 
-            for (int iteration = 0; iteration < Iterations; iteration++)
+            for (int iteration = 0; iteration < iterations; iteration++)
             {
                 //https://www.youtube.com/watch?v=UNoX65PRehA
                 //back
-                for (int i = Positions.Length - 1; i > 0; i--)
+                for (int i = positions.Length - 1; i > 0; i--)
                 {
-                    if (i == Positions.Length - 1)
-                        Positions[i] = targetPosition; //set it to target
+                    if (i == positions.Length - 1)
+                        positions[i] = targetPosition; //set it to target
                     else
-                        Positions[i] = Positions[i + 1] + (Positions[i] - Positions[i + 1]).normalized * BonesLength[i]; //set in line on distance
+                        positions[i] = positions[i + 1] + (positions[i] - positions[i + 1]).normalized * bonesLength[i]; //set in line on distance
                 }
 
                 //forward
-                for (int i = 1; i < Positions.Length; i++)
-                    Positions[i] = Positions[i - 1] + (Positions[i] - Positions[i - 1]).normalized * BonesLength[i - 1];
+                for (int i = 1; i < positions.Length; i++)
+                    positions[i] = positions[i - 1] + (positions[i] - positions[i - 1]).normalized * bonesLength[i - 1];
 
                 //close enough?
-                if ((Positions[Positions.Length - 1] - targetPosition).sqrMagnitude < Delta * Delta)
+                if ((positions[positions.Length - 1] - targetPosition).sqrMagnitude < delta * delta)
                     break;
             }
         }
 
         //move towards pole
-        if (Pole != null)
+        if (pole != null)
         {
-            var polePosition = GetPositionRootSpace(Pole);
-            for (int i = 1; i < Positions.Length - 1; i++)
+            var polePosition = GetPositionRootSpace(pole);
+            for (int i = 1; i < positions.Length - 1; i++)
             {
-                var plane = new Plane(Positions[i + 1] - Positions[i - 1], Positions[i - 1]);
+                var plane = new Plane(positions[i + 1] - positions[i - 1], positions[i - 1]);
                 var projectedPole = plane.ClosestPointOnPlane(polePosition);
-                var projectedBone = plane.ClosestPointOnPlane(Positions[i]);
-                var angle = Vector3.SignedAngle(projectedBone - Positions[i - 1], projectedPole - Positions[i - 1], plane.normal);
-                Positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (Positions[i] - Positions[i - 1]) + Positions[i - 1];
+                var projectedBone = plane.ClosestPointOnPlane(positions[i]);
+                var angle = Vector3.SignedAngle(projectedBone - positions[i - 1], projectedPole - positions[i - 1], plane.normal);
+                positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (positions[i] - positions[i - 1]) + positions[i - 1];
             }
         }
 
         //set position & rotation
-        for (int i = 0; i < Positions.Length; i++) //Johan
+        for (int i = 0; i < positions.Length; i++) //Johan
         {
-            if (i != Positions.Length - 1)
+            if (i != positions.Length - 1)
             {
-                SetRotationRootSpace(Bones[i], Quaternion.FromToRotation(StartDirectionSucc[i], Positions[i + 1] - Positions[i]) * Quaternion.Inverse(StartRotationBone[i]));
-                SetPositionRootSpace(Bones[i], Positions[i]);
+                SetRotationRootSpace(bones[i], Quaternion.FromToRotation(startDirectionSucc[i], positions[i + 1] - positions[i]) * Quaternion.Inverse(startRotationBone[i]));
+                SetPositionRootSpace(bones[i], positions[i]);
             }
                 
 
@@ -279,35 +293,35 @@ public class IKPunch : MonoBehaviour
 
     private Vector3 GetPositionRootSpace(Transform current)//FastIK
     {
-        if (Root == null)
+        if (root == null)
             return current.position;
         else
-            return Quaternion.Inverse(Root.rotation) * (current.position - Root.position);
+            return Quaternion.Inverse(root.rotation) * (current.position - root.position);
     }
 
     private void SetPositionRootSpace(Transform current, Vector3 position)//FastIK
     {
-        if (Root == null)
+        if (root == null)
             current.position = position;
         else
-            current.position = Root.rotation * position + Root.position;
+            current.position = root.rotation * position + root.position;
     }
 
     private Quaternion GetRotationRootSpace(Transform current)//FastIK
     {
         //inverse(after) * before => rot: before -> after
-        if (Root == null)
+        if (root == null)
             return current.rotation;
         else
-            return Quaternion.Inverse(current.rotation) * Root.rotation;
+            return Quaternion.Inverse(current.rotation) * root.rotation;
     }
 
     private void SetRotationRootSpace(Transform current, Quaternion rotation)//FastIK
     {
-        if (Root == null)
+        if (root == null)
             current.rotation = rotation;
         else
-            current.rotation = Root.rotation * rotation;
+            current.rotation = root.rotation * rotation;
     }
 
 
@@ -321,13 +335,13 @@ public class IKPunch : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider other)//Johan
-    {
-        if (other.gameObject.CompareTag("Item"))
-        {
-            myGrabdObj = null;
-        }
-    }
+    //public void OnTriggerExit(Collider other)//Johan
+    //{
+    //    if (other.gameObject.CompareTag("Item"))
+    //    {
+    //        myGrabdObj = null;
+    //    }
+    //}
 
 
 
@@ -335,7 +349,7 @@ public class IKPunch : MonoBehaviour
     {
 #if UNITY_EDITOR
         var current = this.transform;
-        for (int i = 0; i < ChainLength && current != null && current.parent != null; i++)
+        for (int i = 0; i < chainLength && current != null && current.parent != null; i++)
         {
             var scale = Vector3.Distance(current.position, current.parent.position) * 0.1f;
             Handles.matrix = Matrix4x4.TRS(current.position, Quaternion.FromToRotation(Vector3.up, current.parent.position - current.position), new Vector3(scale, Vector3.Distance(current.parent.position, current.position), scale));

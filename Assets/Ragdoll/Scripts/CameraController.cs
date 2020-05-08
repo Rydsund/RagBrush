@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour //Johan
 {
-    public float lookSensitivity = 1;
-    public Transform target, player;
+    [SerializeField]
+    private float lookSensitivity = 1;
     float mouseX, mouseY;
+
+    [SerializeField]
+    private Transform target, player;
 
     private void Start()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void LateUpdate()

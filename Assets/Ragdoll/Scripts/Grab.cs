@@ -23,13 +23,13 @@ public class Grab : MonoBehaviour //Johan
 			{
 				if (!isGrab)
 				{
-					FixedJoint FJ = myGrabdObj.AddComponent<FixedJoint>();
-					FJ.connectedBody = rigidbody;
-					FJ.breakForce = 8000;
+					FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
+					fixedJoint.connectedBody = rigidbody;
+					fixedJoint.breakForce = 8000;
 					isGrab = true;
 				}
 			}
-			else if (Input.GetKeyUp(grabInput) || Input.GetKeyUp(grabInput2))
+			else if (!Input.GetKey(grabInput) || !Input.GetKey(grabInput2))
 			{
 				if (myGrabdObj.CompareTag("Item"))
 				{
@@ -49,11 +49,11 @@ public class Grab : MonoBehaviour //Johan
 		}
 	}
 
-	public void OnTriggerExit(Collider other)//Johan
-	{
-		if (other.gameObject.CompareTag("Item"))
-		{
-			myGrabdObj = null;
-		}
-	}
+	//public void OnTriggerExit(Collider other)//Johan
+	//{
+	//	if (other.gameObject.CompareTag("Item"))
+	//	{
+	//		myGrabdObj = null;
+	//	}
+	//}
 }
