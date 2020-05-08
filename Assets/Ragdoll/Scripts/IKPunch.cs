@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 #endif
 using UnityEngine;
@@ -16,6 +17,9 @@ public class IKPunch : MonoBehaviour
     [SerializeField]
     private GameObject myGrabdObj;
     //public GameObject parentObject, grandparentObject;
+    [SerializeField]
+    List<string> grabbableObjects;
+
     [SerializeField]
     private float punchForce = 1;
     //public Transform target, parentTarget, grandparentTarget;
@@ -150,9 +154,9 @@ public class IKPunch : MonoBehaviour
         {
             if (myGrabdObj != null && !isGrab)
             {
-                FixedJoint FJ = myGrabdObj.AddComponent<FixedJoint>();
-                FJ.connectedBody = rigidbody;
-                FJ.breakForce = 8000;
+                FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
+                fixedJoint.connectedBody = rigidbody;
+                fixedJoint.breakForce = 8000;
                 isGrab = true;
             }
 
@@ -181,8 +185,8 @@ public class IKPunch : MonoBehaviour
     {
         if (!isPunching)
         {
-            target.position = rigidbody.position;
-            target.rotation = rigidbody.rotation;
+            target.position = transform.position;
+            target.rotation = transform.rotation;
             startDistance = Vector3.Distance(target.position, aim.position);             
             isPunching = true;
         }
@@ -326,12 +330,20 @@ public class IKPunch : MonoBehaviour
 
 
 
-
+    /// <summary>
+    /// 
+    /// Johan & Mattias
+    /// </summary>
+    /// <param name="other"></param>
     public void OnTriggerEnter(Collider other)//Johan
     {
-        if (other.gameObject.CompareTag("Item"))
+        foreach (string s in grabbableObjects)
         {
-            myGrabdObj = other.gameObject;
+            if (other.gameObject.CompareTag(s))
+            {
+                myGrabdObj = other.gameObject;
+                return;
+            }
         }
     }
 
