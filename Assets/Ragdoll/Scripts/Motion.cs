@@ -5,8 +5,12 @@ using UnityEngine;
 public class Motion : MonoBehaviour
 {
 	private new HingeJoint hingeJoint;
-	public Transform legAnimation;
-	public bool Mirror;
+    
+    [SerializeField]
+	private Transform legAnimation;
+
+    [SerializeField]
+	private bool mirror;
 
     void Start()
     {
@@ -18,19 +22,19 @@ public class Motion : MonoBehaviour
     {
 		if (legAnimation != null)
 		{
-			JointSpring js = hingeJoint.spring;
-			js.targetPosition = legAnimation.localEulerAngles.x;
-			if (js.targetPosition > 180)//Johan
+			JointSpring jointSpring = hingeJoint.spring;
+			jointSpring.targetPosition = legAnimation.localEulerAngles.x;
+			if (jointSpring.targetPosition > 180)//Johan
 			{
-				js.targetPosition = js.targetPosition - 360;
+				jointSpring.targetPosition = jointSpring.targetPosition - 360;
 			}
 			//js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
-			if (Mirror)//Johan
+			if (mirror)//Johan
 			{
-				js.targetPosition = js.targetPosition *= -1;
+				jointSpring.targetPosition = jointSpring.targetPosition *= -1;
 			}
-			js.targetPosition = Mathf.Clamp(js.targetPosition, hingeJoint.limits.min + 5, hingeJoint.limits.max - 5);
-			hingeJoint.spring = js;
+			jointSpring.targetPosition = Mathf.Clamp(jointSpring.targetPosition, hingeJoint.limits.min + 5, hingeJoint.limits.max - 5);
+			hingeJoint.spring = jointSpring;
         }
     }
 }
