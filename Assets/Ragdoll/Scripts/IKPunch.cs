@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class IKPunch : MonoBehaviour
 {
-    
+
     new Rigidbody rigidbody;
 
     [SerializeField]
@@ -45,7 +45,7 @@ public class IKPunch : MonoBehaviour
     /// <summary>
     /// Solver iterations per update
     /// </summary>
-    
+
     [Header("Solver Parameters")]
     [SerializeField]
     private int iterations = 10;
@@ -79,10 +79,8 @@ public class IKPunch : MonoBehaviour
     private bool isHolding;
     protected float startDistance;
 
-
-
-
-
+    [SerializeField]
+    List<string> grabbableObjects;
 
     void Start()
     {
@@ -162,8 +160,8 @@ public class IKPunch : MonoBehaviour
 
             if (!isHolding)
                 MoveHandTarget();
-            
-            ResolveIK();  
+
+            ResolveIK();
         }
         else if(!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
         {
@@ -187,7 +185,7 @@ public class IKPunch : MonoBehaviour
         {
             target.position = transform.position;
             target.rotation = transform.rotation;
-            startDistance = Vector3.Distance(target.position, aim.position);             
+            startDistance = Vector3.Distance(target.position, aim.position);
             isPunching = true;
         }
 
@@ -284,7 +282,7 @@ public class IKPunch : MonoBehaviour
                 SetRotationRootSpace(bones[i], Quaternion.FromToRotation(startDirectionSucc[i], positions[i + 1] - positions[i]) * Quaternion.Inverse(startRotationBone[i]));
                 SetPositionRootSpace(bones[i], positions[i]);
             }
-                
+
 
 
             //if (i == Positions.Length - 1)
@@ -331,7 +329,7 @@ public class IKPunch : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    ///
     /// Johan & Mattias
     /// </summary>
     /// <param name="other"></param>
