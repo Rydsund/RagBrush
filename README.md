@@ -7,26 +7,26 @@ Crafting och Inventory är i nuläget ej implementerade i ragdollen, men de är 
 
 Scripts som används eller kommer användas:
 
-MainMenu
-OptionsMenu
-PausMenu
+MainMenu,
+OptionsMenu,
+PausMenu,
 
-CameraController
-IKPunch
-RagdollController
-Motion
+CameraController,
+IKPunch,
+RagdollController,
+Motion,
 
 Destructible
 
-Crafting
-Recipe
-Inventory Object
-Default Object
-EquipmentObject
-FoodObject
-ItemObject
-DisplayInventory
-Item
+Crafting,
+Recipe,
+Inventory Object,
+Default Object,
+EquipmentObject,
+FoodObject,
+ItemObject,
+DisplayInventory,
+Item,
 Player
 
 --- Unity Version: 2019.3.4f1
