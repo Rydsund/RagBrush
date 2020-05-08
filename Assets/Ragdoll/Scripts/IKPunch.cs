@@ -79,8 +79,7 @@ public class IKPunch : MonoBehaviour
     private bool isHolding;
     protected float startDistance;
 
-    [SerializeField]
-    List<string> grabbableObjects;
+    
 
     void Start()
     {

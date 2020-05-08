@@ -868,7 +868,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 90}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0021766277, y: -0.00010742576, z: 0.10900119}
+  m_ConnectedAnchor: {x: 0.0021766874, y: -0.00010742576, z: 0.10900119}
   m_UseSpring: 1
   m_Spring:
     spring: 600
@@ -1145,7 +1145,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.24682356, y: -0.00003494323, z: -2.655725e-10}
+  m_ConnectedAnchor: {x: -0.24682365, y: -0.00003494323, z: -2.655725e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -1156,7 +1156,7 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 6.4329224
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
@@ -1269,7 +1269,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 90}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0011818857, y: 0.00689636, z: -0.10900119}
+  m_ConnectedAnchor: {x: 0.0011817665, y: 0.00689636, z: -0.10900119}
   m_UseSpring: 1
   m_Spring:
     spring: 600
@@ -1338,8 +1338,10 @@ GameObject:
   - component: {fileID: 1886430804575653177}
   - component: {fileID: 1886430804575653176}
   - component: {fileID: 1886430804575653179}
+  - component: {fileID: 1724457342}
+  - component: {fileID: 1724457343}
   m_Layer: 8
-  m_Name: Ragdoll with punch 1
+  m_Name: Ragdoll with punch 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1414,6 +1416,34 @@ MonoBehaviour:
   speed: 3
   jumpForce: 10
   outValue: 10
+--- !u!114 &1724457342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207005711631524972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8962bc67af25ce842bb72457f6800678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftingRecipies: []
+--- !u!114 &1724457343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207005711631524972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ec69fab1220e345bba82d322b3a257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: ac6ce75741be5aa4e82c3b4fa1642336, type: 2}
+  displayInventory: {fileID: 0}
+  crafting: {fileID: 1724457342}
 --- !u!1 &7207005711721674712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,12 +1528,13 @@ MonoBehaviour:
   punchInput1: 324
   punchInput2: 335
   myGrabdObj: {fileID: 0}
+  grabbableObjects: []
   punchForce: 5
   isGrab: 0
   chainLength: 2
   target: {fileID: 4764552386099577807}
   aim: {fileID: 4764552385881387596}
-  pole: {fileID: 0}
+  pole: {fileID: 4764552386276544304}
   iterations: 10
   delta: 0.001
   snapBackStrength: 1
@@ -1647,7 +1678,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.19999993, y: 0.00000014528632, z: 0}
+  m_ConnectedAnchor: {x: -0.19999993, y: 0.00000014528632, z: -0.000000119209275}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1896,7 +1927,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20384654, y: 0.009258312, z: -0.00000031710962}
+  m_ConnectedAnchor: {x: -0.20384657, y: 0.00925831, z: -0.0000012707841}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2386,7 +2417,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.1575116, y: -0.023948867, z: -0.0000006606219}
+  m_ConnectedAnchor: {x: -0.15751185, y: -0.023948869, z: 0.00000029305232}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2495,7 +2526,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20193613, y: 0.0025923774, z: -0.000007962059}
+  m_ConnectedAnchor: {x: -0.20193619, y: 0.00259237, z: -0.0000070083834}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2634,7 +2665,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08287133, y: 0.009755473, z: 0.17988549}
+  m_ConnectedAnchor: {x: -0.08287145, y: 0.009755472, z: 0.17988549}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: -1}
   m_TwistLimitSpring:
@@ -2650,7 +2681,7 @@ CharacterJoint:
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
-    damper: 100
+    damper: 0
   m_Swing1Limit:
     limit: 50
     bounciness: 0
@@ -2830,12 +2861,13 @@ MonoBehaviour:
   punchInput1: 323
   punchInput2: 0
   myGrabdObj: {fileID: 0}
+  grabbableObjects: []
   punchForce: 5
   isGrab: 0
   chainLength: 2
   target: {fileID: 4764552385425507137}
   aim: {fileID: 4764552386066441108}
-  pole: {fileID: 0}
+  pole: {fileID: 4764552385290707563}
   iterations: 10
   delta: 0.001
   snapBackStrength: 1

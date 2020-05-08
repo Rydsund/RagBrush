@@ -75,7 +75,7 @@ public class RagdollController : MonoBehaviour //Johan
         //horizontal = Input.GetAxis("Mouse X");
         bendVertical += Input.GetAxis("Mouse Y") *5;
         bendVertical = Mathf.Clamp(bendVertical, -45f, 18f);
-        Debug.Log(vertical);
+        
 
 
         //if (Input.GetKey(KeyCode.LeftShift))
