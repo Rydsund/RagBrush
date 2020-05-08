@@ -1357,6 +1357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_Celled_02
       objectReference: {fileID: 0}
+    - target: {fileID: 2124591606333287156, guid: 96b5561866b2e7d429653dbb20019dcc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3109534434543753447, guid: 96b5561866b2e7d429653dbb20019dcc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4659,6 +4664,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1419982808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1724457341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7207005711631524972, guid: 1f110345a4cba9347b6e717f4a6c4ce0,
+    type: 3}
+  m_PrefabInstance: {fileID: 988624028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1724457342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724457341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8962bc67af25ce842bb72457f6800678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftingRecipies: []
+--- !u!114 &1724457343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724457341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ec69fab1220e345bba82d322b3a257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: ac6ce75741be5aa4e82c3b4fa1642336, type: 2}
+  displayInventory: {fileID: 857696354}
+  crafting: {fileID: 1724457342}
 --- !u!1001 &1744120438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5111,6 +5150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca34a6148db2d54493f84f379293f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroupID: 0
 --- !u!4 &2057664570
 Transform:
   m_ObjectHideFlags: 0
