@@ -75,7 +75,7 @@ public class RagdollController : MonoBehaviour //Johan
         //horizontal = Input.GetAxis("Mouse X");
         bendVertical += Input.GetAxis("Mouse Y") *5;
         bendVertical = Mathf.Clamp(bendVertical, -45f, 18f);
-        Debug.Log(vertical);
+        
 
 
         //if (Input.GetKey(KeyCode.LeftShift))
@@ -114,16 +114,22 @@ public class RagdollController : MonoBehaviour //Johan
         //horizontal -= Input.GetAxis("Mouse X");
         ////vertical += Input.GetAxis("Mouse Y");
         //vertical = Mathf.Clamp(vertical, -90, 5);
-
+      
         Vector3 moveDirection = (horizontal * right + vertical * forward);
         moveDirection.Normalize();
+        if(moveDirection != Vector3.zero)
+        {
+            targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
+            rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
 
-        targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
-        rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
+        }
 
+        //targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
+        //rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
 
 
         Vector3 input = new Vector3(horizontal, 0, vertical);
+
         if (input != Vector3.zero)
         {
             animator.enabled = true;

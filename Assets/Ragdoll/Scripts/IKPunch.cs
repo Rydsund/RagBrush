@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class IKPunch : MonoBehaviour
 {
-    
+
     new Rigidbody rigidbody;
 
     [SerializeField]
@@ -17,6 +17,9 @@ public class IKPunch : MonoBehaviour
     [SerializeField]
     private GameObject myGrabdObj;
     //public GameObject parentObject, grandparentObject;
+    [SerializeField]
+    List<string> grabbableObjects;
+
     [SerializeField]
     private float punchForce = 1;
     //public Transform target, parentTarget, grandparentTarget;
@@ -42,7 +45,7 @@ public class IKPunch : MonoBehaviour
     /// <summary>
     /// Solver iterations per update
     /// </summary>
-    
+
     [Header("Solver Parameters")]
     [SerializeField]
     private int iterations = 10;
@@ -76,8 +79,7 @@ public class IKPunch : MonoBehaviour
     private bool isHolding;
     protected float startDistance;
 
-    [SerializeField]
-    List<string> grabbableObjects;
+    
 
     void Start()
     {
@@ -149,16 +151,16 @@ public class IKPunch : MonoBehaviour
         {
             if (myGrabdObj != null && !isGrab)
             {
-                FixedJoint FJ = myGrabdObj.AddComponent<FixedJoint>();
-                FJ.connectedBody = rigidbody;
-                FJ.breakForce = 8000;
+                FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
+                fixedJoint.connectedBody = rigidbody;
+                fixedJoint.breakForce = 8000;
                 isGrab = true;
             }
 
             if (!isHolding)
                 MoveHandTarget();
-            
-            ResolveIK();  
+
+            ResolveIK();
         }
         else if(!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
         {
@@ -180,9 +182,9 @@ public class IKPunch : MonoBehaviour
     {
         if (!isPunching)
         {
-            target.position = rigidbody.position;
-            target.rotation = rigidbody.rotation;
-            startDistance = Vector3.Distance(target.position, aim.position);             
+            target.position = transform.position;
+            target.rotation = transform.rotation;
+            startDistance = Vector3.Distance(target.position, aim.position);
             isPunching = true;
         }
 
@@ -279,7 +281,7 @@ public class IKPunch : MonoBehaviour
                 SetRotationRootSpace(bones[i], Quaternion.FromToRotation(startDirectionSucc[i], positions[i + 1] - positions[i]) * Quaternion.Inverse(startRotationBone[i]));
                 SetPositionRootSpace(bones[i], positions[i]);
             }
-                
+
 
 
             //if (i == Positions.Length - 1)
@@ -325,10 +327,14 @@ public class IKPunch : MonoBehaviour
 
 
 
-
+    /// <summary>
+    ///
+    /// Johan & Mattias
+    /// </summary>
+    /// <param name="other"></param>
     public void OnTriggerEnter(Collider other)//Johan
     {
-        foreach(string s in grabbableObjects)
+        foreach (string s in grabbableObjects)
         {
             if (other.gameObject.CompareTag(s))
             {
