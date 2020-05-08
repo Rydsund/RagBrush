@@ -33,7 +33,7 @@ public class Destructible : MonoBehaviour
     private void OnCollisionEnter(Collision collider)
     {
         string colliderTag = collider.gameObject.tag;
-        if (onlyBreakableBy == null || colliderTag == onlyBreakableBy)
+        if (onlyBreakableBy == "" || colliderTag == onlyBreakableBy)
         {
             if((collider.relativeVelocity.x > resistance || collider.relativeVelocity.y > resistance || collider.relativeVelocity.z > resistance))
             {
