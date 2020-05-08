@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 #endif
 using UnityEngine;
@@ -75,10 +76,8 @@ public class IKPunch : MonoBehaviour
     private bool isHolding;
     protected float startDistance;
 
-
-
-
-
+    [SerializeField]
+    List<string> grabbableObjects;
 
     void Start()
     {
@@ -329,9 +328,13 @@ public class IKPunch : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)//Johan
     {
-        if (other.gameObject.CompareTag("Item"))
+        foreach(string s in grabbableObjects)
         {
-            myGrabdObj = other.gameObject;
+            if (other.gameObject.CompareTag(s))
+            {
+                myGrabdObj = other.gameObject;
+                return;
+            }
         }
     }
 

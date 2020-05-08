@@ -9,11 +9,14 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
+    [SerializeField]
     public GameObject replacement;
 
+    [SerializeField]
     [Tooltip("Leave empty if object should be breakable by everything")]
-    public GameObject onlyBreakableBy;
+    string onlyBreakableBy;
 
+    [SerializeField]
     [Range(0, 100)]
     public float resistance;
 
@@ -29,7 +32,8 @@ public class Destructible : MonoBehaviour
     /// <param name="collider">Object that current object has collided with</param>
     private void OnCollisionEnter(Collision collider)
     {
-        if (onlyBreakableBy == null || collider.gameObject == onlyBreakableBy)
+        string colliderTag = collider.gameObject.tag;
+        if (onlyBreakableBy == null || colliderTag == onlyBreakableBy)
         {
             if((collider.relativeVelocity.x > resistance || collider.relativeVelocity.y > resistance || collider.relativeVelocity.z > resistance))
             {
