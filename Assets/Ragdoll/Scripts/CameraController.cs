@@ -16,7 +16,9 @@ public class CameraController : MonoBehaviour //Johan
 
     private void Start()
     { 
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()
@@ -57,6 +59,9 @@ public class CameraController : MonoBehaviour //Johan
         //newRotation/*aimController.rotation*/ = Quaternion.Euler(-mouseY, chest.rotation.x, chest.rotation.z);
 
         aimController.Rotate(-mouseY/*newRotation.x*//*aimController.rotation.x*/, aimController.rotation.y/*newRotation.x*/, aimController.rotation.z /*newRotation.z*/, Space.Self);
+
+        //aimController.rotation = Quaternion.Euler(-mouseY, aimController.rotation.y, aimController.rotation.z);
+        chest.Rotate(chest.rotation.x /*newRotation.x*//*aimController.rotation.x*/, chest.rotation.y  /*newRotation.x*/, mouseY /*newRotation.z*/, Space.Self);
 
         //aimController.rotation = Quaternion.Euler(-mouseY, aimController.rotation.y, aimController.rotation.z);
 
