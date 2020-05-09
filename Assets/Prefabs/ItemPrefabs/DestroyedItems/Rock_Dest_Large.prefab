@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   replacement: {fileID: 8830467715515345857, guid: c160f8a37329ea943bd226556b3b1744,
     type: 3}
-  onlyBreakableBy: {fileID: 0}
+  onlyBreakableBy: 
   resistance: 5
 --- !u!114 &2017831482972076310
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   replacement: {fileID: 8830467715515345857, guid: c160f8a37329ea943bd226556b3b1744,
     type: 3}
-  onlyBreakableBy: {fileID: 0}
+  onlyBreakableBy: 
   resistance: 0
 --- !u!114 &1213988357989328254
 MonoBehaviour:
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   replacement: {fileID: 8830467715515345857, guid: c160f8a37329ea943bd226556b3b1744,
     type: 3}
-  onlyBreakableBy: {fileID: 0}
+  onlyBreakableBy: 
   resistance: 5
 --- !u!1001 &104755854845270762
 PrefabInstance:

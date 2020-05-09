@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngineInternal;
 
 public class RagdollController : MonoBehaviour //Johan
 {
@@ -28,7 +29,16 @@ public class RagdollController : MonoBehaviour //Johan
 	private float horizontal;
     private float bendVertical;
 
-	bool isGround = true;
+
+
+    [SerializeField]
+    private Transform aimController, Chest, chestTarget;
+
+    float mouseX, mouseY;
+
+
+
+    bool isGround = true;
 	bool alive = true;
 
 	void Start()
@@ -53,7 +63,8 @@ public class RagdollController : MonoBehaviour //Johan
         if (alive)//Johan
         {
             Move();
-            Bend();
+            //Bend();
+            //Aim();
         }
 
 
@@ -73,9 +84,9 @@ public class RagdollController : MonoBehaviour //Johan
     private void Bend()
     {
         //horizontal = Input.GetAxis("Mouse X");
-        bendVertical += Input.GetAxis("Mouse Y") *5;
+        bendVertical += Input.GetAxis("Mouse Y")/* *5*/;
         bendVertical = Mathf.Clamp(bendVertical, -45f, 18f);
-        
+
 
 
         //if (Input.GetKey(KeyCode.LeftShift))
@@ -89,13 +100,24 @@ public class RagdollController : MonoBehaviour //Johan
         /*Debug.Log(limit.)*/
         //Vector3 moveDirection = (vertical + moveDirection.forward);
         //moveDirection.Normalize();
-        
+
         //targetRotation = Quaternion.LookRotation(Vector3.forward).eulerAngles;
         //spineTransform.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(spineTransform.GetComponent<Rigidbody>().rotation,
         //    Quaternion.Euler(targetRotation), Time.fixedDeltaTime);
         //spineTransform.GetComponent<CharacterJoint>().lowTwistLimit = rootLimit;
         //}
 
+    }
+
+    private void Aim()
+    {
+        mouseY += Input.GetAxisRaw("Mouse Y");
+        mouseX -= Input.GetAxisRaw("Mouse X");
+        mouseY = Mathf.Clamp(mouseY, -35, 18);
+        //mouseX = Mathf.Clamp(mouseX, 0, 0);
+
+        aimController.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
+        
     }
 
     /// <summary>
