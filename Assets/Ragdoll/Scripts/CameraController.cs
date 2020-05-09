@@ -33,10 +33,12 @@ public class CameraController : MonoBehaviour //Johan
         mouseY += Input.GetAxisRaw("Mouse Y") * lookSensitivity;
         mouseX -= Input.GetAxisRaw("Mouse X") * lookSensitivity;
         mouseY = Mathf.Clamp(mouseY, -35, 18);
-       
+
         //bendPart.rotation = Quaternion.Euler(0, 0, mouseY);
 
+        
         cameraController.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
+        //aimController.rotation = Quaternion.Euler(-mouseY, chest.rotation.y, chest.rotation.z);
 
         //aimController.rotation = Quaternion.Euler(-mouseY, , 0);
         //bendController.rotation = Quaternion.Euler(-mouseY, 0, 0);
@@ -58,12 +60,16 @@ public class CameraController : MonoBehaviour //Johan
 
         //newRotation/*aimController.rotation*/ = Quaternion.Euler(-mouseY, chest.rotation.x, chest.rotation.z);
 
-        aimController.Rotate(-mouseY/*newRotation.x*//*aimController.rotation.x*/, aimController.rotation.y/*newRotation.x*/, aimController.rotation.z /*newRotation.z*/, Space.Self);
+        //aimController.Rotate(-mouseY/*newRotation.x*//*aimController.rotation.x*/, aimController.rotation.y/*newRotation.x*/, aimController.rotation.z /*newRotation.z*/, Space.Self);
 
-        //aimController.rotation = Quaternion.Euler(-mouseY, aimController.rotation.y, aimController.rotation.z);
+        //aimController.rotation = Quaternion.Euler(-mouseY, chest.rotation.y, chest.rotation.z);
+
         chest.Rotate(chest.rotation.x /*newRotation.x*//*aimController.rotation.x*/, chest.rotation.y  /*newRotation.x*/, mouseY /*newRotation.z*/, Space.Self);
+        //aimController.rotation = Quaternion.Euler(-mouseY, chest.rotation.y, chest.rotation.z);
 
-        //aimController.rotation = Quaternion.Euler(-mouseY, aimController.rotation.y, aimController.rotation.z);
+        //aimController.rotation = Quaternion.Euler(-mouseY, -chest.rotation.y, chest.rotation.z);
+
+
 
 
 
