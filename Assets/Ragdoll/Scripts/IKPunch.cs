@@ -62,7 +62,7 @@ public class IKPunch : MonoBehaviour
     [Range(0, 1)]
     [SerializeField]
     private float snapBackStrength = 1f;
-
+    Player playerInventory;
 
     protected float[] bonesLength; //Target to Origin
     protected float completeLength;
@@ -84,6 +84,7 @@ public class IKPunch : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        playerInventory = GetComponentInParent<Player>();
         //StartPositionTarget = Target;
     }
 
@@ -155,6 +156,14 @@ public class IKPunch : MonoBehaviour
                 fixedJoint.connectedBody = rigidbody;
                 fixedJoint.breakForce = 8000;
                 isGrab = true;
+            }
+
+            if (isGrab)
+            {
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+                }
             }
 
             if (!isHolding)
