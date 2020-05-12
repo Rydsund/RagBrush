@@ -1267,6 +1267,7 @@ MonoBehaviour:
   speed: 3
   jumpForce: 10
   outValue: 10
+  alive: 1
 --- !u!114 &5045523576712540251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1739,6 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5910441cdafec44842855976e343e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6640766729449380894}
   punchInput1: 324
   punchInput2: 335
   myGrabdObj: {fileID: 0}
@@ -2607,6 +2609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5910441cdafec44842855976e343e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6640766729449380894}
   punchInput1: 323
   punchInput2: 334
   myGrabdObj: {fileID: 0}

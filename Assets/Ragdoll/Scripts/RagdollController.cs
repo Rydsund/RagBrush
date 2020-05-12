@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagdollController : MonoBehaviour //Johan
+public class RagdollController : MonoBehaviour
 {
 	public Animator animator = null;
 
@@ -27,7 +27,7 @@ public class RagdollController : MonoBehaviour //Johan
 	private float horizontal;
 
 	bool isGround = true;
-	bool alive = true;
+	public bool alive = true;
 
 
 

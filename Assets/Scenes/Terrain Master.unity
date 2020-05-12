@@ -1781,7 +1781,7 @@ GameObject:
   - component: {fileID: 702721358}
   m_Layer: 0
   m_Name: Terrain_0_0_b0678722-5f6e-4a40-ae40-0c450f86e42e
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -5353,7 +5353,7 @@ GameObject:
   - component: {fileID: 2057664569}
   m_Layer: 0
   m_Name: TerrainGroup_1
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

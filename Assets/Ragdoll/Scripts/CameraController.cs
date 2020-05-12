@@ -42,6 +42,6 @@ public class CameraController : MonoBehaviour
    
     void AimControll()
     {
-        aimController.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY * 3f, player.eulerAngles.y, player.eulerAngles.z);
+        aimController.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY * 2f, player.eulerAngles.y, player.eulerAngles.z);
     }
 }
