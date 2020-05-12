@@ -10,14 +10,22 @@ public class Grab : MonoBehaviour //Johan
 	public GameObject myGrabdObj;
 	public bool isGrab = false;
 
-    void Start()
+	/// <summary>
+	/// 
+	/// /Johan
+	/// </summary>
+	void Start()
     {
-		rigidbody = GetComponent<Rigidbody>();//Johan
+		rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+	/// <summary>
+	/// 
+	/// /Johan
+	/// </summary>
+	void Update()
     {
-		if (myGrabdObj != null)//Johan
+		if (myGrabdObj != null)
 		{
 			if (Input.GetKey(grabInput) || Input.GetKey(grabInput2))
 			{

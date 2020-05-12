@@ -11,7 +11,7 @@ public class RagdollController : MonoBehaviour //Johan
 
 	private Transform mainCameraTransform = null;
     [SerializeField]
-    Transform spineTransform;
+    Transform spine, aim;
 
 
 	Vector3 targetRotation;
@@ -38,26 +38,31 @@ public class RagdollController : MonoBehaviour //Johan
 		mainCameraTransform = Camera.main.transform; //Johan
 	}
 
+    /// <summary>
+    /// 
+    /// /Johan
+    /// </summary>
 	void Update()
 	{
 		
-		if (Input.GetButtonDown("Jump") && isGround)//Johan
+		if (Input.GetButtonDown("Jump") && isGround)
 		{
 			rigidbody.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
 			isGround = false;
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// /Johan
+    /// </summary>
     void FixedUpdate()
     {
-        if (alive)//Johan
+        if (alive)
         {
             Move();
             Bend();
         }
-
-
-
         else
         {
             animator.enabled = false;
@@ -68,34 +73,11 @@ public class RagdollController : MonoBehaviour //Johan
 
     /// <summary>
     /// Böjer radollens överkropp med input från musen i y-led.
-    /// /Jonathan
+    /// /Jonathan & Johan
     /// </summary>
     private void Bend()
     {
-        //horizontal = Input.GetAxis("Mouse X");
-        bendVertical += Input.GetAxis("Mouse Y") *5;
-        bendVertical = Mathf.Clamp(bendVertical, -45f, 18f);
-        
-
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        SoftJointLimit rootLimit = spineTransform.GetComponent<CharacterJoint>().lowTwistLimit;
-        //SoftJointLimit targetLimit = new SoftJointLimit() { limit = 180 };
-        //spineTransform.GetComponent<CharacterJoint>().lowTwistLimit = limit;
-        rootLimit.limit = -80;
-        //
-        spineTransform.Rotate(Vector3.forward, bendVertical, Space.Self);
-        /*Debug.Log(limit.)*/
-        //Vector3 moveDirection = (vertical + moveDirection.forward);
-        //moveDirection.Normalize();
-        
-        //targetRotation = Quaternion.LookRotation(Vector3.forward).eulerAngles;
-        //spineTransform.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(spineTransform.GetComponent<Rigidbody>().rotation,
-        //    Quaternion.Euler(targetRotation), Time.fixedDeltaTime);
-        //spineTransform.GetComponent<CharacterJoint>().lowTwistLimit = rootLimit;
-        //}
-
+        spine.eulerAngles = new Vector3(spine.eulerAngles.x, spine.eulerAngles.y, -aim.eulerAngles.x - 90);
     }
 
     /// <summary>
@@ -111,9 +93,6 @@ public class RagdollController : MonoBehaviour //Johan
 
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        //horizontal -= Input.GetAxis("Mouse X");
-        ////vertical += Input.GetAxis("Mouse Y");
-        //vertical = Mathf.Clamp(vertical, -90, 5);
       
         Vector3 moveDirection = (horizontal * right + vertical * forward);
         moveDirection.Normalize();
@@ -121,11 +100,7 @@ public class RagdollController : MonoBehaviour //Johan
         {
             targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
             rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
-
         }
-
-        //targetRotation = Quaternion.LookRotation(moveDirection).eulerAngles;
-        //rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
 
 
         Vector3 input = new Vector3(horizontal, 0, vertical);
@@ -144,8 +119,11 @@ public class RagdollController : MonoBehaviour //Johan
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
     }
 
-
-    void OnCollisionEnter(Collision other) //Johan
+    /// <summary>
+    /// 
+    /// /Johan
+    /// </summary>
+    void OnCollisionEnter(Collision other)
 	{
 		if (other.relativeVelocity.magnitude > outValue)
 		{
@@ -157,7 +135,11 @@ public class RagdollController : MonoBehaviour //Johan
 		}
 	}
 
-	IEnumerator Out() //Johan
+    /// <summary>
+    /// 
+    /// /Johan
+    /// </summary>
+	IEnumerator Out()
 	{
 		rigidbody.constraints = RigidbodyConstraints.None;
 		capsuleCollider.enabled = false;

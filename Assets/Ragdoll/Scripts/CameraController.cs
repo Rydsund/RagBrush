@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour //Johan
+/// <summary>
+/// 
+/// /Johan
+/// </summary>
+public class CameraController : MonoBehaviour
 {
     [SerializeField]
     private float lookSensitivity = 1;
-    float mouseX, mouseY;
+    float mouseX, mouseY, mouseLookX;
 
     [SerializeField]
-    private Transform target, player;
+    private Transform cameraController, aimController, player;
 
     private void Start()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()
@@ -22,6 +26,7 @@ public class CameraController : MonoBehaviour //Johan
         if (PausMenu.gamePaused)
             return;
         CamControl();
+        AimControll();
     }
 
     void CamControl()
@@ -30,8 +35,13 @@ public class CameraController : MonoBehaviour //Johan
         mouseX -= Input.GetAxisRaw("Mouse X") * lookSensitivity;
         mouseY = Mathf.Clamp(mouseY, -35, 18);
 
-        transform.LookAt(target);
+        transform.LookAt(cameraController);
 
-        target.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
+        cameraController.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
+    }
+   
+    void AimControll()
+    {
+        aimController.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY, player.eulerAngles.y, player.eulerAngles.z);
     }
 }
