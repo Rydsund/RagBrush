@@ -2608,7 +2608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchInput1: 323
-  punchInput2: 0
+  punchInput2: 334
   myGrabdObj: {fileID: 0}
   grabbableObjects:
   - Item

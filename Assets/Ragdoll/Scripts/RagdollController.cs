@@ -13,7 +13,6 @@ public class RagdollController : MonoBehaviour //Johan
     [SerializeField]
     Transform spine, aim;
 
-
 	Vector3 targetRotation;
 
     [SerializeField]
@@ -26,16 +25,21 @@ public class RagdollController : MonoBehaviour //Johan
 	private float outValue = 10;
 	private float vertical;
 	private float horizontal;
-    private float bendVertical;
 
 	bool isGround = true;
 	bool alive = true;
 
+
+
+    /// <summary>
+    /// 
+    /// /Johan
+    /// </summary>
 	void Start()
     {
-		rigidbody = GetComponent<Rigidbody>(); //Johan
-		capsuleCollider = GetComponent<CapsuleCollider>(); //Johan
-		mainCameraTransform = Camera.main.transform; //Johan
+		rigidbody = GetComponent<Rigidbody>();
+		capsuleCollider = GetComponent<CapsuleCollider>();
+		mainCameraTransform = Camera.main.transform;
 	}
 
     /// <summary>

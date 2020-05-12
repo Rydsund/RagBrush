@@ -6,14 +6,8 @@ public class Sun : MonoBehaviour
 {
 
     [SerializeField]
-    private float daytime = 30;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float daytime = 1;
 
-    // Update is called once per frame
     void Update()
     {
         transform.RotateAround(Vector3.zero, Vector3.right, daytime * Time.deltaTime);
