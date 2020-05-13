@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
+
+/// <summary>
+/// Makes a gameobject paintable
+/// Mattias Smedman
+/// </summary>
 public class Paintable : MonoBehaviour
 {
     Mesh mesh;
     Color32[] verticeColors;
     Vector3[] vertices;
-
-    [SerializeField]
-    GameObject paintBrush;
 
     /// <summary>
     /// Grabs components, sets a Color array to the lenght of the amount of vertices. 
@@ -39,7 +41,7 @@ public class Paintable : MonoBehaviour
         if(brush != null)
         {
             ContactPoint contactPoint = collision.GetContact(0);
-            ApplyPaint(contactPoint.point, 0.1f, 1f, brush.paintColor);
+            ApplyPaint(contactPoint.point, 0.5f, 1f, brush.paintColor);
         }
 
     }
@@ -56,17 +58,18 @@ public class Paintable : MonoBehaviour
         // Center of the collision
         Vector3 center = transform.InverseTransformPoint(position);
 
-        // Outer radius of the collision
+        // Outer radius
         float outerR = transform.InverseTransformVector(outerRadius * Vector3.right).magnitude;
 
+        // Outer Radius Squared
+        float outerRsqr = outerR * outerR;
+        
         // Inner Radius
         float innerR = innerRadius * outerR / outerRadius;
 
         // Inner Radius Squared
         float innerRsqr = innerR * innerR;
 
-        // Outer Radius Squared
-        float outerRsqr = outerR * outerR;
         float tFactor = 1f / (outerR - innerR);
 
         CalculateColorOnVertices(center, innerR, tFactor, innerRsqr, outerRsqr, color);
@@ -74,6 +77,15 @@ public class Paintable : MonoBehaviour
         mesh.colors32 = verticeColors;
     }
 
+    /// <summary>
+    /// Calculates how the colour should look based on distance from impact and vertices
+    /// </summary>
+    /// <param name="center"></param>
+    /// <param name="innerR"></param>
+    /// <param name="tFactor"></param>
+    /// <param name="innerRsqr"></param>
+    /// <param name="outerRsqr"></param>
+    /// <param name="color"></param>
     private void CalculateColorOnVertices(Vector3 center, float innerR, float tFactor, float innerRsqr, float outerRsqr, Color color)
     {
         for (int i = 0; i < vertices.Length; i++)
@@ -87,7 +99,6 @@ public class Paintable : MonoBehaviour
             {
                 continue;
             }
-
             int a = verticeColors[i].a;
             verticeColors[i] = color;
             // If distance is less than inner radius, set alpha to 255. 

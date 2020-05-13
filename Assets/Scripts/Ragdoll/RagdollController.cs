@@ -151,19 +151,39 @@ public class RagdollController : MonoBehaviour
 			isGround = true;
 		}
 
+
+        // Mattias Smedman
+        GameObject collisionObject = other.gameObject;
+        Mesh collisionObjectMesh = other.gameObject.GetComponent<MeshFilter>().mesh;
+        Vector3[] collisionObjectVertices = collisionObjectMesh.vertices;
         Vector3 contact = other.GetContact(0).point;
         if(other.gameObject.GetComponent<Paintable>() != null)
         {
-            for(int i = 0; i < other.gameObject.GetComponent<MeshFilter>().mesh.vertices.Length; i++)
+            for(int i = 0; i < collisionObjectVertices.Length; i++)
             {
-                Vector3 posOfVert = other.gameObject.GetComponent<MeshFilter>().mesh.vertices[i];
+                Vector3 posOfVert = collisionObjectVertices[i];
 
-                if (posOfVert == contact)
+                float outerRadiusColourDetection = 1;
+                float outerR = transform.InverseTransformVector(outerRadiusColourDetection * Vector3.right).magnitude;
+
+                Vector3 center = transform.InverseTransformPoint(contact);
+
+                float x = Mathf.Pow(center.x - posOfVert.x, 2);
+                float y = Mathf.Pow(center.y - posOfVert.y, 2);
+
+                float distance = Mathf.Sqrt(x - y);
+
+                Debug.Log(distance);
+                if (outerR > distance)
                 {
+                    Debug.Log(other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r);
+                    if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r == 255)
+                    {
+                        Debug.Log("Standing on Red");
+                        jumpForce = 20;
+                    }
                 }
-
-                if(other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r > 0 || other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].b > 0 || other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].g > 0)
-                    Debug.Log(other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i]);
+                
             }
         }
 	}
