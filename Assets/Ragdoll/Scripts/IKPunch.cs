@@ -64,7 +64,7 @@ public class IKPunch : MonoBehaviour
     /// </summary>
     [Range(0, 1)]
     [SerializeField]
-    private float snapBackStrength = 1f;
+    private float snapBackStrength = 0.01f;
     Player playerInventory;
 
     protected float[] bonesLength; //Target to Origin
