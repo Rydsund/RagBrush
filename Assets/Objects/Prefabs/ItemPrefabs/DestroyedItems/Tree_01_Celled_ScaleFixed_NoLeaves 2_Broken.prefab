@@ -484,7 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2417354515272427225}
   m_Layer: 0
-  m_Name: Tree_01_Celled_ScaleFixed_NoLeaves 2
+  m_Name: Tree_01_Celled_ScaleFixed_NoLeaves 2_Broken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 4411117422176805955}
   m_Layer: 0
   m_Name: Middle
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 7810742814333686877}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2052,7 +2052,7 @@ GameObject:
   - component: {fileID: 6987002495245684100}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
