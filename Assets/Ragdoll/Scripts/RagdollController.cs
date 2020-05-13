@@ -11,7 +11,7 @@ public class RagdollController : MonoBehaviour
 
 	private Transform mainCameraTransform = null;
     [SerializeField]
-    Transform spine, aim, player;
+    Transform spine, aim;
 
 	Vector3 targetRotation;
 
@@ -25,8 +25,11 @@ public class RagdollController : MonoBehaviour
 	private float outValue = 10;
 	private float vertical;
 	private float horizontal;
-
-    float mouseY;
+    private float mouseY;
+    [SerializeField]
+    private float clampMin = -35;
+    [SerializeField]
+    private float clampMax = 30;
 
 	bool isGround = true;
 	public bool alive = true;
@@ -51,6 +54,7 @@ public class RagdollController : MonoBehaviour
 	void Update()
     {
         Aim();
+
         if (Input.GetButtonDown("Jump") && isGround)
         {
             rigidbody.AddForce(new Vector3(0, jumpForce * 100, 0), ForceMode.Impulse);
@@ -58,12 +62,6 @@ public class RagdollController : MonoBehaviour
         }
     }
 
-    private void Aim()
-    {
-        mouseY += Input.GetAxisRaw("Mouse Y") * 2f;
-        mouseY = Mathf.Clamp(mouseY, -50, 30);
-        aim.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY * 2f, player.eulerAngles.y, player.eulerAngles.z);
-    }
 
     /// <summary>
     /// 
@@ -87,6 +85,12 @@ public class RagdollController : MonoBehaviour
     /// <summary>
     /// Böjer radollens överkropp till siktets rotation i y-led.
     /// /Jonathan & Johan
+    private void Aim()
+    {
+        mouseY += Input.GetAxisRaw("Mouse Y");  //om vi ändra lookSensitivity i cameraController, se över den här.
+        mouseY = Mathf.Clamp(mouseY, clampMin, clampMax);
+        aim.eulerAngles = new Vector3(-mouseY * 2, transform.eulerAngles.y, transform.eulerAngles.z);
+    }
     /// </summary>
     private void Bend()
     {
