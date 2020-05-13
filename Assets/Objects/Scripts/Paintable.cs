@@ -1,18 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class Paintable : MonoBehaviour
 {
     Mesh mesh;
     Color32[] verticeColors;
     Vector3[] vertices;
-
-    [SerializeField]
-    GameObject paintBrush;
 
     /// <summary>
     /// Grabs components, sets a Color array to the lenght of the amount of vertices. 

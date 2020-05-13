@@ -1,7 +1,4 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
-using UnityEditor;
-#endif
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class IKPunch : MonoBehaviour
@@ -370,6 +367,7 @@ public class IKPunch : MonoBehaviour
 
 
 
+        /*
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
@@ -384,4 +382,5 @@ public class IKPunch : MonoBehaviour
         }
     }
 #endif
+*/
 }
