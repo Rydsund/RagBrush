@@ -11,7 +11,7 @@ public class RagdollController : MonoBehaviour
 
 	private Transform mainCameraTransform = null;
     [SerializeField]
-    Transform spine, aim;
+    Transform spine, aim, player;
 
 	Vector3 targetRotation;
 
@@ -25,6 +25,8 @@ public class RagdollController : MonoBehaviour
 	private float outValue = 10;
 	private float vertical;
 	private float horizontal;
+
+    float mouseY;
 
 	bool isGround = true;
 	public bool alive = true;
@@ -47,14 +49,21 @@ public class RagdollController : MonoBehaviour
     /// /Johan
     /// </summary>
 	void Update()
-	{
-		
-		if (Input.GetButtonDown("Jump") && isGround)
-		{
-			rigidbody.AddForce(new Vector3(0,jumpForce * 100,0), ForceMode.Impulse);
-			isGround = false;
-		}
-	}
+    {
+        Aim();
+        if (Input.GetButtonDown("Jump") && isGround)
+        {
+            rigidbody.AddForce(new Vector3(0, jumpForce * 100, 0), ForceMode.Impulse);
+            isGround = false;
+        }
+    }
+
+    private void Aim()
+    {
+        mouseY += Input.GetAxisRaw("Mouse Y") * 2f;
+        mouseY = Mathf.Clamp(mouseY, -50, 30);
+        aim.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY * 2f, player.eulerAngles.y, player.eulerAngles.z);
+    }
 
     /// <summary>
     /// 

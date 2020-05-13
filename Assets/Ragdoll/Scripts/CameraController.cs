@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
         if (PausMenu.gamePaused)
             return;
         CamControl();
-        AimControll();
+        //AimControll();
     }
 
     void CamControl()
@@ -40,8 +40,8 @@ public class CameraController : MonoBehaviour
         cameraController.rotation = Quaternion.Euler(-mouseY, -mouseX, 0);
     }
    
-    void AimControll()
-    {
-        aimController.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY * 2f, player.eulerAngles.y, player.eulerAngles.z);
-    }
+    //void AimControll()
+    //{
+    //    aimController.eulerAngles = new Vector3(/*transform.eulerAngles.x*/-mouseY * 2f, player.eulerAngles.y, player.eulerAngles.z);
+    //}
 }
