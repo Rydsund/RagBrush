@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Terrain
   - Item
+  - Hammer
   layers:
   - Default
   - TransparentFX
