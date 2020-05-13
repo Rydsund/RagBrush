@@ -76,7 +76,7 @@ public class RagdollController : MonoBehaviour
     }
 
     /// <summary>
-    /// Böjer radollens överkropp med input från musen i y-led.
+    /// Böjer radollens överkropp till siktets rotation i y-led.
     /// /Jonathan & Johan
     /// </summary>
     private void Bend()
