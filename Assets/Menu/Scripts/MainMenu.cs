@@ -7,7 +7,10 @@ public class MainMenu : MonoBehaviour //Johan
 {
     public void PlayGame()
     {
+        Time.timeScale = 1f;
+        //SceneManager.UnloadScene(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
     
     public void ExitGame()

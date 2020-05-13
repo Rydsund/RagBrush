@@ -2,21 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 
+/// /Johan
+/// </summary>
 public class Sun : MonoBehaviour
 {
+    private Light sunShine;
 
     [SerializeField]
-    private float daytime = 30;
-    // Start is called before the first frame update
-    void Start()
+    private float dayTime = 1;
+
+    private float sunBreakPoint = -150;
+
+    [SerializeField]
+    private float maxIntensity = 1f, minIntensity = 0.1f, fadeSpeed = 0.08f;
+
+    private void Start()
     {
-        
+        sunShine = GetComponent<Light>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(Vector3.zero, Vector3.right, daytime * Time.deltaTime);
+        transform.RotateAround(Vector3.zero, Vector3.right, dayTime * Time.deltaTime);
         transform.LookAt(Vector3.zero);
+
+        if (transform.position.y > sunBreakPoint && sunShine.intensity < maxIntensity)
+        {
+            sunShine.intensity += fadeSpeed;
+        }
+        else if (transform.position.y < sunBreakPoint && sunShine.intensity > minIntensity)
+        {
+            sunShine.intensity -= fadeSpeed;
+        }
     }
 }

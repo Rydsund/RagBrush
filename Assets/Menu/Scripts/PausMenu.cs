@@ -39,14 +39,16 @@ public class PausMenu : MonoBehaviour
         pausMenuUI.SetActive(true);
         Time.timeScale = 0f;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
         gamePaused = true;
     }
 
 
     public void ExitToMenu()
     {
-        Time.timeScale = 1f;
+        pausMenuUI.SetActive(false);
+        gamePaused = false;
+        //SceneManager.UnloadScene(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class IKPunch : MonoBehaviour
 {
+    [SerializeField]
+    private RagdollController player;
 
     new Rigidbody rigidbody;
 
@@ -42,6 +44,7 @@ public class IKPunch : MonoBehaviour
     [SerializeField]
     private Transform pole;
 
+    
     /// <summary>
     /// Solver iterations per update
     /// </summary>
@@ -148,43 +151,47 @@ public class IKPunch : MonoBehaviour
 
     void LateUpdate() //Johan
     {
-        if (Input.GetKey(punchInput1) || Input.GetKey(punchInput2))
+        if (player.alive)
         {
-            if (myGrabdObj != null && !isGrab)
+            if (Input.GetKey(punchInput1) || Input.GetKey(punchInput2))
             {
-                FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
-                fixedJoint.connectedBody = rigidbody;
-                fixedJoint.breakForce = 8000;
-                isGrab = true;
-            }
-
-            if (isGrab)
-            {
-                if (Input.GetKeyDown(KeyCode.G))
+                if (myGrabdObj != null && !isGrab)
                 {
-                    playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+                    FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
+                    fixedJoint.connectedBody = rigidbody;
+                    fixedJoint.breakForce = 8000;
+                    isGrab = true;
                 }
+
+                if (isGrab)
+                {
+                    if (Input.GetKeyDown(KeyCode.G))
+                    {
+                        playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+                    }
+                }
+
+                if (!isHolding)
+                    MoveHandTarget();
+
+                ResolveIK();
             }
-
-            if (!isHolding)
-                MoveHandTarget();
-
-            ResolveIK();
-        }
-        else if(!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
-        {
-            if (myGrabdObj != null/* && myGrabdObj.CompareTag("Item")*/)
+            else if (!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
             {
-                Destroy(myGrabdObj.GetComponent<Joint>());
-            }
-            myGrabdObj = null;
-            isGrab = false;
+                if (myGrabdObj != null/* && myGrabdObj.CompareTag("Item")*/)
+                {
+                    Destroy(myGrabdObj.GetComponent<Joint>());
+                }
+                myGrabdObj = null;
+                isGrab = false;
 
-            target.position = aim.position;
-            target.rotation = aim.rotation;
-            isPunching = false;
-            isHolding = false;
+                target.position = aim.position;
+                target.rotation = aim.rotation;
+                isPunching = false;
+                isHolding = false;
+            }
         }
+        
     }
 
     void MoveHandTarget()//Johan
