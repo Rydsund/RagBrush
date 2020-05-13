@@ -25,7 +25,6 @@ public class Paintable : MonoBehaviour
         mesh = meshFilter.mesh;
         verticeColors = new Color32[vertices.Length];
 
-
         ApplyPaint(transform.position, 0, 0, new Color(0, 0, 0, 0));
     }
 

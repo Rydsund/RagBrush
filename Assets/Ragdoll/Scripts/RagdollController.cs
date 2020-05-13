@@ -150,6 +150,21 @@ public class RagdollController : MonoBehaviour
 		{
 			isGround = true;
 		}
+
+        Vector3 contact = other.GetContact(0).point;
+        if(other.gameObject.GetComponent<Paintable>() != null)
+        {
+            for(int i = 0; i < other.gameObject.GetComponent<MeshFilter>().mesh.vertices.Length; i++)
+            {
+                Vector3 posOfVert = other.gameObject.GetComponent<MeshFilter>().mesh.vertices[i];
+                if (posOfVert == contact)
+                {
+                }
+
+                if(other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r > 0 || other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].b > 0 || other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].g > 0)
+                    Debug.Log(other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i]);
+            }
+        }
 	}
 
     /// <summary>
