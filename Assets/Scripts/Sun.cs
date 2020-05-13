@@ -9,31 +9,33 @@ using UnityEngine;
 /// </summary>
 public class Sun : MonoBehaviour
 {
-    Light sunShine;
+    private Light sunShine;
 
     [SerializeField]
     private float dayTime = 1;
+
+    private float sunBreakPoint = -150;
+
+    [SerializeField]
+    private float maxIntensity = 1f, minIntensity = 0.1f, fadeSpeed = 0.08f;
 
     private void Start()
     {
         sunShine = GetComponent<Light>();
     }
 
-
     void Update()
     {
         transform.RotateAround(Vector3.zero, Vector3.right, dayTime * Time.deltaTime);
         transform.LookAt(Vector3.zero);
 
-        if (transform.position.y > -150 && sunShine.intensity < 1f)
+        if (transform.position.y > sunBreakPoint && sunShine.intensity < maxIntensity)
         {
-            sunShine.intensity += 0.1f;
+            sunShine.intensity += fadeSpeed;
         }
-        else if (transform.position.y < -150 && sunShine.intensity > 0.1f)
+        else if (transform.position.y < sunBreakPoint && sunShine.intensity > minIntensity)
         {
-            sunShine.intensity -= 0.1f;
+            sunShine.intensity -= fadeSpeed;
         }
     }
-    
-    
 }
