@@ -187,7 +187,6 @@ public class RagdollController : MonoBehaviour
                 {
                     if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r > 0)
                     {
-                        Debug.Log("Standing on Red");
                         jumpForce = 6;
                     }
                 }
