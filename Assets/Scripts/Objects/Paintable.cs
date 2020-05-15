@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-
 /// <summary>
 /// Makes a gameobject paintable
 /// Mattias Smedman
@@ -17,7 +16,7 @@ public class Paintable : MonoBehaviour
     Vector3[] vertices;
 
     /// <summary>
-    /// Grabs components, sets a Color array to the lenght of the amount of vertices. 
+    /// Grabs components, sets a Color array to the lenght of the amount of vertices. Calls apply paint with an invisible colour to make the object draw it's texture
     /// </summary>
     void Start()
     {
@@ -41,7 +40,7 @@ public class Paintable : MonoBehaviour
         if(brush != null)
         {
             ContactPoint contactPoint = collision.GetContact(0);
-            ApplyPaint(contactPoint.point, 0.5f, 1f, brush.paintColor);
+            ApplyPaint(contactPoint.point, brush.innerRadius, brush.outerRadius, brush.paintColor);
         }
 
     }
@@ -55,21 +54,12 @@ public class Paintable : MonoBehaviour
     /// <param name="color"></param>
     private void ApplyPaint(Vector3 position, float innerRadius, float outerRadius, Color color)
     {
-        // Center of the collision
         Vector3 center = transform.InverseTransformPoint(position);
 
-        // Outer radius
         float outerR = transform.InverseTransformVector(outerRadius * Vector3.right).magnitude;
-
-        // Outer Radius Squared
         float outerRsqr = outerR * outerR;
-        
-        // Inner Radius
         float innerR = innerRadius * outerR / outerRadius;
-
-        // Inner Radius Squared
         float innerRsqr = innerR * innerR;
-
         float tFactor = 1f / (outerR - innerR);
 
         CalculateColorOnVertices(center, innerR, tFactor, innerRsqr, outerRsqr, color);
@@ -90,19 +80,16 @@ public class Paintable : MonoBehaviour
     {
         for (int i = 0; i < vertices.Length; i++)
         {
-            // Distance to vertice
             Vector3 delta = vertices[i] - center;
             float dsqr = delta.sqrMagnitude;
-
-            // If distance is greater than outer radius, go to next vertice
+            
             if (dsqr > outerRsqr)
             {
                 continue;
             }
             int a = verticeColors[i].a;
             verticeColors[i] = color;
-            // If distance is less than inner radius, set alpha to 255. 
-            // Else base it on distance, tfactor and inner radius
+
             if (dsqr < innerRsqr)
             {
                 verticeColors[i].a = 255;

@@ -146,47 +146,63 @@ public class RagdollController : MonoBehaviour
 		{
 			StartCoroutine(Out());
 		}
-		if (other.gameObject.CompareTag("Terrain"))
-		{
-			isGround = true;
-		}
+        isGround = true;
 
 
-        // Mattias Smedman
-        GameObject collisionObject = other.gameObject;
-        Mesh collisionObjectMesh = other.gameObject.GetComponent<MeshFilter>().mesh;
-        Vector3[] collisionObjectVertices = collisionObjectMesh.vertices;
-        Vector3 contact = other.GetContact(0).point;
-        if(other.gameObject.GetComponent<Paintable>() != null)
+        
+	}
+
+    private void OnCollisionStay(Collision other)
+    {
+        HandleColourCollision(other);
+    }
+
+    /// <summary>
+    /// Detects if the character is in collision with a colour based on distance from vertices of the colliding gameobject 
+    /// Mattias Smedman
+    /// </summary>
+    /// <param name="other"></param>
+    private void HandleColourCollision(Collision other)
+    {
+        if (other.gameObject.GetComponent<Paintable>() != null)
         {
-            for(int i = 0; i < collisionObjectVertices.Length; i++)
+            Mesh collisionObjectMesh = other.gameObject.GetComponent<MeshFilter>().mesh;
+            Vector3[] collisionObjectVertices = collisionObjectMesh.vertices;
+            Vector3 contact = other.GetContact(0).point;
+
+            Vector3 center = transform.InverseTransformPoint(contact);
+            Debug.Log("Contact: " + contact);
+            for (int i = 0; i < collisionObjectVertices.Length; i++)
             {
-                Vector3 posOfVert = collisionObjectVertices[i];
+                Vector3 posOfVert = transform.InverseTransformPoint(collisionObjectVertices[i]);
 
-                float outerRadiusColourDetection = 1;
-                float outerR = transform.InverseTransformVector(outerRadiusColourDetection * Vector3.right).magnitude;
+                float outerR = 20;
 
-                Vector3 center = transform.InverseTransformPoint(contact);
-
-                float x = Mathf.Pow(center.x - posOfVert.x, 2);
-                float y = Mathf.Pow(center.y - posOfVert.y, 2);
+                float x = Mathf.Pow(posOfVert.x - center.x, 2);
+                float y = Mathf.Pow(posOfVert.y - center.y, 2);
 
                 float distance = Mathf.Sqrt(x - y);
 
-                Debug.Log(distance);
                 if (outerR > distance)
                 {
-                    Debug.Log(other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r);
-                    if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r == 255)
+                    if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r > 0)
                     {
                         Debug.Log("Standing on Red");
-                        jumpForce = 20;
+                        jumpForce = 6;
                     }
                 }
-                
+                else
+                {
+                    jumpForce = 4;
+                }
+
             }
         }
-	}
+        else
+        {
+            jumpForce = 4;
+        }
+    }
 
     /// <summary>
     /// 

@@ -1405,7 +1405,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e8a6241017ae93542b23517a0b91f13f, type: 2}
+      objectReference: {fileID: 2100000, guid: c2b4cf532c9827541adb37db5f1a698a, type: 2}
     - target: {fileID: -927199367670048503, guid: c536754027a74cc4cb948b10ba1e47fd,
         type: 3}
       propertyPath: m_Name
@@ -1469,6 +1469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintColor: {r: 1, g: 0, b: 0, a: 1}
+  innerRadius: 0.1
+  outerRadius: 1
 --- !u!1 &470953682 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c536754027a74cc4cb948b10ba1e47fd,
@@ -1628,7 +1630,7 @@ PrefabInstance:
     - target: {fileID: 2544258452382752607, guid: 0324089ffb4862a448e997f5776adf25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.283432
+      value: 30.75
       objectReference: {fileID: 0}
     - target: {fileID: 2544258452382752607, guid: 0324089ffb4862a448e997f5776adf25,
         type: 3}
@@ -1638,7 +1640,7 @@ PrefabInstance:
     - target: {fileID: 2544258452382752607, guid: 0324089ffb4862a448e997f5776adf25,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 66.99
+      value: 60.16
       objectReference: {fileID: 0}
     - target: {fileID: 2544258452382752607, guid: 0324089ffb4862a448e997f5776adf25,
         type: 3}
