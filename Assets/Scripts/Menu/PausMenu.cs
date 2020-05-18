@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+/// <summary>
+/// 
+/// /Johan
+/// </summary>
 public class PausMenu : MonoBehaviour
 {
 
     public static bool gamePaused = false;
 
-    public GameObject pausMenuUI;
+    [SerializeField]
+    private GameObject pausMenuUI;
+
+    [SerializeField]
+    private GameObject optionsMenuUI;
 
     private void Update()
     {
@@ -16,7 +25,15 @@ public class PausMenu : MonoBehaviour
         {
             if (gamePaused)
             {
-                Resume();
+                if(pausMenuUI.active == true)
+                {
+                    Resume();
+                }
+                else if(optionsMenuUI.active == true)
+                {                    
+                    pausMenuUI.SetActive(true);
+                    optionsMenuUI.SetActive(false);
+                }
             }
             else
             {
