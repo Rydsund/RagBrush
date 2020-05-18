@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d51c7bc3b079784e8ac5a8cac7cec1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  replacement: {fileID: 1717967983322141898, guid: 98551f0cbef54a8458550ebe10f66c45,
+  replacement: {fileID: 1717967983322141898, guid: 3c05bbc8f3a24154d9455d4914db17bf,
     type: 3}
   onlyBreakableBy: 
   resistance: 0
