@@ -108,10 +108,10 @@ public class RagdollController : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        if (ikReach.GetIsGrabbingHeavy())
-        {
-            MoveBackwards();
-        }
+        //if (ikReach.GetIsGrabbingHeavy())
+        //{
+        //    MoveBackwards();
+        //}
 
 
         Vector3 forward = mainCameraTransform.forward;
@@ -147,15 +147,15 @@ public class RagdollController : MonoBehaviour
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
     }
 
-    private void MoveBackwards()
-    {
-        if (Input.GetKey(KeyCode.S))
-        {
-            Vector3 backwards = new Vector3(0, 0, -1);
-            // Addforce, clamp dollydoll
-        }
+    //private void MoveBackwards()
+    //{
+    //    if (Input.GetKey(KeyCode.S))
+    //    {
+    //        Vector3 backwards = new Vector3(0, 0, -1);
+    //        // Addforce, clamp dollydoll
+    //    }
 
-    }
+    //}
 
     /// <summary>
     /// 
