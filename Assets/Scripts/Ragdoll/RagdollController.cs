@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RagdollController : MonoBehaviour
 {
+
+
 	public Animator animator = null;
 
 	new Rigidbody rigidbody;
@@ -16,7 +18,7 @@ public class RagdollController : MonoBehaviour
 	Vector3 targetRotation;
 
     [SerializeField]
-	private float rotationSpeed = 10f;
+	private float rotationSpeed = 1f; // 10
     [SerializeField]
 	private float speed = 3f;
     [SerializeField]
@@ -34,6 +36,8 @@ public class RagdollController : MonoBehaviour
 	bool isGround = true;
 	public bool alive = true;
 
+    public IKReach ikReach;
+
 
 
     /// <summary>
@@ -45,6 +49,7 @@ public class RagdollController : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody>();
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		mainCameraTransform = Camera.main.transform;
+        
 	}
 
     /// <summary>
@@ -103,6 +108,12 @@ public class RagdollController : MonoBehaviour
     /// </summary>
     private void Move()
     {
+        //if (ikReach.GetIsGrabbingHeavy())
+        //{
+        //    MoveBackwards();
+        //}
+
+
         Vector3 forward = mainCameraTransform.forward;
         forward.y = 0;
         forward = forward.normalized;
@@ -135,6 +146,16 @@ public class RagdollController : MonoBehaviour
         Vector3 velocity = moveDirection * speed;
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
     }
+
+    //private void MoveBackwards()
+    //{
+    //    if (Input.GetKey(KeyCode.S))
+    //    {
+    //        Vector3 backwards = new Vector3(0, 0, -1);
+    //        // Addforce, clamp dollydoll
+    //    }
+
+    //}
 
     /// <summary>
     /// 

@@ -252,10 +252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d51c7bc3b079784e8ac5a8cac7cec1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  replacement: {fileID: 486378845947664983, guid: 2956736ef4642b54f9a207956e5e8ff0,
+  replacement: {fileID: 486378845947664983, guid: b91bfcb174e0cfd4eaaefff89a7ea2a9,
     type: 3}
-  onlyBreakableBy: {fileID: 0}
-  resistance: 5
+  onlyBreakableBy: 
+  resistance: 10
 --- !u!1 &656032052670397838
 GameObject:
   m_ObjectHideFlags: 0

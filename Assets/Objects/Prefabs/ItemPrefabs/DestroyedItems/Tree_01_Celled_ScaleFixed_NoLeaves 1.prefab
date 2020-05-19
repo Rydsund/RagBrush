@@ -486,9 +486,10 @@ GameObject:
   - component: {fileID: 1485897998674288808}
   - component: {fileID: 5441602327826055769}
   - component: {fileID: 5711107721422307900}
+  - component: {fileID: 1215379809962585599}
   m_Layer: 0
   m_Name: Tree_01_Celled_ScaleFixed_NoLeaves 1
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,7 +585,20 @@ MonoBehaviour:
   replacement: {fileID: 1717967983322141898, guid: 765bc11ebed694a4d978a390e36cbab2,
     type: 3}
   onlyBreakableBy: 
-  resistance: 26
+  resistance: 10
+--- !u!114 &1215379809962585599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717967983322141898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386939658bc02ab46aaf4712e8e5e7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: aace394706ce1e54fae0ed438778cd9a, type: 2}
 --- !u!1 &1885783034603342148
 GameObject:
   m_ObjectHideFlags: 0

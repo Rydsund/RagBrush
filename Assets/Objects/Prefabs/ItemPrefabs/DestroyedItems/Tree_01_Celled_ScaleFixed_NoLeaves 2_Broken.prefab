@@ -484,7 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2417354515272427225}
   m_Layer: 0
-  m_Name: Tree_01_Celled_ScaleFixed_NoLeaves 2
+  m_Name: Tree_01_Celled_ScaleFixed_NoLeaves 2_Broken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,9 +756,10 @@ GameObject:
   - component: {fileID: 8913882841548742872}
   - component: {fileID: 8923695852723431373}
   - component: {fileID: 6731801951436236780}
+  - component: {fileID: 4411117422176805955}
   m_Layer: 0
   m_Name: Middle
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,6 +836,19 @@ CapsuleCollider:
   m_Height: 1.0000002
   m_Direction: 2
   m_Center: {x: -0.6331942, y: -0.31884912, z: -2.4767472e-15}
+--- !u!114 &4411117422176805955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164103192958923391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386939658bc02ab46aaf4712e8e5e7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: aace394706ce1e54fae0ed438778cd9a, type: 2}
 --- !u!1 &3358845784625839866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,9 +1018,10 @@ GameObject:
   - component: {fileID: 9178706291305244931}
   - component: {fileID: 8446272134191586131}
   - component: {fileID: 2759143606833987739}
+  - component: {fileID: 7810742814333686877}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1062,6 +1077,19 @@ CapsuleCollider:
   m_Height: 1.3479176
   m_Direction: 1
   m_Center: {x: 3.3171818, y: 0.028415203, z: 5.428616}
+--- !u!114 &7810742814333686877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627851115814212428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386939658bc02ab46aaf4712e8e5e7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: aace394706ce1e54fae0ed438778cd9a, type: 2}
 --- !u!1 &4799344025597419618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,9 +2049,10 @@ GameObject:
   - component: {fileID: 7464583482840548744}
   - component: {fileID: 5849829124430477916}
   - component: {fileID: 8755808221694999917}
+  - component: {fileID: 6987002495245684100}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2076,6 +2105,19 @@ CapsuleCollider:
   m_Height: 1.5301301
   m_Direction: 2
   m_Center: {x: 0.040000007, y: 5.9011295e-15, z: -1.7349349}
+--- !u!114 &6987002495245684100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090808731149677549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386939658bc02ab46aaf4712e8e5e7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: aace394706ce1e54fae0ed438778cd9a, type: 2}
 --- !u!1 &8116557779373083242
 GameObject:
   m_ObjectHideFlags: 0

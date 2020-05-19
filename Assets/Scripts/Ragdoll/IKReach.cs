@@ -82,6 +82,12 @@ public class IKReach : MonoBehaviour
     private bool isHolding;
     protected float startDistance;
 
+    [SerializeField]
+    float breakFoceHeavy;
+    [SerializeField]
+    float breakForceLight;
+    bool isGrabbingHeavy;
+
 
 
     void Start()
@@ -149,7 +155,7 @@ public class IKReach : MonoBehaviour
     }
 
 
-    void LateUpdate() //Johan
+    void Update() //Johan
     {
         if (player.alive)
         {
@@ -159,12 +165,30 @@ public class IKReach : MonoBehaviour
                 {
                     FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
                     fixedJoint.connectedBody = rigidbody;
-                    fixedJoint.breakForce = 8000;
+                    if (myGrabdObj.GetComponent<Rigidbody>().mass >= 8)
+                    {
+                        fixedJoint.breakForce = breakFoceHeavy;
+                        isGrabbingHeavy = true;
+                    }
+                    else
+                    {
+                        fixedJoint.breakForce = breakForceLight;
+                        isGrabbingHeavy = false;
+                    }
+    
+                    
+                    // myGrabdObj.transform.rotation = 
                     isGrab = true;
                 }
 
                 if (isGrab)
                 {
+                    //if (myGrabdObj.GetComponent<Rigidbody>().mass > 50)
+                    //{
+                    //    // Todo: Funktion för att ta bort rotation/styrka vid tunga objekt. Kan behövas.
+                    //    // behöver ragdollController.
+                    //}
+                    
                     if (Input.GetKeyDown(KeyCode.G))
                     {
                         playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
@@ -173,8 +197,14 @@ public class IKReach : MonoBehaviour
 
                 if (!isHolding)
                     MoveHandTarget();
-
-                ResolveIK();
+               
+                // Tunga stenar
+                if (!isGrab || myGrabdObj.GetComponent<Rigidbody>().mass <= 8)
+                {
+                    //kan bara gå baklänges, men inte vrida.
+                    ResolveIK();
+                }
+      
             }
             else if (!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
             {
@@ -192,6 +222,15 @@ public class IKReach : MonoBehaviour
             }
         }
 
+    }
+    public bool GetIsGrab()
+    {
+        return isGrab;
+    }
+
+    public bool GetIsGrabbingHeavy()
+    {
+        return isGrabbingHeavy;
     }
 
     void MoveHandTarget()//Johan
