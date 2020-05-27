@@ -1,7 +1,4 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
-using UnityEditor;
-#endif
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class IKReach : MonoBehaviour
@@ -408,7 +405,7 @@ public class IKReach : MonoBehaviour
     //}
 
 
-
+        /*
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
@@ -423,4 +420,5 @@ public class IKReach : MonoBehaviour
         }
     }
 #endif
+*/
 }
