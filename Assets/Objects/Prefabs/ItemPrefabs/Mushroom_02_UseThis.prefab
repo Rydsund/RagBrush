@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bd4e683d86fe74680d49fce999a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLightOn: 0
+  isLightOn: 1
 --- !u!1 &7928677725243751452
 GameObject:
   m_ObjectHideFlags: 0
