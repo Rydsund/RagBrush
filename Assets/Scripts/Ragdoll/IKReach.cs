@@ -1,7 +1,7 @@
-﻿#if UNITY_EDITOR
+﻿//#if UNITY_EDITOR
 using System.Collections.Generic;
-using UnityEditor;
-#endif
+//using UnityEditor;
+//#endif
 using UnityEngine;
 
 public class IKReach : MonoBehaviour
@@ -409,18 +409,18 @@ public class IKReach : MonoBehaviour
 
 
 
-    void OnDrawGizmos()
-    {
-#if UNITY_EDITOR
-        var current = this.transform;
-        for (int i = 0; i < chainLength && current != null && current.parent != null; i++)
-        {
-            var scale = Vector3.Distance(current.position, current.parent.position) * 0.1f;
-            Handles.matrix = Matrix4x4.TRS(current.position, Quaternion.FromToRotation(Vector3.up, current.parent.position - current.position), new Vector3(scale, Vector3.Distance(current.parent.position, current.position), scale));
-            Handles.color = Color.green;
-            Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
-            current = current.parent;
-        }
-    }
-#endif
+//    void OnDrawGizmos()
+//    {
+//#if UNITY_EDITOR
+//        var current = this.transform;
+//        for (int i = 0; i < chainLength && current != null && current.parent != null; i++)
+//        {
+//            var scale = Vector3.Distance(current.position, current.parent.position) * 0.1f;
+//            Handles.matrix = Matrix4x4.TRS(current.position, Quaternion.FromToRotation(Vector3.up, current.parent.position - current.position), new Vector3(scale, Vector3.Distance(current.parent.position, current.position), scale));
+//            Handles.color = Color.green;
+//            Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
+//            current = current.parent;
+//        }
+//    }
+//#endif
 }
