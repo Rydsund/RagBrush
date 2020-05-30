@@ -184,7 +184,8 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Drops the held object
+    /// Drops the held object 
+    /// Johan
     /// </summary>
     private void DropObject()
     {
@@ -203,6 +204,7 @@ public class IKReach : MonoBehaviour
 
     /// <summary>
     /// Handles grabbing an object
+    /// Johan
     /// </summary>
     private void GrabObject()
     {
@@ -224,6 +226,7 @@ public class IKReach : MonoBehaviour
 
     /// <summary>
     /// Moves the target that the arms and hands rotate towards.
+    /// Johan
     /// </summary>
     void MoveHandTarget()//Johan
     {
@@ -249,7 +252,10 @@ public class IKReach : MonoBehaviour
         target.position = Vector3.MoveTowards(target.position, aim.position, punchForce * Time.deltaTime);
     }
 
-    private void ResolveIK() //FastIK
+    /// <summary>
+    /// FastIK
+    /// </summary>
+    private void ResolveIK() 
     {
         if (target == null)
             return;
@@ -279,6 +285,10 @@ public class IKReach : MonoBehaviour
         SetPositionAndRotation();
     }
 
+    /// <summary>
+    /// FastIK
+    /// </summary>
+    /// <param name="targetPosition"></param>
     private void CheckOtherPositions(Vector3 targetPosition)
     {
         for (int i = 0; i < positions.Length - 1; i++)
@@ -304,6 +314,7 @@ public class IKReach : MonoBehaviour
 
     /// <summary>
     /// Reaches towards the target position.
+    /// Johan
     /// </summary>
     /// <param name="targetPosition"></param>
     private void ReachFirstPosition(Vector3 targetPosition)
@@ -315,10 +326,11 @@ public class IKReach : MonoBehaviour
 
     /// <summary>
     /// Sets the position and rotation
+    /// Johan & Jonathan
     /// </summary>
     private void SetPositionAndRotation()
     {
-        for (int i = 0; i < positions.Length; i++) //Johan & Jonathan
+        for (int i = 0; i < positions.Length; i++) 
         {
             if (i != positions.Length - 1)
             {
