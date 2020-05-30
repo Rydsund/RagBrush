@@ -42,6 +42,10 @@ public class PausMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resumes gameplay
+    /// Johan
+    /// </summary>
     public void Resume()
     {
         pausMenuUI.SetActive(false);
@@ -51,6 +55,10 @@ public class PausMenu : MonoBehaviour
         gamePaused = false;
     }
 
+    /// <summary>
+    /// Pauses gameplay
+    /// Johan
+    /// </summary>
     void Paus()
     {
         pausMenuUI.SetActive(true);
@@ -60,7 +68,10 @@ public class PausMenu : MonoBehaviour
         gamePaused = true;
     }
 
-
+    /// <summary>
+    /// Exits to menu
+    /// Johan
+    /// </summary>
     public void ExitToMenu()
     {
         pausMenuUI.SetActive(false);
