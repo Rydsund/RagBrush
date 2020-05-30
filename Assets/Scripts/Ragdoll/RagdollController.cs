@@ -108,12 +108,6 @@ public class RagdollController : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        //if (ikReach.GetIsGrabbingHeavy())
-        //{
-        //    MoveBackwards();
-        //}
-
-
         Vector3 forward = mainCameraTransform.forward;
         forward.y = 0;
         forward = forward.normalized;

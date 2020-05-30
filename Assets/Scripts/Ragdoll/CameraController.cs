@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
     }
 
     /// <summary>
-    /// Controls the camera
+    /// Kontrollerar kameran
     /// </summary>
     void CamControl()
     {
