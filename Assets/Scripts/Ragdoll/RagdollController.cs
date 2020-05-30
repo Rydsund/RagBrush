@@ -96,7 +96,7 @@ public class RagdollController : MonoBehaviour
         mouseY = Mathf.Clamp(mouseY, clampMin, clampMax);
         aim.eulerAngles = new Vector3(-mouseY * 2, transform.eulerAngles.y, transform.eulerAngles.z);
     }
-    /// </summary>
+    
     private void Bend()
     {
         spine.eulerAngles = new Vector3(spine.eulerAngles.x, spine.eulerAngles.y, -aim.eulerAngles.x - 90);
@@ -140,16 +140,6 @@ public class RagdollController : MonoBehaviour
         Vector3 velocity = moveDirection * speed;
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
     }
-
-    //private void MoveBackwards()
-    //{
-    //    if (Input.GetKey(KeyCode.S))
-    //    {
-    //        Vector3 backwards = new Vector3(0, 0, -1);
-    //        // Addforce, clamp dollydoll
-    //    }
-
-    //}
 
     /// <summary>
     /// 
