@@ -11,5 +11,4 @@ public class EquipmentObject : ItemObject
     {
         type = ItemType.Equipment;
     }
-
 }

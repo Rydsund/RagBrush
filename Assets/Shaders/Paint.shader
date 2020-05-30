@@ -27,10 +27,11 @@
             float4 color : COLOR;
             float3 worldPos;
         };
-
+        ///
+        /// Surface shader. Uses noise to generate the blobs of colours that get put on a gameobject.
+        ///
         void surf(Input IN, inout SurfaceOutput o) 
         {
-
             float noise = 0;
             float paint = IN.color.a;
 
