@@ -17,19 +17,23 @@ public class Motion : MonoBehaviour
 		hingeJoint = GetComponent<HingeJoint>();
     }
 
-
+	/// <summary>
+	/// Handles leg animation. 
+	/// Johan
+	/// </summary>
     void Update()
     {
 		if (legAnimation != null)
 		{
 			JointSpring jointSpring = hingeJoint.spring;
 			jointSpring.targetPosition = legAnimation.localEulerAngles.x;
-			if (jointSpring.targetPosition > 180)//Johan
+			
+			if (jointSpring.targetPosition > 180)
 			{
 				jointSpring.targetPosition = jointSpring.targetPosition - 360;
 			}
-			//js.targetPosition = Mathf.Clamp(js.targetPosition, Hj.limits.min + 5, Hj.limits.max - 5);
-			if (mirror)//Johan
+			
+			if (mirror)
 			{
 				jointSpring.targetPosition = jointSpring.targetPosition *= -1;
 			}

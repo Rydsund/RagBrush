@@ -28,16 +28,16 @@ public class PausMenu : MonoBehaviour
         {
             if (gamePaused)
             {
-                if(pausMenuUI.active == true)
+                if(pausMenuUI.activeSelf == true)
                 {
                     Resume();
                 }
-                else if(optionsMenuUI.active == true)
+                else if(optionsMenuUI.activeSelf == true)
                 {                    
                     pausMenuUI.SetActive(true);
                     optionsMenuUI.SetActive(false);
                 }
-                else if(controlMenueUI.active == true)
+                else if(controlMenueUI.activeSelf == true)
                 {
                     optionsMenuUI.SetActive(true);
                     controlMenueUI.SetActive(false);
