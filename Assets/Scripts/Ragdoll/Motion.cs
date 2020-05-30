@@ -18,7 +18,7 @@ public class Motion : MonoBehaviour
     }
 
 	/// <summary>
-	/// Handles leg animation
+	/// Hanterar leg animation
 	/// Johan
 	/// </summary>
     void Update()

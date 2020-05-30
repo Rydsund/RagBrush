@@ -103,7 +103,7 @@ public class RagdollController : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Flyttar ragdollen.
     /// /Johan (& Jonathan)
     /// </summary>
     private void Move()
@@ -163,7 +163,7 @@ public class RagdollController : MonoBehaviour
     }
 
     /// <summary>
-    /// Detects if the character is in collision with a colour based on distance from vertices of the colliding gameobject 
+    /// Kollar om karaktären är med en färg baserat på distans från vertex av kolliderande gameobject
     /// Mattias Smedman
     /// </summary>
     /// <param name="other"></param>

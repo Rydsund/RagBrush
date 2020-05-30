@@ -25,7 +25,7 @@ public class Moon : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles a loop that rotates the light source and changes intensity based on y pos
+    /// Hanterar en loop som roterar ljuskällan och ändrar intesitet baserat på y positionen
     /// Johan
     /// </summary>
     void Update()

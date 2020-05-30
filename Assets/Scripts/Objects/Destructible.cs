@@ -26,8 +26,8 @@ public class Destructible : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroys the object when a certain amount of force is applied to it. 
-    /// If the object is only breakable by one specific object, it will not break in this way from any other object.
+    /// Förstör objektet när det kolliderar med ett annat objekt med en viss relativ hastighet.
+    /// Om objektet endast kan förstöras av objekt med en specifik tag så händer inget om det kolliderande objektet ej har den tagen.
     /// </summary>
     /// <param name="collider">Object that current object has collided with</param>
     private void OnCollisionEnter(Collision collider)

@@ -41,7 +41,7 @@ public class Paintable : MonoBehaviour
     }
 
     /// <summary>
-    /// Applies paint to the game object. 
+    /// Lägger färg på ett gameobject
     /// </summary>
     /// <param name="position"></param>
     /// <param name="innerRadius"></param>
@@ -63,7 +63,7 @@ public class Paintable : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculates how the colour should look based on distance from impact and vertices
+    /// Kalkulerar hur färgen bör ser ut baserat på distans från impact och vertex
     /// </summary>
     /// <param name="center"></param>
     /// <param name="innerR"></param>

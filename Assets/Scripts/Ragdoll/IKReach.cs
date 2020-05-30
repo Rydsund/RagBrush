@@ -38,14 +38,14 @@ public class IKReach : MonoBehaviour
     protected float completeLength;
 
     /// <summary>
-    /// Strength of going back to the start position.
+    /// Styrka av att gå tillbaka till start positionen
     /// </summary>
     [Range(0, 1)]
     [SerializeField]
     private float snapBackStrength = 1f;
 
     /// <summary>
-    /// Distance when the solver stops
+    /// Distans när solver stoppar.
     /// </summary>
     [SerializeField]
     private float delta = 0.001f;
@@ -57,7 +57,7 @@ public class IKReach : MonoBehaviour
     bool isGrabbingHeavy;
 
     /// <summary>
-    /// Chain length of bones
+    /// chainLength av ben
     /// </summary>
     public int chainLength = 2;
 
@@ -69,7 +69,7 @@ public class IKReach : MonoBehaviour
     private int iterations = 10;
 
     /// <summary>
-    /// Target the chain should bent to
+    /// Mål chain ska böja till
     /// </summary>
     [SerializeField]
     private Transform target;
@@ -146,7 +146,7 @@ public class IKReach : MonoBehaviour
 
 
     /// <summary>
-    /// Handles the loop, checks for input and decides what should happen and when it should happen.
+    /// Hanterar loopen, kollar efter input och bestämmer vad ska hända och när det ska hända.
     /// Johan
     /// </summary>
     void Update() 
@@ -184,7 +184,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Drops the held object 
+    /// Släpper det objekt som karaktären håller i
     /// Johan
     /// </summary>
     private void DropObject()
@@ -203,7 +203,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles grabbing an object
+    /// Hanterar att ta tag i ett objekt
     /// Johan
     /// </summary>
     private void GrabObject()
@@ -225,7 +225,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves the target that the arms and hands rotate towards.
+    /// Flyttar target som armarna och händerna roterar mot.
     /// Johan
     /// </summary>
     void MoveHandTarget()//Johan
@@ -313,7 +313,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Reaches towards the target position.
+    /// Sträcker mot targetr
     /// Johan
     /// </summary>
     /// <param name="targetPosition"></param>
@@ -325,7 +325,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the position and rotation
+    /// Sätter position och rotation
     /// Johan & Jonathan
     /// </summary>
     private void SetPositionAndRotation()
@@ -341,7 +341,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves hands towards pole.
+    /// Flyttar händerna mot pole
     /// </summary>
     private void MoveTowardsPole()
     {
@@ -390,7 +390,7 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Grabs an object if it has a tag that is grabbable
+    /// Tar tag i ett objekt om det har en tag som kan greppas
     /// Johan & Mattias
     /// </summary>
     /// <param name="other"></param>

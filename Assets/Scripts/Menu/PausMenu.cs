@@ -51,7 +51,7 @@ public class PausMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Resumes gameplay
+    /// Återuppta gameplay
     /// Johan
     /// </summary>
     public void Resume()
@@ -64,7 +64,7 @@ public class PausMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Pauses gameplay
+    /// Pausar gameplay
     /// Johan
     /// </summary>
     void Paus()
@@ -77,7 +77,7 @@ public class PausMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Exits to menu
+    /// Går till meny
     /// Johan
     /// </summary>
     public void ExitToMenu()

@@ -41,7 +41,7 @@ public class OptionsMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the resolution
+    /// Sätter upplösningen
     /// Johan
     /// </summary>
     /// <param name="resolutionIndex"></param>
@@ -52,7 +52,7 @@ public class OptionsMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the volume
+    /// Sätter ljudvolymen
     /// Johan
     /// </summary>
     /// <param name="volume"></param>
@@ -72,7 +72,7 @@ public class OptionsMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggles fullscreen
+    /// Togglar fullskärmsläge
     /// Johan
     /// </summary>
     /// <param name="isFullscreen"></param>

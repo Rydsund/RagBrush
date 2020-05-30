@@ -10,7 +10,7 @@ public class PaintBrush : MonoBehaviour
     public float outerRadius;
 
     /// <summary>
-    /// Sets the a component of the paint to 1 so that it doesn't vary when being used to paint. 
+    /// Sätter a komponenten till 1 så att det fungerar när det målar
     /// </summary>
     private void Start()
     {
