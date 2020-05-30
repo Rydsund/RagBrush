@@ -24,6 +24,10 @@ public class Moon : MonoBehaviour
         moonShine = GetComponent<Light>();
     }
 
+    /// <summary>
+    /// Handles a loop that rotates the light source and changes intensity based on y pos
+    /// Johan
+    /// </summary>
     void Update()
     {
         transform.RotateAround(Vector3.zero, Vector3.right, nightTime * Time.deltaTime);
