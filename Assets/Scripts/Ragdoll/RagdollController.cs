@@ -18,11 +18,14 @@ public class RagdollController : MonoBehaviour
 	Vector3 targetRotation;
 
     [SerializeField]
-	private float rotationSpeed = 1f; // 10
+	private float rotationSpeed = 1f;
     [SerializeField]
 	private float speed = 3f;
     [SerializeField]
 	private float jumpForce = 3;
+    private float baseJumpForce;
+    [SerializeField]
+    private float increasedJumpForce = 6;
     [SerializeField]
 	private float outValue = 10;
 	private float vertical;
@@ -35,20 +38,19 @@ public class RagdollController : MonoBehaviour
 
 	bool isGround = true;
 	public bool alive = true;
-
     public IKReach ikReach;
 
 
 
     /// <summary>
-    /// 
-    /// /Johan
+    /// Johan
     /// </summary>
 	void Start()
     {
 		rigidbody = GetComponent<Rigidbody>();
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		mainCameraTransform = Camera.main.transform;
+        baseJumpForce = jumpForce;
         
 	}
 
@@ -176,7 +178,6 @@ public class RagdollController : MonoBehaviour
             Vector3 contact = other.GetContact(0).point;
 
             Vector3 center = transform.InverseTransformPoint(contact);
-            Debug.Log("Contact: " + contact);
             for (int i = 0; i < collisionObjectVertices.Length; i++)
             {
                 Vector3 posOfVert = transform.InverseTransformPoint(collisionObjectVertices[i]);
@@ -192,19 +193,19 @@ public class RagdollController : MonoBehaviour
                 {
                     if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].b > 0)
                     {
-                        jumpForce = 6;
+                        jumpForce = increasedJumpForce;
                     }
                 }
                 else
                 {
-                    jumpForce = 4;
+                    jumpForce = baseJumpForce;
                 }
 
             }
         }
         else
         {
-            jumpForce = 4;
+            jumpForce = baseJumpForce;
         }
     }
 
