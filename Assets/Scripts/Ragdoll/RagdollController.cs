@@ -206,7 +206,7 @@ public class RagdollController : MonoBehaviour
 
                 if (outerR > distance)
                 {
-                    if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].r > 0)
+                    if (other.gameObject.GetComponent<MeshFilter>().mesh.colors32[i].b > 0)
                     {
                         jumpForce = 6;
                     }

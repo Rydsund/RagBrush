@@ -21,7 +21,6 @@
         float _Freq;
         float _Threshold;
         float _Amp;
-
         struct Input 
         {
             float2 uv_MainTex;

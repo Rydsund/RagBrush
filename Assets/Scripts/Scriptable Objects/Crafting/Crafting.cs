@@ -42,7 +42,6 @@ public class Crafting : MonoBehaviour
             }
         }
         return false;
-                    
     }
 
     /// <summary>

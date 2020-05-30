@@ -1,9 +1,4 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using TMPro.EditorUtilities;
-using UnityEngine;
-//using UnityEngine.Rendering;
-//using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 /// <summary>
 /// Makes a gameobject paintable

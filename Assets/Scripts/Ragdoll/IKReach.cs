@@ -1,7 +1,4 @@
-﻿//#if UNITY_EDITOR
-using System.Collections.Generic;
-//using UnityEditor;
-//#endif
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class IKReach : MonoBehaviour
@@ -94,7 +91,6 @@ public class IKReach : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         playerInventory = GetComponentInParent<Player>();
-        //StartPositionTarget = Target;
     }
 
     void Awake()
@@ -104,7 +100,6 @@ public class IKReach : MonoBehaviour
 
     void Init()//FastIK
     {
-        //initial array
         bones = new Transform[chainLength + 1];
         positions = new Vector3[chainLength + 1];
         bonesLength = new float[chainLength];
@@ -175,20 +170,11 @@ public class IKReach : MonoBehaviour
                         fixedJoint.breakForce = breakForceLight;
                         isGrabbingHeavy = false;
                     }
-    
-                    
-                    // myGrabdObj.transform.rotation = 
                     isGrab = true;
                 }
 
                 if (isGrab)
                 {
-                    //if (myGrabdObj.GetComponent<Rigidbody>().mass > 50)
-                    //{
-                    //    // Todo: Funktion för att ta bort rotation/styrka vid tunga objekt. Kan behövas.
-                    //    // behöver ragdollController.
-                    //}
-                    
                     if (Input.GetKeyDown(KeyCode.G))
                     {
                         playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
@@ -208,7 +194,7 @@ public class IKReach : MonoBehaviour
             }
             else if (!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
             {
-                if (myGrabdObj != null/* && myGrabdObj.CompareTag("Item")*/)
+                if (myGrabdObj != null)
                 {
                     Destroy(myGrabdObj.GetComponent<Joint>());
                 }
@@ -336,14 +322,6 @@ public class IKReach : MonoBehaviour
                 SetRotationRootSpace(bones[i], Quaternion.FromToRotation(startDirectionSucc[i], positions[i + 1] - positions[i]) * Quaternion.Inverse(startRotationBone[i]));
                 SetPositionRootSpace(bones[i], positions[i]);
             }
-
-
-
-            //if (i == Positions.Length - 1)
-            //    SetRotationRootSpace(Bones[i], Quaternion.Inverse(targetRotation) * StartRotationTarget * Quaternion.Inverse(StartRotationBone[i]));
-            //else
-            //    SetRotationRootSpace(Bones[i], Quaternion.FromToRotation(StartDirectionSucc[i], Positions[i + 1] - Positions[i]) * Quaternion.Inverse(StartRotationBone[i]));
-            //SetPositionRootSpace(Bones[i], Positions[i]);
         }
     }
 
@@ -398,29 +376,4 @@ public class IKReach : MonoBehaviour
             }
         }
     }
-
-    //public void OnTriggerExit(Collider other)//Johan
-    //{
-    //    if (other.gameObject.CompareTag("Item"))
-    //    {
-    //        myGrabdObj = null;
-    //    }
-    //}
-
-
-
-//    void OnDrawGizmos()
-//    {
-//#if UNITY_EDITOR
-//        var current = this.transform;
-//        for (int i = 0; i < chainLength && current != null && current.parent != null; i++)
-//        {
-//            var scale = Vector3.Distance(current.position, current.parent.position) * 0.1f;
-//            Handles.matrix = Matrix4x4.TRS(current.position, Quaternion.FromToRotation(Vector3.up, current.parent.position - current.position), new Vector3(scale, Vector3.Distance(current.parent.position, current.position), scale));
-//            Handles.color = Color.green;
-//            Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
-//            current = current.parent;
-//        }
-//    }
-//#endif
 }

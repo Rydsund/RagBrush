@@ -8,7 +8,7 @@ public class Grab : MonoBehaviour //Johan
 	public KeyCode grabInput;
 	public KeyCode grabInput2;
 	public GameObject myGrabdObj;
-	public bool isGrab = false;
+	public bool isGrabbing = false;
 
 	/// <summary>
 	/// 
@@ -29,12 +29,12 @@ public class Grab : MonoBehaviour //Johan
 		{
 			if (Input.GetKey(grabInput) || Input.GetKey(grabInput2))
 			{
-				if (!isGrab)
+				if (!isGrabbing)
 				{
 					FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
 					fixedJoint.connectedBody = rigidbody;
 					fixedJoint.breakForce = 8000;
-					isGrab = true;
+					isGrabbing = true;
 				}
 			}
 			else if (!Input.GetKey(grabInput) || !Input.GetKey(grabInput2))
@@ -44,7 +44,7 @@ public class Grab : MonoBehaviour //Johan
 					Destroy(myGrabdObj.GetComponent<Joint>());
 				}
 				myGrabdObj = null;
-				isGrab = false;
+				isGrabbing = false;
 			}
 		}
 	}
@@ -56,12 +56,4 @@ public class Grab : MonoBehaviour //Johan
 			myGrabdObj = other.gameObject;
 		}
 	}
-
-	//public void OnTriggerExit(Collider other)//Johan
-	//{
-	//	if (other.gameObject.CompareTag("Item"))
-	//	{
-	//		myGrabdObj = null;
-	//	}
-	//}
 }
