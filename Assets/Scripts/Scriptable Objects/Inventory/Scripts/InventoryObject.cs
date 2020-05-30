@@ -22,12 +22,11 @@ public class InventoryObject : ScriptableObject
         {
             if (Container[i].item == _item)
             {
-                //Container[i].AddAmount(_amount); // Enabla denna för item stacking.
                 hasItem = true;
                 break;
             }
         }
-        // För att plocka upp nya items.
+
         if (!hasItem && Container.Count <= 1)
         {
             Container.Add(new InventorySlot(_item, _amount));

@@ -12,13 +12,16 @@ public class DisplayInventory : MonoBehaviour
     public InventoryObject inventory;
     public Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
-    // Layout.
-    public int x_Start;
-    public int y_Start;
-    public int x_SpaceBetweenItems;
-    public int number_Of_Columns;
-    public int y_SpaceBetweenItems;
- 
+    [SerializeField]
+    private int x_Start;
+    [SerializeField]
+    private int y_Start;
+    [SerializeField]
+    private int x_SpaceBetweenItems = 250;
+    [SerializeField]
+    private int number_Of_Columns = 4;
+    [SerializeField]
+    private int y_SpaceBetweenItems = 150;
 
     void Start()
     {
@@ -41,8 +44,7 @@ public class DisplayInventory : MonoBehaviour
         for (int i = 0; i < inventory.Container.Count; i++)
         {
             if (itemsDisplayed.ContainsKey(inventory.Container[i]))
-            {   // Uppdaterar antal items om item stacking är tillåtet.
-                //itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+            {   
             }
             else
             {   // Annars skapas en grafisk representation av inventory.

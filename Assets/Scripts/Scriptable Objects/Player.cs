@@ -9,24 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] DisplayInventory displayInventory;
     [SerializeField] Crafting crafting;
 
-    /// <summary>
-    /// En OnTriggerEnter som kollar om spelaren kolliderat med ett item.
-    /// Om så är fallet så läggs detta item i inventory och spelobjektet förstörs.
-    /// Viktor
-    /// </summary>
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    AddItemToInventory(other);
-    //}
-
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)) // Crafting
+        if (Input.GetKeyDown(KeyCode.C)) 
         {
             CraftItem();
         }
 
-        if (Input.GetKeyDown(KeyCode.N)) // Dropping items
+        if (Input.GetKeyDown(KeyCode.N)) 
         {
             DropItem();
         }
@@ -72,7 +62,6 @@ public class Player : MonoBehaviour
 
     public void AddItemToInventory(Collider collider)
     {
-        //collider.isTrigger = true;
         Debug.Log("Found collider");
         var item = collider.GetComponent<Item>();
         if (item)
@@ -81,8 +70,9 @@ public class Player : MonoBehaviour
             Destroy(collider.gameObject);
         }
     }
-
-    // För att tömma inventory vid quit.
+    /// <summary>
+    /// För att tömma inventory vid quit
+    /// </summary>
     private void OnApplicationQuit()
     {
         inventory.Container.Clear();

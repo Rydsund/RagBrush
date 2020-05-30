@@ -21,7 +21,7 @@ public class Crafting : MonoBehaviour
     /// om detta korresponderar med ett recept.
     /// -- Viktor
     /// </summary>
-    public bool Craft(InventorySlot slot1, InventorySlot slot2) // För crafting.. duh.
+    public bool Craft(InventorySlot slot1, InventorySlot slot2) 
     {
         List<InventorySlot> craftingSlots = new List<InventorySlot>();
         craftingSlots.Add(slot1);
@@ -29,7 +29,6 @@ public class Crafting : MonoBehaviour
 
         for (int i = 0; i < craftingRecipies.Length; i++)
         {
-            // Ett första utkast av craftinglogiken. Kollar om a + b = a + b, eller b + a = b + a. Vilket då ger a+b=c, samt b+a=c.
             if (craftingRecipies[i].inputObj1 == craftingSlots[0].item.objectPrefab
                 && craftingRecipies[i].inputObj2 == craftingSlots[1].item.objectPrefab
                 || craftingRecipies[i].inputObj1 == craftingSlots[1].item.objectPrefab
@@ -47,12 +46,10 @@ public class Crafting : MonoBehaviour
     /// <summary>
     /// Metoden använde Resources.LoadAll för att hämta alla crafting recept
     /// från Resources mappen som finns i Assets.
-    /// -- Viktor/Matthias.
+    /// -- Viktor/Mattias.
     /// </summary>
     private void LoadRecipies()
     {
         craftingRecipies = Resources.LoadAll<Recipe>("");
-        //Debug.Log(craftingRecipies.Length);  // För att kontrollera om repcepten laddats.
-        //Debug.Log(craftingRecipies[INDEX].name);
     }
 }
