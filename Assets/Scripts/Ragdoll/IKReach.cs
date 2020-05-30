@@ -6,6 +6,8 @@ public class IKReach : MonoBehaviour
     [SerializeField]
     private RagdollController player;
 
+    Player playerInventory;
+
     new Rigidbody rigidbody;
 
     [SerializeField]
@@ -15,21 +17,56 @@ public class IKReach : MonoBehaviour
 
     [SerializeField]
     private GameObject myGrabdObj;
-    //public GameObject parentObject, grandparentObject;
+
     [SerializeField]
     List<string> grabbableObjects;
 
+    protected float[] bonesLength; 
     [SerializeField]
     private float punchForce = 1;
-    //public Transform target, parentTarget, grandparentTarget;
+
     [SerializeField]
-    private bool isGrab = false;
-    //public GameObject punch;
+    float breakForceHeavy;
+
+    [SerializeField]
+    float breakForceLight;
+
+    [SerializeField]
+    float maxCarryWeight = 8;
+
+    protected float startDistance;
+    protected float completeLength;
+
+    /// <summary>
+    /// Strength of going back to the start position.
+    /// </summary>
+    [Range(0, 1)]
+    [SerializeField]
+    private float snapBackStrength = 1f;
+
+    /// <summary>
+    /// Distance when the solver stops
+    /// </summary>
+    [SerializeField]
+    private float delta = 0.001f;
+
+    [SerializeField]
+    private bool isGrabbing = false;
+    protected bool isStartingReach;
+    private bool isExtended;
+    bool isGrabbingHeavy;
 
     /// <summary>
     /// Chain length of bones
     /// </summary>
     public int chainLength = 2;
+
+    /// <summary>
+    /// Solver iterations per update
+    /// </summary>
+    [Header("Solver Parameters")]
+    [SerializeField]
+    private int iterations = 10;
 
     /// <summary>
     /// Target the chain should bent to
@@ -40,52 +77,15 @@ public class IKReach : MonoBehaviour
     private Transform aim;
     [SerializeField]
     private Transform pole;
-
-
-    /// <summary>
-    /// Solver iterations per update
-    /// </summary>
-
-    [Header("Solver Parameters")]
-    [SerializeField]
-    private int iterations = 10;
-
-    /// <summary>
-    /// Distance when the solver stops
-    /// </summary>
-    [SerializeField]
-    private float delta = 0.001f;
-
-    /// <summary>
-    /// Strength of going back to the start position.
-    /// </summary>
-    [Range(0, 1)]
-    [SerializeField]
-    private float snapBackStrength = 1f;
-    Player playerInventory;
-
-    protected float[] bonesLength; //Target to Origin
-    protected float completeLength;
+    protected Transform root;
     protected Transform[] bones;
+
     protected Vector3[] positions;
     protected Vector3[] startDirectionSucc;
+
     protected Quaternion[] startRotationBone;
     protected Quaternion startRotationTarget;
-    //protected Rigidbody RBTarget;
-    //protected Transform StartPositionTarget;
-    protected Transform root;
-    //protected bool startPunch;
-    protected bool isPunching;
-    private bool isHolding;
-    protected float startDistance;
-
-    [SerializeField]
-    float breakFoceHeavy;
-    [SerializeField]
-    float breakForceLight;
-    bool isGrabbingHeavy;
-
-
+    
 
     void Start()
     {
@@ -106,7 +106,6 @@ public class IKReach : MonoBehaviour
         startDirectionSucc = new Vector3[chainLength + 1];
         startRotationBone = new Quaternion[chainLength + 1];
 
-        //find root
         root = transform;
         for (var i = 0; i <= chainLength; i++)
         {
@@ -115,7 +114,6 @@ public class IKReach : MonoBehaviour
             root = root.parent;
         }
 
-        //init target
         if (target == null)
         {
             target = new GameObject(gameObject.name + " Target").transform;
@@ -124,7 +122,6 @@ public class IKReach : MonoBehaviour
         startRotationTarget = GetRotationRootSpace(target);
 
 
-        //init data
         var current = transform;
         completeLength = 0;
         for (var i = bones.Length - 1; i >= 0; i--)
@@ -134,12 +131,10 @@ public class IKReach : MonoBehaviour
 
             if (i == bones.Length - 1)
             {
-                //leaf
                 startDirectionSucc[i] = GetPositionRootSpace(target) - GetPositionRootSpace(current);
             }
             else
             {
-                //mid bone
                 startDirectionSucc[i] = GetPositionRootSpace(bones[i + 1]) - GetPositionRootSpace(current);
                 bonesLength[i] = startDirectionSucc[i].magnitude;
                 completeLength += bonesLength[i];
@@ -150,30 +145,22 @@ public class IKReach : MonoBehaviour
     }
 
 
-    void Update() //Johan
+    /// <summary>
+    /// Handles the loop, checks for input and decides what should happen and when it should happen.
+    /// Johan
+    /// </summary>
+    void Update() 
     {
         if (player.alive)
         {
             if (Input.GetKey(punchInput1) || Input.GetKey(punchInput2))
             {
-                if (myGrabdObj != null && !isGrab)
+                if (myGrabdObj != null && !isGrabbing)
                 {
-                    FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
-                    fixedJoint.connectedBody = rigidbody;
-                    if (myGrabdObj.GetComponent<Rigidbody>().mass >= 8)
-                    {
-                        fixedJoint.breakForce = breakFoceHeavy;
-                        isGrabbingHeavy = true;
-                    }
-                    else
-                    {
-                        fixedJoint.breakForce = breakForceLight;
-                        isGrabbingHeavy = false;
-                    }
-                    isGrab = true;
+                    GrabObject();
                 }
 
-                if (isGrab)
+                if (isGrabbing)
                 {
                     if (Input.GetKeyDown(KeyCode.G))
                     {
@@ -181,52 +168,71 @@ public class IKReach : MonoBehaviour
                     }
                 }
 
-                if (!isHolding)
+                if (!isExtended)
                     MoveHandTarget();
                
-                // Tunga stenar
-                if (!isGrab || myGrabdObj.GetComponent<Rigidbody>().mass <= 8)
+                if (!isGrabbing || myGrabdObj.GetComponent<Rigidbody>().mass <= maxCarryWeight)
                 {
-                    //kan bara gå baklänges, men inte vrida.
                     ResolveIK();
                 }
-      
             }
             else if (!Input.GetKey(punchInput1) && !Input.GetKey(punchInput2))
             {
-                if (myGrabdObj != null)
-                {
-                    Destroy(myGrabdObj.GetComponent<Joint>());
-                }
-                myGrabdObj = null;
-                isGrab = false;
-
-                target.position = aim.position;
-                target.rotation = aim.rotation;
-                isPunching = false;
-                isHolding = false;
+                DropObject();
             }
         }
-
     }
-    public bool GetIsGrab()
+
+    /// <summary>
+    /// Drops the held object
+    /// </summary>
+    private void DropObject()
     {
-        return isGrab;
+        if (myGrabdObj != null)
+        {
+            Destroy(myGrabdObj.GetComponent<Joint>());
+        }
+        myGrabdObj = null;
+        isGrabbing = false;
+
+        target.position = aim.position;
+        target.rotation = aim.rotation;
+        isStartingReach = false;
+        isExtended = false;
     }
 
-    public bool GetIsGrabbingHeavy()
+    /// <summary>
+    /// Handles grabbing an object
+    /// </summary>
+    private void GrabObject()
     {
-        return isGrabbingHeavy;
+        FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
+        fixedJoint.connectedBody = rigidbody;
+
+        if (myGrabdObj.GetComponent<Rigidbody>().mass >= maxCarryWeight)
+        {
+            fixedJoint.breakForce = breakForceHeavy;
+            isGrabbingHeavy = true;
+        }
+        else
+        {
+            fixedJoint.breakForce = breakForceLight;
+            isGrabbingHeavy = false;
+        }
+        isGrabbing = true;
     }
 
+    /// <summary>
+    /// Moves the target that the arms and hands rotate towards.
+    /// </summary>
     void MoveHandTarget()//Johan
     {
-        if (!isPunching)
+        if (!isStartingReach)
         {
             target.position = transform.position;
             target.rotation = transform.rotation;
             startDistance = Vector3.Distance(target.position, aim.position);
-            isPunching = true;
+            isStartingReach = true;
         }
 
         var delta = 1 - Mathf.Pow(Vector3.Distance(target.position, aim.position) / startDistance, 5.0f / 9.0f);
@@ -237,8 +243,8 @@ public class IKReach : MonoBehaviour
         {
             target.position = aim.position;
             target.rotation = aim.rotation;
-            isHolding = true;
-            isPunching = false;
+            isExtended = true;
+            isStartingReach = false;
         }
         target.position = Vector3.MoveTowards(target.position, aim.position, punchForce * Time.deltaTime);
     }
@@ -251,77 +257,90 @@ public class IKReach : MonoBehaviour
         if (bonesLength.Length != chainLength)
             Init();
 
-        //Fabric
-
-        //  root
-        //  (bone0) (bonelen 0) (bone1) (bonelen 1) (bone2)...
-        //   x--------------------x--------------------x---...
-
-        //get position
         for (int i = 0; i < bones.Length; i++)
             positions[i] = GetPositionRootSpace(bones[i]);
 
         var targetPosition = GetPositionRootSpace(target);
-        var targetRotation = GetRotationRootSpace(target);
 
-        //1st is possible to reach?
         if ((targetPosition - GetPositionRootSpace(bones[0])).sqrMagnitude >= completeLength * completeLength)
         {
-            //just strech it
-            var direction = (targetPosition - positions[0]).normalized;
-            //set everything after root
-            for (int i = 1; i < positions.Length; i++)
-                positions[i] = positions[i - 1] + direction * bonesLength[i - 1];
+            ReachFirstPosition(targetPosition);
         }
         else
         {
-            for (int i = 0; i < positions.Length - 1; i++)
-                positions[i + 1] = Vector3.Lerp(positions[i + 1], positions[i] + startDirectionSucc[i], snapBackStrength);
-
-            for (int iteration = 0; iteration < iterations; iteration++)
-            {
-                //https://www.youtube.com/watch?v=UNoX65PRehA
-                //back
-                for (int i = positions.Length - 1; i > 0; i--)
-                {
-                    if (i == positions.Length - 1)
-                        positions[i] = targetPosition; //set it to target
-                    else
-                        positions[i] = positions[i + 1] + (positions[i] - positions[i + 1]).normalized * bonesLength[i]; //set in line on distance
-                }
-
-                //forward
-                for (int i = 1; i < positions.Length; i++)
-                    positions[i] = positions[i - 1] + (positions[i] - positions[i - 1]).normalized * bonesLength[i - 1];
-
-                //close enough?
-                if ((positions[positions.Length - 1] - targetPosition).sqrMagnitude < delta * delta)
-                    break;
-            }
+            CheckOtherPositions(targetPosition);
         }
 
-        //move towards pole
         if (pole != null)
         {
-            var polePosition = GetPositionRootSpace(pole);
-            for (int i = 1; i < positions.Length - 1; i++)
-            {
-                var plane = new Plane(positions[i + 1] - positions[i - 1], positions[i - 1]);
-                var projectedPole = plane.ClosestPointOnPlane(polePosition);
-                var projectedBone = plane.ClosestPointOnPlane(positions[i]);
-                var angle = Vector3.SignedAngle(projectedBone - positions[i - 1], projectedPole - positions[i - 1], plane.normal);
-                positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (positions[i] - positions[i - 1]) + positions[i - 1];
-            }
+            MoveTowardsPole();
         }
 
-        //set position & rotation
-        for (int i = 0; i < positions.Length; i++) //Johan
+        SetPositionAndRotation();
+    }
+
+    private void CheckOtherPositions(Vector3 targetPosition)
+    {
+        for (int i = 0; i < positions.Length - 1; i++)
+            positions[i + 1] = Vector3.Lerp(positions[i + 1], positions[i] + startDirectionSucc[i], snapBackStrength);
+
+        for (int iteration = 0; iteration < iterations; iteration++)
+        {
+            for (int i = positions.Length - 1; i > 0; i--)
+            {
+                if (i == positions.Length - 1)
+                    positions[i] = targetPosition; 
+                else
+                    positions[i] = positions[i + 1] + (positions[i] - positions[i + 1]).normalized * bonesLength[i]; 
+            }
+
+            for (int i = 1; i < positions.Length; i++)
+                positions[i] = positions[i - 1] + (positions[i] - positions[i - 1]).normalized * bonesLength[i - 1];
+
+            if ((positions[positions.Length - 1] - targetPosition).sqrMagnitude < delta * delta)
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Reaches towards the target position.
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    private void ReachFirstPosition(Vector3 targetPosition)
+    {
+        var direction = (targetPosition - positions[0]).normalized;
+        for (int i = 1; i < positions.Length; i++)
+            positions[i] = positions[i - 1] + direction * bonesLength[i - 1];
+    }
+
+    /// <summary>
+    /// Sets the position and rotation
+    /// </summary>
+    private void SetPositionAndRotation()
+    {
+        for (int i = 0; i < positions.Length; i++) //Johan & Jonathan
         {
             if (i != positions.Length - 1)
             {
                 SetRotationRootSpace(bones[i], Quaternion.FromToRotation(startDirectionSucc[i], positions[i + 1] - positions[i]) * Quaternion.Inverse(startRotationBone[i]));
                 SetPositionRootSpace(bones[i], positions[i]);
             }
+        }
+    }
+
+    /// <summary>
+    /// Moves hands towards pole.
+    /// </summary>
+    private void MoveTowardsPole()
+    {
+        var polePosition = GetPositionRootSpace(pole);
+        for (int i = 1; i < positions.Length - 1; i++)
+        {
+            var plane = new Plane(positions[i + 1] - positions[i - 1], positions[i - 1]);
+            var projectedPole = plane.ClosestPointOnPlane(polePosition);
+            var projectedBone = plane.ClosestPointOnPlane(positions[i]);
+            var angle = Vector3.SignedAngle(projectedBone - positions[i - 1], projectedPole - positions[i - 1], plane.normal);
+            positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (positions[i] - positions[i - 1]) + positions[i - 1];
         }
     }
 
@@ -358,10 +377,8 @@ public class IKReach : MonoBehaviour
             current.rotation = root.rotation * rotation;
     }
 
-
-
     /// <summary>
-    ///
+    /// Grabs an object if it has a tag that is grabbable
     /// Johan & Mattias
     /// </summary>
     /// <param name="other"></param>
