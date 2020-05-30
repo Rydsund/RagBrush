@@ -19,6 +19,9 @@ public class PausMenu : MonoBehaviour
     [SerializeField]
     private GameObject optionsMenuUI;
 
+    [SerializeField]
+    private GameObject controlMenueUI;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -33,6 +36,11 @@ public class PausMenu : MonoBehaviour
                 {                    
                     pausMenuUI.SetActive(true);
                     optionsMenuUI.SetActive(false);
+                }
+                else if(controlMenueUI.active == true)
+                {
+                    optionsMenuUI.SetActive(true);
+                    controlMenueUI.SetActive(false);
                 }
             }
             else

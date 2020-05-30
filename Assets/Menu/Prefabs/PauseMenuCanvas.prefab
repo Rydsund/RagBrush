@@ -3746,6 +3746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausMenuUI: {fileID: 7600936217894459396}
   optionsMenuUI: {fileID: 2037965084082099137}
+  controlMenueUI: {fileID: 1841727971597023854}
 --- !u!1 &2037965083482152879
 GameObject:
   m_ObjectHideFlags: 0
