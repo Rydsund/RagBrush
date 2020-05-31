@@ -2492,6 +2492,11 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3831642893097432257, guid: 69cea99269a005740b201e925a5894b3,
+        type: 3}
+      propertyPath: jumpForce
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3831642893097432259, guid: 69cea99269a005740b201e925a5894b3,
         type: 3}
       propertyPath: m_Mass
