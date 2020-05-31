@@ -2454,6 +2454,10 @@ PrefabInstance:
       propertyPath: breakForceLight
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 255854950, guid: 69cea99269a005740b201e925a5894b3, type: 3}
+      propertyPath: breakForceHeavy
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 960878512, guid: 69cea99269a005740b201e925a5894b3, type: 3}
       propertyPath: grabbableObjects.Array.size
       value: 3
@@ -2473,6 +2477,10 @@ PrefabInstance:
     - target: {fileID: 960878512, guid: 69cea99269a005740b201e925a5894b3, type: 3}
       propertyPath: breakForceLight
       value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 960878512, guid: 69cea99269a005740b201e925a5894b3, type: 3}
+      propertyPath: breakForceHeavy
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 3387067813467773061, guid: 69cea99269a005740b201e925a5894b3,
         type: 3}
