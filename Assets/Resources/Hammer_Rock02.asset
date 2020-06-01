@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f706fe73f3f2e8458ed596338376661, type: 3}
-  m_Name: CreateBranch_Tree_02_Base + Top
+  m_Name: Hammer_Rock02
   m_EditorClassIdentifier: 
-  inputObj1: {fileID: 6783610958042987696, guid: 3669a592478cb3f4eb6d4f9f965151b9,
+  inputObj1: {fileID: 6029863055321582977, guid: eb94e968572eb8f43a9dcd6c394ccd2d,
     type: 3}
-  inputObj2: {fileID: 6743512620850555859, guid: 452b800307f4a324fa31459a0205db9f,
+  inputObj2: {fileID: 1284296314258214795, guid: e07df5a4657b2874fb3bdc871ed7f6ce,
     type: 3}
-  outputObj: {fileID: 6029863055321582977, guid: eb94e968572eb8f43a9dcd6c394ccd2d,
+  outputObj: {fileID: 3317808095428004601, guid: 3e1a8550a52b21f4c8845cb66e68c0dc,
     type: 3}
   description: 
