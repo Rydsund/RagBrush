@@ -30,22 +30,39 @@ public class Player : MonoBehaviour
     /// </summary>
     private void CraftItem()
     {
-        if (inventory.Container.Count > 1 && inventory.Container.Count < 3) 
+        //if (inventory.Container.Count > 1 && inventory.Container.Count < 3) // Endast crafting om två items i inventory.
+        //{
+        if (inventory.Container.Count > 1 )
         {
-            if (crafting.Craft(inventory.Container[0], inventory.Container[1]) == true)
+            if (crafting.Craft(inventory.Container[0], inventory.Container[1]) == true) // Craft är en metod som returnerar en bool.
             {
                 Destroy(displayInventory.itemsDisplayed[inventory.Container[0]].gameObject);
                 Destroy(displayInventory.itemsDisplayed[inventory.Container[1]].gameObject);
                 inventory.Container.Clear();
             }
         }
+        else
+        {
+            if (crafting.Craft(inventory.Container[0]) == true) // Craft är en metod som returnerar en bool.
+            {
+                Destroy(displayInventory.itemsDisplayed[inventory.Container[0]].gameObject);
+              //  Destroy(displayInventory.itemsDisplayed[inventory.Container[1]].gameObject);
+                inventory.Container.Clear();
+            }
+        }
+        //else if (inventory.Container.Count < 2)
+        //{
+
+        //}
+
+        //}
     }
 
 
     /// <summary>
     /// Metoden släpper ett item i taget från spelarens inventory, från vänster till höger.
     /// Itemet instansieras sedan vid spelarens position.
-    /// -- Viktor / Mattias.
+    /// -- Viktor / Matthias.
     /// </summary>
     private void DropItem()
     {           
@@ -63,6 +80,7 @@ public class Player : MonoBehaviour
 
     public void AddItemToInventory(Collider collider)
     {
+       // Debug.Log("Found collider");
         var item = collider.GetComponent<Item>();
         if (item)
         {

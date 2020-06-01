@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f706fe73f3f2e8458ed596338376661, type: 3}
-  m_Name: Hammer 3
+  m_Name: CreateBranch_Tree_01_Middle
   m_EditorClassIdentifier: 
-  inputObj1: {fileID: 6029863055321582977, guid: eb94e968572eb8f43a9dcd6c394ccd2d,
+  inputObj1: {fileID: 5088376379311468372, guid: 611f8205c27f2764bac6bbc72a6c48b7,
     type: 3}
-  inputObj2: {fileID: 1284296314258214795, guid: e07df5a4657b2874fb3bdc871ed7f6ce,
-    type: 3}
-  outputObj: {fileID: 3317808095428004601, guid: 3e1a8550a52b21f4c8845cb66e68c0dc,
+  inputObj2: {fileID: 0}
+  outputObj: {fileID: 6029863055321582977, guid: eb94e968572eb8f43a9dcd6c394ccd2d,
     type: 3}
   description: 
