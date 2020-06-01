@@ -184,8 +184,8 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Släpper det objekt som karaktären håller i
-    /// Johan
+    /// Släpper det objekt som karaktären håller i. / Johan
+    /// Loopar igenom all joints för att förstöra endast de skapade av denna hand. / Mattias
     /// </summary>
     private void DropObject()
     {
@@ -404,12 +404,15 @@ public class IKReach : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)//Johan
     {
-        foreach (string s in grabbableObjects)
+        if(myGrabdObj == null)
         {
-            if (other.gameObject.CompareTag(s))
+            foreach (string s in grabbableObjects)
             {
-                myGrabdObj = other.gameObject;
-                return;
+                if (other.gameObject.CompareTag(s))
+                {
+                    myGrabdObj = other.gameObject;
+                    return;
+                }
             }
         }
     }
