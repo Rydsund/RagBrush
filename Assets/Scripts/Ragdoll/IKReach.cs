@@ -188,15 +188,23 @@ public class IKReach : MonoBehaviour
     }
 
     /// <summary>
-    /// Släpper det objekt som karaktären håller i
-    /// Johan
+    /// Släpper det objekt som karaktären håller i. / Johan
+    /// Loopar igenom all joints för att förstöra endast de skapade av denna hand. / Mattias
     /// </summary>
     private void DropObject()
     {
         if (myGrabdObj != null)
         {
-            Destroy(myGrabdObj.GetComponent<Joint>());
+            Joint[] joints = myGrabdObj.GetComponents<Joint>();
+            for(int i = 0; i < joints.Length; i++)
+            {
+                if(joints[i].connectedBody == rigidbody)
+                {
+                    Destroy(joints[i]);
+                }
+            }
         }
+
         myGrabdObj = null;
         isGrabbing = false;
 
@@ -398,14 +406,17 @@ public class IKReach : MonoBehaviour
     /// Johan & Mattias
     /// </summary>
     /// <param name="other"></param>
-    public void OnTriggerEnter(Collider other)//Johan
+    private void OnTriggerEnter(Collider other)//Johan
     {
-        foreach (string s in grabbableObjects)
+        if(myGrabdObj == null)
         {
-            if (other.gameObject.CompareTag(s))
+            foreach (string s in grabbableObjects)
             {
-                myGrabdObj = other.gameObject;
-                return;
+                if (other.gameObject.CompareTag(s))
+                {
+                    myGrabdObj = other.gameObject;
+                    return;
+                }
             }
         }
     }
