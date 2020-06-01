@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 618925a051571f04783bd4a9c09149ae, type: 3}
-  m_Name: Tree_01_Base
+  m_Name: Tree_02_Middle
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 6488388049949384753, guid: d4fce01c140d6a246bfddb6560d98340,
     type: 3}
-  objectPrefab: {fileID: 532620720937131256, guid: 1302a38202ebc604a938b4d59c7f35f4,
+  objectPrefab: {fileID: 6562521789084307063, guid: 38c78dc0201510c4cb915c5f588eaf65,
     type: 3}
   type: 2
   description: 
