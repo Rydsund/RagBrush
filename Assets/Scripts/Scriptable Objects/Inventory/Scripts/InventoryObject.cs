@@ -8,6 +8,7 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public List<InventorySlot> Container = new List<InventorySlot>();
+    //int count = 0;
 
     /// <summary>
     ///  Metoden har till uppgift att lägga till en inventory Slot i en lista(Container) av Inventory Slots 
@@ -29,6 +30,7 @@ public class InventoryObject : ScriptableObject
 
         if (!hasItem && Container.Count <= 1)
         {
+            //count++;
             Container.Add(new InventorySlot(_item, _amount));
         }
     }

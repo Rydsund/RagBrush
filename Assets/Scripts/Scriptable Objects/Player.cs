@@ -16,9 +16,9 @@ public class Player : MonoBehaviour
             CraftItem();
         }
 
-        if (Input.GetKeyDown(KeyCode.N)) 
-        {
-            DropItem();
+        if (Input.GetKey(KeyCode.N)) 
+        {         
+                DropItem();  
         }
     }
 
@@ -44,25 +44,26 @@ public class Player : MonoBehaviour
 
     /// <summary>
     /// Metoden släpper ett item i taget från spelarens inventory, från vänster till höger.
-    /// Itemet instansieras sedan vid spelarens position
+    /// Itemet instansieras sedan vid spelarens position.
     /// -- Viktor / Matthias.
     /// </summary>
     private void DropItem()
-    {
-        for (int i = 0; i < displayInventory.itemsDisplayed.Count; i++)
+    {           
+        if (inventory.Container.Count > 0)
         {
-            var tempObj = inventory.Container[i].item.objectPrefab;
+            var tempObj = inventory.Container[0].item.objectPrefab;
             tempObj.transform.position = this.transform.position;
             Instantiate(tempObj);
 
-            Destroy(displayInventory.itemsDisplayed[inventory.Container[i]].gameObject);
-            inventory.Container.RemoveAt(i);
+            Destroy(displayInventory.itemsDisplayed[inventory.Container[0]].gameObject);
+            inventory.Container.RemoveAt(0);
+            DropItem();
         }
     }
 
     public void AddItemToInventory(Collider collider)
     {
-        Debug.Log("Found collider");
+       // Debug.Log("Found collider");
         var item = collider.GetComponent<Item>();
         if (item)
         {

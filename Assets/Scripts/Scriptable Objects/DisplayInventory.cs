@@ -36,7 +36,7 @@ public class DisplayInventory : MonoBehaviour
     /// <summary>
     /// Update display har till uppgift att hela tiden visa en korrekt grafisk representation
     /// av items som existerar i ett särskilt inventory. Kan även användas för andra inventorys förutom spelarens.
-    /// T.e.x. ett Tutorial-inventory.
+    /// T.e.x. ett Tutorial/Shop-inventory.
     /// -- Viktor
     /// </summary>
     public void UpdateDisplay()
@@ -44,7 +44,8 @@ public class DisplayInventory : MonoBehaviour
         for (int i = 0; i < inventory.Container.Count; i++)
         {
             if (itemsDisplayed.ContainsKey(inventory.Container[i]))
-            {   
+            {
+
             }
             else
             {   // Annars skapas en grafisk representation av inventory.
@@ -80,6 +81,7 @@ public class DisplayInventory : MonoBehaviour
     /// </summary>
     public Vector3 GetPosition(int i)
     {
+        Debug.Log(new Vector3(x_Start + (x_SpaceBetweenItems * (i % number_Of_Columns)), y_Start + ((-y_SpaceBetweenItems * (i / number_Of_Columns))), 0f));
         return new Vector3(x_Start + (x_SpaceBetweenItems * (i % number_Of_Columns)), y_Start + ((-y_SpaceBetweenItems * (i/number_Of_Columns))), 0f);
     }
 }

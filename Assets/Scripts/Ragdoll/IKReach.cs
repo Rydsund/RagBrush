@@ -164,14 +164,18 @@ public class IKReach : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.G))
                     {
-                        playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+                        if (myGrabdObj != null)
+                        {
+                            playerInventory.AddItemToInventory(myGrabdObj.GetComponent<Collider>());
+                        }           
                     }
                 }
 
                 if (!isExtended)
                     MoveHandTarget();
                
-                if (!isGrabbing || myGrabdObj.GetComponent<Rigidbody>().mass <= maxCarryWeight)
+                if (!isGrabbing ||                     
+                     myGrabdObj != null && myGrabdObj.GetComponent<Rigidbody>().mass <= maxCarryWeight)
                 {
                     ResolveIK();
                 }
