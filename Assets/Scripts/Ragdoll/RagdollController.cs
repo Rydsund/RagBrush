@@ -123,7 +123,6 @@ public class RagdollController : MonoBehaviour
             rigidbody.rotation = Quaternion.Slerp(rigidbody.rotation, Quaternion.Euler(targetRotation.x, targetRotation.y, targetRotation.z), Time.fixedDeltaTime * rotationSpeed);
         }
 
-
         Vector3 input = new Vector3(horizontal, 0, vertical);
 
         if (input != Vector3.zero)
@@ -134,7 +133,6 @@ public class RagdollController : MonoBehaviour
         {
             animator.enabled = false;
         }
-
 
         Vector3 velocity = moveDirection * speed;
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
