@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IKReach : MonoBehaviour
@@ -19,7 +20,7 @@ public class IKReach : MonoBehaviour
     private GameObject myGrabdObj;
 
     [SerializeField]
-    List<string> grabbableObjects;
+    public List<string> grabbableObjects;
 
     protected float[] bonesLength; 
     [SerializeField]
@@ -30,6 +31,15 @@ public class IKReach : MonoBehaviour
 
     [SerializeField]
     float breakForceLight;
+
+    [SerializeField]
+    float breakTorqueHeavy;
+
+    [SerializeField]
+    float breakTorqueLight;
+
+   
+
 
     [SerializeField]
     float maxCarryWeight = 8;
@@ -148,6 +158,7 @@ public class IKReach : MonoBehaviour
     /// <summary>
     /// Hanterar loopen, kollar efter input och bestämmer vad ska hända och när det ska hända.
     /// Johan
+    /// (& lite Mattias)
     /// </summary>
     void Update() 
     {
@@ -185,6 +196,10 @@ public class IKReach : MonoBehaviour
                 DropObject();
             }
         }
+        else
+        {
+            DropObject();
+        }
     }
 
     /// <summary>
@@ -204,7 +219,6 @@ public class IKReach : MonoBehaviour
                 }
             }
         }
-
         myGrabdObj = null;
         isGrabbing = false;
 
@@ -216,21 +230,32 @@ public class IKReach : MonoBehaviour
 
     /// <summary>
     /// Hanterar att ta tag i ett objekt
-    /// Johan
+    /// Johan & Mattias
     /// </summary>
     private void GrabObject()
     {
         FixedJoint fixedJoint = myGrabdObj.AddComponent<FixedJoint>();
         fixedJoint.connectedBody = rigidbody;
 
+        FixedJoint fixedJoint2 = myGrabdObj.AddComponent<FixedJoint>();
+        fixedJoint2.connectedBody = rigidbody;
+
         if (myGrabdObj.GetComponent<Rigidbody>().mass >= maxCarryWeight)
         {
             fixedJoint.breakForce = breakForceHeavy;
+            fixedJoint2.breakForce = breakForceHeavy;
+
+            fixedJoint.breakTorque = breakTorqueHeavy;
+            fixedJoint2.breakTorque = breakTorqueHeavy;
             isGrabbingHeavy = true;
         }
         else
         {
             fixedJoint.breakForce = breakForceLight;
+            fixedJoint2.breakForce = breakForceLight;
+
+            fixedJoint.breakTorque = breakTorqueLight;
+            fixedJoint2.breakTorque = breakTorqueLight;
             isGrabbingHeavy = false;
         }
         isGrabbing = true;

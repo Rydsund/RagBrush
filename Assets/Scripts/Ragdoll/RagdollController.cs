@@ -36,7 +36,7 @@ public class RagdollController : MonoBehaviour
     [SerializeField]
     private float clampMax = 30;
 
-	bool isGround = true;
+	bool isOnGround = true;
 	public bool alive = true;
     public IKReach ikReach;
 
@@ -51,7 +51,6 @@ public class RagdollController : MonoBehaviour
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		mainCameraTransform = Camera.main.transform;
         baseJumpForce = jumpForce;
-        
 	}
 
     /// <summary>
@@ -62,10 +61,10 @@ public class RagdollController : MonoBehaviour
     {
         Aim();
 
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
             rigidbody.AddForce(new Vector3(0, jumpForce * 100, 0), ForceMode.Impulse);
-            isGround = false;
+            isOnGround = false;
         }
     }
 
@@ -85,8 +84,6 @@ public class RagdollController : MonoBehaviour
         {
             animator.enabled = false;
         }
-
-
     }
 
     /// <summary>
@@ -153,10 +150,9 @@ public class RagdollController : MonoBehaviour
 		{
 			StartCoroutine(Out());
 		}
-        isGround = true;
 
-
-        
+        if(other.gameObject.tag != "Item" || other.gameObject.tag != "Hammer" || other.gameObject.tag != "Axe")
+            isOnGround = true;
 	}
 
     private void OnCollisionStay(Collision other)
