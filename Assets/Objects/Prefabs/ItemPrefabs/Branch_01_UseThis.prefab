@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1866153693287163697}
   - component: {fileID: 211602558452974598}
   - component: {fileID: 3644628028377002253}
+  - component: {fileID: 1660670612}
+  - component: {fileID: 1660670611}
   m_Layer: 0
   m_Name: Branch_01_UseThis
   m_TagString: Item
@@ -28,9 +30,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6029863055321582977}
-  m_LocalRotation: {x: -0, y: -0.2772665, z: -0, w: 0.9607931}
+  m_LocalRotation: {x: 0, y: -0.2772643, z: 0, w: 0.96079373}
   m_LocalPosition: {x: 19.064917, y: 5.334935, z: 47.616306}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93caadf4359ae8143aad35b3145d31af, type: 2}
+  - {fileID: 2100000, guid: c2b4cf532c9827541adb37db5f1a698a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +93,7 @@ MeshCollider:
   m_GameObject: {fileID: 6029863055321582977}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -125,3 +127,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &1660670612
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6029863055321582977}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.06732096
+  m_Height: 0.8385961
+  m_Direction: 0
+  m_Center: {x: 0.010676463, y: 0.006228745, z: -0.010000001}
+--- !u!114 &1660670611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6029863055321582977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3611e156a036a4ba85f96edf060b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
