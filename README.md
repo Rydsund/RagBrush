@@ -1,32 +1,26 @@
 # RagBrush
 Skolprojekt
 
-Börja med att öppna Menu scenen, tryck på new game för att börja spelet. 
+Börja med att öppna projektet, starta scenen MainScene_Master
 
-Crafting och Inventory är i nuläget ej implementerade i ragdollen, men de är tänkta att användas. 
+För att gå:
+W, A, S, D.
 
-Scripts som används eller kommer användas:
+För att greppa:
+Rikta karaktären mot objektet och klicka höger, eller vänster musknapp.
 
-MainMenu,
-OptionsMenu,
-PausMenu,
+Inventory:
+Med ett objekt i handen tryck 'G' för att placera det i inventory.
+Klicka 'N' för att droppa allt ur inventory.
 
-CameraController,
-IKPunch,
-RagdollController,
-Motion,
+Crafting:
+Med ett, eller två, objekt i inventory klicka 'C' för att crafta.
 
-Destructible
+Måla:
+För att kunna måla crafta en pensel. Pinne + Svamp. 
+Rikta penseln mot objektet.
 
-Crafting,
-Recipe,
-Inventory Object,
-Default Object,
-EquipmentObject,
-FoodObject,
-ItemObject,
-DisplayInventory,
-Item,
-Player
+Meny:
+Går att komma åt via build. 'ESC'
 
 --- Unity Version: 2019.3.4f1
